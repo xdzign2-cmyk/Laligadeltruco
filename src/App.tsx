@@ -4,7 +4,7 @@ import Dashboard from './Dashboard';
 import MobileOperative from './MobileOperative';
 import PublicityDashboard from './PublicityDashboard';
 import RestriccionModule from './RestriccionModule';
-import { User, Key, Eye, EyeOff, RefreshCw, ShieldAlert, TrendingUp } from 'lucide-react';
+import { Eye, EyeOff, RefreshCw, ShieldAlert, TrendingUp } from 'lucide-react';
 import { supabase } from './lib/supabase';
 
 function App() {
@@ -23,7 +23,6 @@ function App() {
   const [show2FA, setShow2FA] = useState(false);
   const [twoFACode, setTwoFACode] = useState('');
   const [tempUser, setTempUser] = useState<any>(null); // Store user while waiting for 2FA
-  const [twoFAMethod, setTwoFAMethod] = useState<'totp' | 'pin'>('pin'); // Default or detected
   const [showPIN, setShowPIN] = useState(false); // Toggle visibility for PIN
 
 
@@ -125,12 +124,8 @@ function App() {
       // 2FA CHECK FOR ADMINS
       if (dbUser.role === 'admin' || dbUser.role === 'vicepresident') {
         // Check if user has 2FA configured
-        const hasTOTP = !!dbUser.secret_2fa;
-        // ALWAYS SHOW 2FA FOR ADMINS (Fallback to Master PIN)
         setTempUser(dbUser);
         setShow2FA(true);
-        // Prefer TOTP if available, otherwise PIN
-        setTwoFAMethod(hasTOTP ? 'totp' : 'pin');
         setLoading(false);
         return;
       }
