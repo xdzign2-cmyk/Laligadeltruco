@@ -1,0 +1,25 @@
+================================================================
+          LISTA MAESTRA DE ACCESOS - SISTEMA 4X4
+================================================================
+FECHA DE REPORTE: 13/1/2026, 6:27:03 p. m.
+NOTA: La contraseña genérica del sistema es '123456'
+
+USUARIO (Login)       | CONTRASEÑA           | ROL (Nivel de Acceso)       | ESTADO
+--------------------- | -------------------- | --------------------------- | ---------
+admin                 | FelipeMaster.2026    | admin                       | APROBADO
+romero                | Romero.2026          | fijo_barco                  | APROBADO
+alfredo               | Alfredo.2026         | fijo_barco                  | APROBADO
+willy                 | Willy.2026           | fijo_cueva                  | APROBADO
+francel               | Francel.2026         | fijo_cueva                  | APROBADO
+dasos.545             | 123456               | fijo_cueva                  | APROBADO
+francis               | Francis.2026         | franquero                   | APROBADO
+clemente              | 123456               | franquero                   | APROBADO
+invitado              | Visita.2026          | guest                       | APROBADO
+invitado2             | Visita2.2026         | guest                       | APROBADO
+invitado3             | Visita3.2026         | guest                       | APROBADO
+shaipubli             | shaipubli2026        | shaipubli                   | APROBADO
+larryadmin            | LarryVice.2026       | vicepresident               | APROBADO
+
+================================================================
+ FIN DEL REPORTE
+================================================================

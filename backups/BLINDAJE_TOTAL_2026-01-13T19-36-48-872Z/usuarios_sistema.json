@@ -1,0 +1,119 @@
+[
+  {
+    "id": "6e6d8e7f-9cb1-4b40-8353-67c62162e3c9",
+    "username": "admin",
+    "password_text": "FelipeMaster.2026",
+    "nombre": "Administrador",
+    "role": "admin",
+    "estado": "aprobado",
+    "created_at": "2026-01-12T05:08:05.627764+00:00"
+  },
+  {
+    "id": "4dbedc77-f6ce-462a-ab0c-aa71f48a4bab",
+    "username": "larryadmin",
+    "password_text": "LarryVice.2026",
+    "nombre": "Larry (Vicepresidente)",
+    "role": "vicepresident",
+    "estado": "aprobado",
+    "created_at": "2026-01-12T05:08:05.627764+00:00"
+  },
+  {
+    "id": "51558c67-d65f-4a54-bcc6-ac891475d0ab",
+    "username": "invitado",
+    "password_text": "Visita.2026",
+    "nombre": "Invitado Principal",
+    "role": "guest",
+    "estado": "aprobado",
+    "created_at": "2026-01-12T05:08:05.627764+00:00"
+  },
+  {
+    "id": "3091bdfc-5d67-45da-88d2-dfa5b426fa50",
+    "username": "romero",
+    "password_text": "Romero.2026",
+    "nombre": "Romero",
+    "role": "fijo_barco",
+    "estado": "aprobado",
+    "created_at": "2026-01-12T05:08:05.627764+00:00"
+  },
+  {
+    "id": "aeb4764c-c6f6-449e-8f38-0f7823a7b55e",
+    "username": "alfredo",
+    "password_text": "Alfredo.2026",
+    "nombre": "Alfredo",
+    "role": "fijo_barco",
+    "estado": "aprobado",
+    "created_at": "2026-01-12T05:08:05.627764+00:00"
+  },
+  {
+    "id": "1c54984e-342c-42c6-a659-e82dcef47457",
+    "username": "francel",
+    "password_text": "Francel.2026",
+    "nombre": "Francel",
+    "role": "fijo_cueva",
+    "estado": "aprobado",
+    "created_at": "2026-01-12T05:08:05.627764+00:00"
+  },
+  {
+    "id": "26621f9d-cb5b-438d-bd0f-75c2096310bf",
+    "username": "willy",
+    "password_text": "Willy.2026",
+    "nombre": "Willy",
+    "role": "fijo_cueva",
+    "estado": "aprobado",
+    "created_at": "2026-01-12T05:08:05.627764+00:00"
+  },
+  {
+    "id": "b3efc71a-b250-4867-b2cc-4d311fd89a08",
+    "username": "francis",
+    "password_text": "Francis.2026",
+    "nombre": "Francis",
+    "role": "franquero",
+    "estado": "aprobado",
+    "created_at": "2026-01-12T05:08:05.627764+00:00"
+  },
+  {
+    "id": "480b6998-2be5-4c86-99c6-d09bf9e9693b",
+    "username": "invitado2",
+    "password_text": "Visita2.2026",
+    "nombre": "Invitado Demo 2",
+    "role": "guest",
+    "estado": "aprobado",
+    "created_at": "2026-01-12T05:08:05.627764+00:00"
+  },
+  {
+    "id": "6f9890ac-26cd-46f9-a003-c20e56fe4582",
+    "username": "invitado3",
+    "password_text": "Visita3.2026",
+    "nombre": "Invitado Demo 3",
+    "role": "guest",
+    "estado": "denegado",
+    "created_at": "2026-01-12T05:08:05.627764+00:00"
+  },
+  {
+    "id": "c829a89c-ebcb-40e5-8d52-b5f2e8df83f8",
+    "username": "shaipubli",
+    "password_text": "shaipubli2026",
+    "nombre": "Shaipubli Control",
+    "role": "shaipubli",
+    "estado": "aprobado",
+    "created_at": "2026-01-12T06:06:34.323188+00:00"
+  },
+  {
+    "id": "974289c6-b8f8-4195-bf73-7efe63e1c378",
+    "username": "dasos.545",
+    "password_text": "123456",
+    "nombre": "Dasos",
+    "role": "fijo_cueva",
+    "estado": "aprobado",
+    "created_at": "2026-01-13T07:09:27.760476+00:00"
+  },
+  {
+    "id": "97ee0c1c-b698-4d23-b350-425b8b158109",
+    "username": "clemente",
+    "password_text": "123456",
+    "nombre": "Clemente",
+    "role": "franquero",
+    "estado": "aprobado",
+    "created_at": "2026-01-12T05:08:05.627764+00:00"
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-01-13T18:53:26.227Z",
+  "tables_backed_up": [
+    "registros_operativos",
+    "usuarios_sistema",
+    "perfiles_empleados",
+    "app_backups",
+    "publicidad_detallada",
+    "publicidad_audit",
+    "restricciones_clientes",
+    "gestor_sesiones"
+  ],
+  "status": "PROTECTED",
+  "version": "4x4"
+}

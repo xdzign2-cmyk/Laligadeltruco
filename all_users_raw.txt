@@ -1,0 +1,15 @@
+Administrador|admin|admin|aprobado
+Larry (Vicepresidente)|larryadmin|vicepresident|aprobado
+Invitado Principal|invitado|guest|aprobado
+Romero|romero|fijo_barco|aprobado
+Alfredo|alfredo|fijo_barco|aprobado
+Francel|francel|fijo_cueva|aprobado
+Willy|willy|fijo_cueva|aprobado
+Francis|francis|franquero|aprobado
+Invitado Demo 2|invitado2|guest|aprobado
+Shaipubli Control|shaipubli|shaipubli|aprobado
+Dasos|dasos.545|fijo_cueva|aprobado
+Clemente|clemente|franquero|aprobado
+Invitado 234|invitado3|guest|aprobado
+Invitado 710|cora|guest|aprobado
+Clemente |clemente.|fijo_barco|aprobado

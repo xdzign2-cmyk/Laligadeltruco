@@ -1,0 +1,6727 @@
+[
+  {
+    "id": 491186,
+    "updated_at": "2026-01-13T02:45:47.196+00:00",
+    "content": {
+      "meta": {
+        "user": "admin",
+        "sessionId": "jlopph",
+        "timestamp": "2026-01-13T02:45:47.041Z"
+      },
+      "banks": [
+        {
+          "id": 1,
+          "monto": 144000,
+          "nombre": "Personal Pay - Claudio"
+        },
+        {
+          "id": 2,
+          "monto": 100000,
+          "nombre": "Personal Pay - Juan"
+        },
+        {
+          "id": 3,
+          "monto": 6100,
+          "nombre": "Claro Pay - Cristian"
+        }
+      ],
+      "felipe": {
+        "days": 13,
+        "free": 2,
+        "extra": 2,
+        "advances": [
+          {
+            "id": 1768271780464,
+            "monto": 50,
+            "motivo": "Router Nuevo"
+          }
+        ]
+      },
+      "pubARS": 0,
+      "pubUSD": 0,
+      "shifts": {
+        "1": {
+          "1": "0"
+        },
+        "2": {
+          "1": "0",
+          "2": "0",
+          "3": "0"
+        },
+        "3": {
+          "1": "0"
+        },
+        "4": {
+          "1": ""
+        },
+        "5": {
+          "7": "6",
+          "11": "9",
+          "14": "9"
+        },
+        "6": {
+          "9": "9",
+          "11": "9"
+        },
+        "1768272284299": {
+          "1": "9"
+        }
+      },
+      "players": [
+        {
+          "id": 1,
+          "tipo": "barco",
+          "saldo": 0,
+          "nombre": "El Barco"
+        },
+        {
+          "id": 2,
+          "tipo": "cueva",
+          "saldo": 0,
+          "nombre": "La Cueva"
+        }
+      ],
+      "usdtRate": 1534,
+      "employees": [
+        {
+          "id": 1,
+          "name": "Romero",
+          "email": "romero@sistema.com",
+          "group": "Barco",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": 2,
+          "name": "Alfredo",
+          "email": "alfredo@sistema.com",
+          "group": "Barco",
+          "shift": "Noche",
+          "status": "Activo"
+        },
+        {
+          "id": 3,
+          "name": "Francel",
+          "email": "francel@sistema.com",
+          "group": "Cueva",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": 4,
+          "name": "Willy",
+          "email": "willy@sistema.com",
+          "group": "Cueva",
+          "shift": "Noche",
+          "status": "Activo"
+        },
+        {
+          "id": 5,
+          "name": "Francis",
+          "email": "francis@sistema.com",
+          "group": "Barco",
+          "shift": "Franquero",
+          "status": "Activo"
+        },
+        {
+          "id": 6,
+          "name": "Clemente",
+          "email": "clemente@sistema.com",
+          "group": "Cueva",
+          "shift": "Franquero",
+          "status": "Activo"
+        },
+        {
+          "id": 1768272284299,
+          "name": "Dasos",
+          "group": "Cueva",
+          "shift": "Noche",
+          "status": "Renunció"
+        }
+      ],
+      "operative": [
+        {
+          "id": "2025-12-29",
+          "dia": "29",
+          "drop": 0,
+          "barco": 87800,
+          "cueva": 114450,
+          "gastos": 0,
+          "fullDate": "2025-12-29",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2025-12-30",
+          "dia": "30",
+          "drop": 0,
+          "barco": 72300,
+          "cueva": 132496,
+          "gastos": 0,
+          "fullDate": "2025-12-30",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2025-12-31",
+          "dia": "31",
+          "drop": 0,
+          "barco": 55400,
+          "cueva": 78940,
+          "gastos": 0,
+          "fullDate": "2025-12-31",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-01",
+          "dia": "1",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 73649,
+          "gastos": 0,
+          "fullDate": "2026-01-01",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-02",
+          "dia": "2",
+          "drop": 0,
+          "barco": 11040,
+          "cueva": 53072,
+          "gastos": 0,
+          "fullDate": "2026-01-02",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-03",
+          "dia": "3",
+          "drop": 0,
+          "barco": 43712,
+          "cueva": 53152,
+          "gastos": 0,
+          "fullDate": "2026-01-03",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-04",
+          "dia": "4",
+          "drop": 0,
+          "barco": 27392,
+          "cueva": 39632,
+          "gastos": 0,
+          "fullDate": "2026-01-04",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-05",
+          "dia": "5",
+          "drop": 0,
+          "barco": 32624,
+          "cueva": 66048,
+          "gastos": 0,
+          "fullDate": "2026-01-05",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-06",
+          "dia": "6",
+          "drop": 0,
+          "barco": 45760,
+          "cueva": 64544,
+          "gastos": 0,
+          "fullDate": "2026-01-06",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-07",
+          "dia": "7",
+          "drop": 0,
+          "barco": 91536,
+          "cueva": 83712,
+          "gastos": 0,
+          "fullDate": "2026-01-07",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-08",
+          "dia": "8",
+          "drop": 0,
+          "barco": 63328,
+          "cueva": 60016,
+          "gastos": 0,
+          "fullDate": "2026-01-08",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-09",
+          "dia": "9",
+          "drop": 0,
+          "barco": 94832,
+          "cueva": 111920,
+          "gastos": 0,
+          "fullDate": "2026-01-09",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-10",
+          "dia": "10",
+          "drop": 0,
+          "barco": 56849,
+          "cueva": 94352,
+          "gastos": 0,
+          "fullDate": "2026-01-10",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 92,
+          "mesasCueva": 116
+        },
+        {
+          "id": "2026-01-11",
+          "dia": "11",
+          "drop": 0,
+          "barco": 73056,
+          "cueva": 77168,
+          "gastos": 0,
+          "fullDate": "2026-01-11",
+          "utilidad": 0,
+          "mesasBarco": 104,
+          "mesasCueva": 104
+        },
+        {
+          "id": "2026-01-12",
+          "dia": "12",
+          "drop": 0,
+          "barco": 27920,
+          "cueva": 30784,
+          "gastos": 0,
+          "fullDate": "2026-01-12",
+          "utilidad": 0,
+          "mesasBarco": 43,
+          "mesasCueva": 42
+        },
+        {
+          "id": "2026-01-13",
+          "dia": "13",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 0,
+          "gastos": 0,
+          "fullDate": "2026-01-13",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-14",
+          "dia": "14",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 0,
+          "gastos": 0,
+          "fullDate": "2026-01-14",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-15",
+          "dia": "15",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 0,
+          "gastos": 0,
+          "fullDate": "2026-01-15",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        }
+      ],
+      "shipments": [
+        {
+          "id": 1,
+          "nota": "",
+          "fecha": "29/12",
+          "monto": 317000
+        },
+        {
+          "id": 2,
+          "nota": "",
+          "fecha": "31/12",
+          "monto": 350000
+        },
+        {
+          "id": 3,
+          "nota": "",
+          "fecha": "04/01",
+          "monto": 250000
+        },
+        {
+          "id": 4,
+          "nota": "ADELANTO",
+          "fecha": "05/01",
+          "monto": 76000,
+          "comprobante": ""
+        },
+        {
+          "id": 5,
+          "nota": "",
+          "fecha": "06/01",
+          "monto": 200000
+        },
+        {
+          "id": 6,
+          "nota": "",
+          "fecha": "08/01",
+          "monto": 330000
+        },
+        {
+          "id": 7,
+          "nota": "",
+          "fecha": "09/01",
+          "monto": 210000
+        },
+        {
+          "id": 1768271049430,
+          "nota": "",
+          "fecha": "09/01",
+          "monto": 205000,
+          "comprobante": ""
+        },
+        {
+          "id": 1768271062375,
+          "nota": "",
+          "fecha": "11/01",
+          "monto": 200000,
+          "comprobante": ""
+        }
+      ],
+      "shiftsNotes": {},
+      "publicityActive": {
+        "2026-01-01": {
+          "Barco": 25000,
+          "Cueva": 0,
+          "Total": 25000
+        }
+      }
+    }
+  },
+  {
+    "id": 491203,
+    "updated_at": "2026-01-13T19:31:08.895+00:00",
+    "content": {
+      "meta": {
+        "user": "admin",
+        "sessionId": "ui16aj",
+        "timestamp": "2026-01-13T19:31:08.706Z"
+      },
+      "banks": [
+        {
+          "id": 1,
+          "monto": 149559,
+          "nombre": "Personal Pay - Claudio"
+        },
+        {
+          "id": 2,
+          "monto": 120000,
+          "nombre": "Personal Pay - Juan"
+        },
+        {
+          "id": 3,
+          "monto": 6100,
+          "nombre": "Claro Pay - Cristian"
+        }
+      ],
+      "felipe": {
+        "days": 13,
+        "free": 2,
+        "extra": 2,
+        "advances": [
+          {
+            "id": 1768271780464,
+            "monto": 50,
+            "motivo": "Router Nuevo"
+          }
+        ]
+      },
+      "pubARS": 0,
+      "pubUSD": 0,
+      "shifts": {
+        "1": {
+          "1": "0",
+          "2": "4,5",
+          "3": "4,5",
+          "4": "9",
+          "5": "4,5",
+          "6": "9",
+          "7": "0",
+          "8": "9",
+          "9": "9",
+          "10": "9",
+          "11": "8,5",
+          "12": "9",
+          "13": "9",
+          "14": "0",
+          "15": "9"
+        },
+        "2": {
+          "1": "0",
+          "2": "0",
+          "3": "0",
+          "4": "9",
+          "5": "9",
+          "6": "18",
+          "7": "17",
+          "8": "9",
+          "9": "0",
+          "10": "9",
+          "11": "9",
+          "12": "9",
+          "13": "9",
+          "14": "9",
+          "15": "9"
+        },
+        "3": {
+          "1": "9",
+          "2": "0",
+          "3": "0",
+          "4": "0",
+          "5": "9",
+          "6": "9",
+          "7": "9",
+          "8": "9",
+          "9": "9",
+          "10": "9",
+          "11": "0",
+          "12": "9",
+          "13": "9",
+          "14": "9",
+          "15": "9"
+        },
+        "4": {
+          "1": "9",
+          "2": "13,5",
+          "3": "31,5",
+          "4": "18",
+          "5": "13,5",
+          "6": "0",
+          "7": "4",
+          "8": "9",
+          "9": "9",
+          "10": "9",
+          "11": "0",
+          "12": "9",
+          "13": "9",
+          "14": "9",
+          "15": "9"
+        },
+        "5": {
+          "7": "6",
+          "11": "9",
+          "14": "9"
+        },
+        "6": {
+          "9": "9",
+          "11": "9"
+        },
+        "willy": {
+          "1": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "2": {
+            "horas": "13.5",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "3": {
+            "horas": "31.5",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "4": {
+            "horas": "18",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "5": {
+            "horas": "13.5",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "7": {
+            "horas": "4",
+            "notas": "Hasta las 3pm",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "8": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "9": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "10": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "11": {
+            "horas": "0",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Franco"
+          },
+          "12": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "13": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "14": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "15": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          }
+        },
+        "romero": {
+          "1": {
+            "horas": "0",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Falta"
+          },
+          "2": {
+            "horas": "4.5",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "3": {
+            "horas": "4.5",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "4": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "5": {
+            "horas": "4.5",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "6": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "7": {
+            "horas": "0",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Franco"
+          },
+          "8": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "9": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "10": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "11": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "12": {
+            "horas": "8.5",
+            "notas": "30 min de Retraso",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "13": {
+            "horas": "8.5",
+            "notas": "30 min de Retraso",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "14": {
+            "horas": "0",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Franco"
+          },
+          "15": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          }
+        },
+        "alfredo": {
+          "4": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "5": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "6": {
+            "horas": "18",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "7": {
+            "horas": "17",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "8": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "9": {
+            "horas": "0",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Franco"
+          },
+          "10": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "11": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "12": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "13": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "14": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "15": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          }
+        },
+        "francel": {
+          "1": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "5": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "6": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "7": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "8": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "9": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "10": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "11": {
+            "horas": "0",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Franco"
+          },
+          "12": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "13": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "14": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "15": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          }
+        },
+        "francis": {
+          "7": {
+            "horas": "6",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "11": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "14": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          }
+        },
+        "clemente": {
+          "9": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "10": {
+            "horas": "0",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Falta"
+          },
+          "11": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          }
+        },
+        "dasos.545": {
+          "1": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          }
+        },
+        "1768272284299": {
+          "1": "9"
+        }
+      },
+      "players": [
+        {
+          "id": 1,
+          "tipo": "barco",
+          "saldo": 260000,
+          "nombre": "El Barco"
+        },
+        {
+          "id": 2,
+          "tipo": "cueva",
+          "saldo": 270000,
+          "nombre": "La Cueva"
+        }
+      ],
+      "usdtRate": 1534,
+      "employees": [
+        {
+          "id": "romero",
+          "name": "Romero",
+          "email": "romero",
+          "group": "Barco",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "alfredo",
+          "name": "Alfredo",
+          "email": "alfredo",
+          "group": "Barco",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "francel",
+          "name": "Francel",
+          "email": "francel",
+          "group": "Cueva",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "willy",
+          "name": "Willy",
+          "email": "willy",
+          "group": "Cueva",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "francis",
+          "name": "Francis",
+          "email": "francis",
+          "group": "Franquero",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "dasos.545",
+          "name": "Dasos",
+          "email": "dasos.545",
+          "group": "Cueva",
+          "shift": "Mañana",
+          "status": "Renunció"
+        },
+        {
+          "id": "clemente",
+          "name": "Clemente",
+          "email": "clemente",
+          "group": "Franquero",
+          "shift": "Mañana",
+          "status": "Activo"
+        }
+      ],
+      "operative": [
+        {
+          "id": "2025-12-29",
+          "dia": "29",
+          "drop": 0,
+          "barco": 87800,
+          "cueva": 114450,
+          "gastos": 0,
+          "fullDate": "2025-12-29",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2025-12-30",
+          "dia": "30",
+          "drop": 0,
+          "barco": 72300,
+          "cueva": 132496,
+          "gastos": 0,
+          "fullDate": "2025-12-30",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2025-12-31",
+          "dia": "31",
+          "drop": 0,
+          "barco": 55400,
+          "cueva": 78940,
+          "gastos": 0,
+          "fullDate": "2025-12-31",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-01",
+          "dia": "1",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 73649,
+          "gastos": 0,
+          "fullDate": "2026-01-01",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 81
+        },
+        {
+          "id": "2026-01-02",
+          "dia": "2",
+          "drop": 0,
+          "barco": 11040,
+          "cueva": 53072,
+          "gastos": 0,
+          "fullDate": "2026-01-02",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 17,
+          "mesasCueva": 75
+        },
+        {
+          "id": "2026-01-03",
+          "dia": "3",
+          "drop": 0,
+          "barco": 43712,
+          "cueva": 53152,
+          "gastos": 0,
+          "fullDate": "2026-01-03",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 44,
+          "mesasCueva": 75
+        },
+        {
+          "id": "2026-01-04",
+          "dia": "4",
+          "drop": 0,
+          "barco": 27392,
+          "cueva": 39632,
+          "gastos": 0,
+          "fullDate": "2026-01-04",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 44,
+          "mesasCueva": 60
+        },
+        {
+          "id": "2026-01-05",
+          "dia": "5",
+          "drop": 0,
+          "barco": 32624,
+          "cueva": 66048,
+          "gastos": 0,
+          "fullDate": "2026-01-05",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 53,
+          "mesasCueva": 90
+        },
+        {
+          "id": "2026-01-06",
+          "dia": "6",
+          "drop": 0,
+          "barco": 45760,
+          "cueva": 64544,
+          "gastos": 0,
+          "fullDate": "2026-01-06",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 77,
+          "mesasCueva": 88
+        },
+        {
+          "id": "2026-01-07",
+          "dia": "7",
+          "drop": 0,
+          "barco": 91536,
+          "cueva": 83712,
+          "gastos": 0,
+          "fullDate": "2026-01-07",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 131,
+          "mesasCueva": 111
+        },
+        {
+          "id": "2026-01-08",
+          "dia": "8",
+          "drop": 0,
+          "barco": 63328,
+          "cueva": 60016,
+          "gastos": 0,
+          "fullDate": "2026-01-08",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 96,
+          "mesasCueva": 119
+        },
+        {
+          "id": "2026-01-09",
+          "dia": "9",
+          "drop": 0,
+          "barco": 94832,
+          "cueva": 111920,
+          "gastos": 0,
+          "fullDate": "2026-01-09",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 143,
+          "mesasCueva": 146
+        },
+        {
+          "id": "2026-01-10",
+          "dia": "10",
+          "drop": 0,
+          "barco": 56849,
+          "cueva": 94352,
+          "gastos": 0,
+          "fullDate": "2026-01-10",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 92,
+          "mesasCueva": 116
+        },
+        {
+          "id": "2026-01-11",
+          "dia": "11",
+          "drop": 0,
+          "barco": 73056,
+          "cueva": 77168,
+          "gastos": 0,
+          "fullDate": "2026-01-11",
+          "utilidad": 0,
+          "mesasBarco": 104,
+          "mesasCueva": 104
+        },
+        {
+          "id": "2026-01-12",
+          "dia": "12",
+          "drop": 0,
+          "barco": 57488,
+          "cueva": 60704,
+          "gastos": 0,
+          "fullDate": "2026-01-12",
+          "utilidad": 0,
+          "mesasBarco": 81,
+          "mesasCueva": 84
+        },
+        {
+          "id": "2026-01-13",
+          "dia": "13",
+          "drop": 0,
+          "barco": 18912,
+          "cueva": 39920,
+          "gastos": 0,
+          "fullDate": "2026-01-13",
+          "utilidad": 0,
+          "mesasBarco": 31,
+          "mesasCueva": 48
+        },
+        {
+          "id": "2026-01-14",
+          "dia": "14",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 0,
+          "gastos": 0,
+          "fullDate": "2026-01-14",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-15",
+          "dia": "15",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 0,
+          "gastos": 0,
+          "fullDate": "2026-01-15",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        }
+      ],
+      "shipments": [
+        {
+          "id": 1,
+          "nota": "",
+          "fecha": "29/12",
+          "monto": 317000
+        },
+        {
+          "id": 2,
+          "nota": "",
+          "fecha": "31/12",
+          "monto": 350000
+        },
+        {
+          "id": 3,
+          "nota": "",
+          "fecha": "04/01",
+          "monto": 250000
+        },
+        {
+          "id": 4,
+          "nota": "ADELANTO",
+          "fecha": "05/01",
+          "monto": 76000,
+          "comprobante": ""
+        },
+        {
+          "id": 5,
+          "nota": "",
+          "fecha": "06/01",
+          "monto": 200000
+        },
+        {
+          "id": 6,
+          "nota": "",
+          "fecha": "08/01",
+          "monto": 330000
+        },
+        {
+          "id": 7,
+          "nota": "",
+          "fecha": "09/01",
+          "monto": 210000
+        },
+        {
+          "id": 1768271049430,
+          "nota": "",
+          "fecha": "09/01",
+          "monto": 205000,
+          "comprobante": ""
+        },
+        {
+          "id": 1768271062375,
+          "nota": "",
+          "fecha": "11/01",
+          "monto": 200000,
+          "comprobante": ""
+        }
+      ],
+      "shiftsNotes": {
+        "1": {
+          "1": "Whatsapp Caido"
+        }
+      },
+      "publicityActive": {
+        "2026-01-01": {
+          "Barco": 25000,
+          "Cueva": 0,
+          "Total": 25000
+        }
+      },
+      "includePublicityInTotal": false
+    }
+  },
+  {
+    "id": 491190,
+    "updated_at": "2026-01-13T06:53:41.851+00:00",
+    "content": {
+      "meta": {
+        "user": "admin",
+        "sessionId": "aek84",
+        "timestamp": "2026-01-13T06:53:41.684Z"
+      },
+      "banks": [
+        {
+          "id": 1,
+          "monto": 144359,
+          "nombre": "Personal Pay - Claudio"
+        },
+        {
+          "id": 2,
+          "monto": 139000,
+          "nombre": "Personal Pay - Juan"
+        },
+        {
+          "id": 3,
+          "monto": 6100,
+          "nombre": "Claro Pay - Cristian"
+        }
+      ],
+      "felipe": {
+        "days": 13,
+        "free": 2,
+        "extra": 2,
+        "advances": [
+          {
+            "id": 1768271780464,
+            "monto": 50,
+            "motivo": "Router Nuevo"
+          }
+        ]
+      },
+      "pubARS": 0,
+      "pubUSD": 0,
+      "shifts": {
+        "1": {
+          "1": "0",
+          "2": "4,5",
+          "3": "4,5",
+          "4": "9",
+          "5": "4,5",
+          "6": "9",
+          "7": "0",
+          "8": "9",
+          "9": "9",
+          "10": "9",
+          "11": "8,5",
+          "12": "9",
+          "13": "9",
+          "14": "0",
+          "15": "9"
+        },
+        "2": {
+          "1": "0",
+          "2": "0",
+          "3": "0",
+          "4": "9",
+          "5": "9",
+          "6": "18",
+          "7": "17",
+          "8": "9",
+          "9": "0",
+          "10": "9",
+          "11": "9",
+          "12": "9",
+          "13": "9",
+          "14": "9",
+          "15": "9"
+        },
+        "3": {
+          "1": "9",
+          "2": "0",
+          "3": "0",
+          "4": "0",
+          "5": "9",
+          "6": "9",
+          "7": "9",
+          "8": "9",
+          "9": "9",
+          "10": "9",
+          "11": "0",
+          "12": "9",
+          "13": "9",
+          "14": "9",
+          "15": "9"
+        },
+        "4": {
+          "1": "9",
+          "2": "13,5",
+          "3": "31,5",
+          "4": "18",
+          "5": "13,5",
+          "6": "0",
+          "7": "4",
+          "8": "9",
+          "9": "9",
+          "10": "9",
+          "11": "0",
+          "12": "9",
+          "13": "9",
+          "14": "9",
+          "15": "9"
+        },
+        "5": {
+          "7": "6",
+          "11": "9",
+          "14": "9"
+        },
+        "6": {
+          "9": "9",
+          "11": "9"
+        },
+        "1768272284299": {
+          "1": "9"
+        }
+      },
+      "players": [
+        {
+          "id": 1,
+          "tipo": "barco",
+          "saldo": 260000,
+          "nombre": "El Barco"
+        },
+        {
+          "id": 2,
+          "tipo": "cueva",
+          "saldo": 270000,
+          "nombre": "La Cueva"
+        }
+      ],
+      "usdtRate": 1534,
+      "employees": [
+        {
+          "id": "romero",
+          "name": "Romero",
+          "email": "romero",
+          "group": "Barco",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "alfredo",
+          "name": "Alfredo",
+          "email": "alfredo",
+          "group": "Barco",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "francel",
+          "name": "Francel",
+          "email": "francel",
+          "group": "Cueva",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "willy",
+          "name": "Willy",
+          "email": "willy",
+          "group": "Cueva",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "francis",
+          "name": "Francis",
+          "email": "francis",
+          "group": "Barco",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "clemente",
+          "name": "Clemente",
+          "email": "clemente",
+          "group": "Barco",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": 1768287220024,
+          "name": "Dasos",
+          "group": "Cueva",
+          "shift": "Noche",
+          "status": "Renunció"
+        }
+      ],
+      "operative": [
+        {
+          "id": "2025-12-29",
+          "dia": "29",
+          "drop": 0,
+          "barco": 87800,
+          "cueva": 114450,
+          "gastos": 0,
+          "fullDate": "2025-12-29",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2025-12-30",
+          "dia": "30",
+          "drop": 0,
+          "barco": 72300,
+          "cueva": 132496,
+          "gastos": 0,
+          "fullDate": "2025-12-30",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2025-12-31",
+          "dia": "31",
+          "drop": 0,
+          "barco": 55400,
+          "cueva": 78940,
+          "gastos": 0,
+          "fullDate": "2025-12-31",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-01",
+          "dia": "1",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 73649,
+          "gastos": 0,
+          "fullDate": "2026-01-01",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 81
+        },
+        {
+          "id": "2026-01-02",
+          "dia": "2",
+          "drop": 0,
+          "barco": 11040,
+          "cueva": 53072,
+          "gastos": 0,
+          "fullDate": "2026-01-02",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 17,
+          "mesasCueva": 75
+        },
+        {
+          "id": "2026-01-03",
+          "dia": "3",
+          "drop": 0,
+          "barco": 43712,
+          "cueva": 53152,
+          "gastos": 0,
+          "fullDate": "2026-01-03",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 44,
+          "mesasCueva": 75
+        },
+        {
+          "id": "2026-01-04",
+          "dia": "4",
+          "drop": 0,
+          "barco": 27392,
+          "cueva": 39632,
+          "gastos": 0,
+          "fullDate": "2026-01-04",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 44,
+          "mesasCueva": 60
+        },
+        {
+          "id": "2026-01-05",
+          "dia": "5",
+          "drop": 0,
+          "barco": 32624,
+          "cueva": 66048,
+          "gastos": 0,
+          "fullDate": "2026-01-05",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 53,
+          "mesasCueva": 90
+        },
+        {
+          "id": "2026-01-06",
+          "dia": "6",
+          "drop": 0,
+          "barco": 45760,
+          "cueva": 64544,
+          "gastos": 0,
+          "fullDate": "2026-01-06",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 77,
+          "mesasCueva": 88
+        },
+        {
+          "id": "2026-01-07",
+          "dia": "7",
+          "drop": 0,
+          "barco": 91536,
+          "cueva": 83712,
+          "gastos": 0,
+          "fullDate": "2026-01-07",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 131,
+          "mesasCueva": 111
+        },
+        {
+          "id": "2026-01-08",
+          "dia": "8",
+          "drop": 0,
+          "barco": 63328,
+          "cueva": 60016,
+          "gastos": 0,
+          "fullDate": "2026-01-08",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 96,
+          "mesasCueva": 119
+        },
+        {
+          "id": "2026-01-09",
+          "dia": "9",
+          "drop": 0,
+          "barco": 94832,
+          "cueva": 111920,
+          "gastos": 0,
+          "fullDate": "2026-01-09",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 143,
+          "mesasCueva": 146
+        },
+        {
+          "id": "2026-01-10",
+          "dia": "10",
+          "drop": 0,
+          "barco": 56849,
+          "cueva": 94352,
+          "gastos": 0,
+          "fullDate": "2026-01-10",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 92,
+          "mesasCueva": 116
+        },
+        {
+          "id": "2026-01-11",
+          "dia": "11",
+          "drop": 0,
+          "barco": 73056,
+          "cueva": 77168,
+          "gastos": 0,
+          "fullDate": "2026-01-11",
+          "utilidad": 0,
+          "mesasBarco": 104,
+          "mesasCueva": 104
+        },
+        {
+          "id": "2026-01-12",
+          "dia": "12",
+          "drop": 0,
+          "barco": 57488,
+          "cueva": 60704,
+          "gastos": 0,
+          "fullDate": "2026-01-12",
+          "utilidad": 0,
+          "mesasBarco": 81,
+          "mesasCueva": 84
+        },
+        {
+          "id": "2026-01-13",
+          "dia": "13",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 0,
+          "gastos": 0,
+          "fullDate": "2026-01-13",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-14",
+          "dia": "14",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 0,
+          "gastos": 0,
+          "fullDate": "2026-01-14",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-15",
+          "dia": "15",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 0,
+          "gastos": 0,
+          "fullDate": "2026-01-15",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        }
+      ],
+      "shipments": [
+        {
+          "id": 1,
+          "nota": "",
+          "fecha": "29/12",
+          "monto": 317000
+        },
+        {
+          "id": 2,
+          "nota": "",
+          "fecha": "31/12",
+          "monto": 350000
+        },
+        {
+          "id": 3,
+          "nota": "",
+          "fecha": "04/01",
+          "monto": 250000
+        },
+        {
+          "id": 4,
+          "nota": "ADELANTO",
+          "fecha": "05/01",
+          "monto": 76000,
+          "comprobante": ""
+        },
+        {
+          "id": 5,
+          "nota": "",
+          "fecha": "06/01",
+          "monto": 200000
+        },
+        {
+          "id": 6,
+          "nota": "",
+          "fecha": "08/01",
+          "monto": 330000
+        },
+        {
+          "id": 7,
+          "nota": "",
+          "fecha": "09/01",
+          "monto": 210000
+        },
+        {
+          "id": 1768271049430,
+          "nota": "",
+          "fecha": "09/01",
+          "monto": 205000,
+          "comprobante": ""
+        },
+        {
+          "id": 1768271062375,
+          "nota": "",
+          "fecha": "11/01",
+          "monto": 200000,
+          "comprobante": ""
+        }
+      ],
+      "shiftsNotes": {},
+      "publicityActive": {
+        "2026-01-01": {
+          "Barco": 25000,
+          "Cueva": 0,
+          "Total": 25000
+        }
+      },
+      "includePublicityInTotal": true
+    }
+  },
+  {
+    "id": 491191,
+    "updated_at": "2026-01-13T07:45:12.317+00:00",
+    "content": {
+      "meta": {
+        "user": "admin",
+        "sessionId": "tqf1k9",
+        "timestamp": "2026-01-13T07:45:12.152Z"
+      },
+      "banks": [
+        {
+          "id": 1,
+          "monto": 105859,
+          "nombre": "Personal Pay - Claudio"
+        },
+        {
+          "id": 2,
+          "monto": 138201,
+          "nombre": "Personal Pay - Juan"
+        },
+        {
+          "id": 3,
+          "monto": 6100,
+          "nombre": "Claro Pay - Cristian"
+        }
+      ],
+      "felipe": {
+        "days": 13,
+        "free": 2,
+        "extra": 2,
+        "advances": [
+          {
+            "id": 1768271780464,
+            "monto": 50,
+            "motivo": "Router Nuevo"
+          }
+        ]
+      },
+      "pubARS": 0,
+      "pubUSD": 0,
+      "shifts": {
+        "1": {
+          "1": "0",
+          "2": "4,5",
+          "3": "4,5",
+          "4": "9",
+          "5": "4,5",
+          "6": "9",
+          "7": "0",
+          "8": "9",
+          "9": "9",
+          "10": "9",
+          "11": "8,5",
+          "12": "9",
+          "13": "9",
+          "14": "0",
+          "15": "9"
+        },
+        "2": {
+          "1": "0",
+          "2": "0",
+          "3": "0",
+          "4": "9",
+          "5": "9",
+          "6": "18",
+          "7": "17",
+          "8": "9",
+          "9": "0",
+          "10": "9",
+          "11": "9",
+          "12": "9",
+          "13": "9",
+          "14": "9",
+          "15": "9"
+        },
+        "3": {
+          "1": "9",
+          "2": "0",
+          "3": "0",
+          "4": "0",
+          "5": "9",
+          "6": "9",
+          "7": "9",
+          "8": "9",
+          "9": "9",
+          "10": "9",
+          "11": "0",
+          "12": "9",
+          "13": "9",
+          "14": "9",
+          "15": "9"
+        },
+        "4": {
+          "1": "9",
+          "2": "13,5",
+          "3": "31,5",
+          "4": "18",
+          "5": "13,5",
+          "6": "0",
+          "7": "4",
+          "8": "9",
+          "9": "9",
+          "10": "9",
+          "11": "0",
+          "12": "9",
+          "13": "9",
+          "14": "9",
+          "15": "9"
+        },
+        "5": {
+          "7": "6",
+          "11": "9",
+          "14": "9"
+        },
+        "6": {
+          "9": "9",
+          "11": "9"
+        },
+        "dasos.545": {
+          "1": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          }
+        },
+        "1768272284299": {
+          "1": "9"
+        }
+      },
+      "players": [
+        {
+          "id": 1,
+          "tipo": "barco",
+          "saldo": 260000,
+          "nombre": "El Barco"
+        },
+        {
+          "id": 2,
+          "tipo": "cueva",
+          "saldo": 270000,
+          "nombre": "La Cueva"
+        }
+      ],
+      "usdtRate": 1534,
+      "employees": [
+        {
+          "id": "romero",
+          "name": "Romero",
+          "email": "romero",
+          "group": "Barco",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "alfredo",
+          "name": "Alfredo",
+          "email": "alfredo",
+          "group": "Barco",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "francel",
+          "name": "Francel",
+          "email": "francel",
+          "group": "Cueva",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "willy",
+          "name": "Willy",
+          "email": "willy",
+          "group": "Cueva",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "francis",
+          "name": "Francis",
+          "email": "francis",
+          "group": "Barco",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "clemente",
+          "name": "Clemente",
+          "email": "clemente",
+          "group": "Barco",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "dasos.545",
+          "name": "Dasos",
+          "email": "dasos.545",
+          "group": "Cueva",
+          "shift": "Mañana",
+          "status": "Renunció"
+        }
+      ],
+      "operative": [
+        {
+          "id": "2025-12-29",
+          "dia": "29",
+          "drop": 0,
+          "barco": 87800,
+          "cueva": 114450,
+          "gastos": 0,
+          "fullDate": "2025-12-29",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2025-12-30",
+          "dia": "30",
+          "drop": 0,
+          "barco": 72300,
+          "cueva": 132496,
+          "gastos": 0,
+          "fullDate": "2025-12-30",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2025-12-31",
+          "dia": "31",
+          "drop": 0,
+          "barco": 55400,
+          "cueva": 78940,
+          "gastos": 0,
+          "fullDate": "2025-12-31",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-01",
+          "dia": "1",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 73649,
+          "gastos": 0,
+          "fullDate": "2026-01-01",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 81
+        },
+        {
+          "id": "2026-01-02",
+          "dia": "2",
+          "drop": 0,
+          "barco": 11040,
+          "cueva": 53072,
+          "gastos": 0,
+          "fullDate": "2026-01-02",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 17,
+          "mesasCueva": 75
+        },
+        {
+          "id": "2026-01-03",
+          "dia": "3",
+          "drop": 0,
+          "barco": 43712,
+          "cueva": 53152,
+          "gastos": 0,
+          "fullDate": "2026-01-03",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 44,
+          "mesasCueva": 75
+        },
+        {
+          "id": "2026-01-04",
+          "dia": "4",
+          "drop": 0,
+          "barco": 27392,
+          "cueva": 39632,
+          "gastos": 0,
+          "fullDate": "2026-01-04",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 44,
+          "mesasCueva": 60
+        },
+        {
+          "id": "2026-01-05",
+          "dia": "5",
+          "drop": 0,
+          "barco": 32624,
+          "cueva": 66048,
+          "gastos": 0,
+          "fullDate": "2026-01-05",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 53,
+          "mesasCueva": 90
+        },
+        {
+          "id": "2026-01-06",
+          "dia": "6",
+          "drop": 0,
+          "barco": 45760,
+          "cueva": 64544,
+          "gastos": 0,
+          "fullDate": "2026-01-06",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 77,
+          "mesasCueva": 88
+        },
+        {
+          "id": "2026-01-07",
+          "dia": "7",
+          "drop": 0,
+          "barco": 91536,
+          "cueva": 83712,
+          "gastos": 0,
+          "fullDate": "2026-01-07",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 131,
+          "mesasCueva": 111
+        },
+        {
+          "id": "2026-01-08",
+          "dia": "8",
+          "drop": 0,
+          "barco": 63328,
+          "cueva": 60016,
+          "gastos": 0,
+          "fullDate": "2026-01-08",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 96,
+          "mesasCueva": 119
+        },
+        {
+          "id": "2026-01-09",
+          "dia": "9",
+          "drop": 0,
+          "barco": 94832,
+          "cueva": 111920,
+          "gastos": 0,
+          "fullDate": "2026-01-09",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 143,
+          "mesasCueva": 146
+        },
+        {
+          "id": "2026-01-10",
+          "dia": "10",
+          "drop": 0,
+          "barco": 56849,
+          "cueva": 94352,
+          "gastos": 0,
+          "fullDate": "2026-01-10",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 92,
+          "mesasCueva": 116
+        },
+        {
+          "id": "2026-01-11",
+          "dia": "11",
+          "drop": 0,
+          "barco": 73056,
+          "cueva": 77168,
+          "gastos": 0,
+          "fullDate": "2026-01-11",
+          "utilidad": 0,
+          "mesasBarco": 104,
+          "mesasCueva": 104
+        },
+        {
+          "id": "2026-01-12",
+          "dia": "12",
+          "drop": 0,
+          "barco": 57488,
+          "cueva": 60704,
+          "gastos": 0,
+          "fullDate": "2026-01-12",
+          "utilidad": 0,
+          "mesasBarco": 81,
+          "mesasCueva": 84
+        },
+        {
+          "id": "2026-01-13",
+          "dia": "13",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 0,
+          "gastos": 0,
+          "fullDate": "2026-01-13",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-14",
+          "dia": "14",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 0,
+          "gastos": 0,
+          "fullDate": "2026-01-14",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-15",
+          "dia": "15",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 0,
+          "gastos": 0,
+          "fullDate": "2026-01-15",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        }
+      ],
+      "shipments": [
+        {
+          "id": 1,
+          "nota": "",
+          "fecha": "29/12",
+          "monto": 317000
+        },
+        {
+          "id": 2,
+          "nota": "",
+          "fecha": "31/12",
+          "monto": 350000
+        },
+        {
+          "id": 3,
+          "nota": "",
+          "fecha": "04/01",
+          "monto": 250000
+        },
+        {
+          "id": 4,
+          "nota": "ADELANTO",
+          "fecha": "05/01",
+          "monto": 76000,
+          "comprobante": ""
+        },
+        {
+          "id": 5,
+          "nota": "",
+          "fecha": "06/01",
+          "monto": 200000
+        },
+        {
+          "id": 6,
+          "nota": "",
+          "fecha": "08/01",
+          "monto": 330000
+        },
+        {
+          "id": 7,
+          "nota": "",
+          "fecha": "09/01",
+          "monto": 210000
+        },
+        {
+          "id": 1768271049430,
+          "nota": "",
+          "fecha": "09/01",
+          "monto": 205000,
+          "comprobante": ""
+        },
+        {
+          "id": 1768271062375,
+          "nota": "",
+          "fecha": "11/01",
+          "monto": 200000,
+          "comprobante": ""
+        }
+      ],
+      "shiftsNotes": {},
+      "publicityActive": {
+        "2026-01-01": {
+          "Barco": 25000,
+          "Cueva": 0,
+          "Total": 25000
+        }
+      },
+      "includePublicityInTotal": true
+    }
+  },
+  {
+    "id": 491202,
+    "updated_at": "2026-01-13T18:59:04.481+00:00",
+    "content": {
+      "meta": {
+        "user": "admin",
+        "sessionId": "vzv9bn",
+        "timestamp": "2026-01-13T18:59:04.293Z"
+      },
+      "banks": [
+        {
+          "id": 1,
+          "monto": 149559,
+          "nombre": "Personal Pay - Claudio"
+        },
+        {
+          "id": 2,
+          "monto": 120000,
+          "nombre": "Personal Pay - Juan"
+        },
+        {
+          "id": 3,
+          "monto": 6100,
+          "nombre": "Claro Pay - Cristian"
+        }
+      ],
+      "felipe": {
+        "days": 13,
+        "free": 2,
+        "extra": 2,
+        "advances": [
+          {
+            "id": 1768271780464,
+            "monto": 50,
+            "motivo": "Router Nuevo"
+          }
+        ]
+      },
+      "pubARS": 0,
+      "pubUSD": 0,
+      "shifts": {
+        "1": {
+          "1": "0",
+          "2": "4,5",
+          "3": "4,5",
+          "4": "9",
+          "5": "4,5",
+          "6": "9",
+          "7": "0",
+          "8": "9",
+          "9": "9",
+          "10": "9",
+          "11": "8,5",
+          "12": "9",
+          "13": "9",
+          "14": "0",
+          "15": "9"
+        },
+        "2": {
+          "1": "0",
+          "2": "0",
+          "3": "0",
+          "4": "9",
+          "5": "9",
+          "6": "18",
+          "7": "17",
+          "8": "9",
+          "9": "0",
+          "10": "9",
+          "11": "9",
+          "12": "9",
+          "13": "9",
+          "14": "9",
+          "15": "9"
+        },
+        "3": {
+          "1": "9",
+          "2": "0",
+          "3": "0",
+          "4": "0",
+          "5": "9",
+          "6": "9",
+          "7": "9",
+          "8": "9",
+          "9": "9",
+          "10": "9",
+          "11": "0",
+          "12": "9",
+          "13": "9",
+          "14": "9",
+          "15": "9"
+        },
+        "4": {
+          "1": "9",
+          "2": "13,5",
+          "3": "31,5",
+          "4": "18",
+          "5": "13,5",
+          "6": "0",
+          "7": "4",
+          "8": "9",
+          "9": "9",
+          "10": "9",
+          "11": "0",
+          "12": "9",
+          "13": "9",
+          "14": "9",
+          "15": "9"
+        },
+        "5": {
+          "7": "6",
+          "11": "9",
+          "14": "9"
+        },
+        "6": {
+          "9": "9",
+          "11": "9"
+        },
+        "willy": {
+          "1": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "2": {
+            "horas": "13.5",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "3": {
+            "horas": "31.5",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "4": {
+            "horas": "18",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "5": {
+            "horas": "13.5",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "7": {
+            "horas": "4",
+            "notas": "Hasta las 3pm",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "8": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "9": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "10": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "11": {
+            "horas": "0",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Franco"
+          },
+          "12": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "13": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "14": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "15": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          }
+        },
+        "romero": {
+          "1": {
+            "horas": "0",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Falta"
+          },
+          "2": {
+            "horas": "4.5",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "3": {
+            "horas": "4.5",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "4": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "5": {
+            "horas": "4.5",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "6": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "7": {
+            "horas": "0",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Franco"
+          },
+          "8": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "9": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "10": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "11": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "12": {
+            "horas": "8.5",
+            "notas": "30 min de Retraso",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "13": {
+            "horas": "8.5",
+            "notas": "30 min de Retraso",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "14": {
+            "horas": "0",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Franco"
+          },
+          "15": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          }
+        },
+        "alfredo": {
+          "4": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "5": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "6": {
+            "horas": "18",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "7": {
+            "horas": "17",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "8": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "9": {
+            "horas": "0",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Franco"
+          },
+          "10": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "11": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "12": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "13": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "14": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "15": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          }
+        },
+        "francel": {
+          "1": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "5": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "6": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "7": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "8": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "9": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "10": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "11": {
+            "horas": "0",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Franco"
+          },
+          "12": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "13": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "14": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "15": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          }
+        },
+        "francis": {
+          "7": {
+            "horas": "6",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "11": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "14": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          }
+        },
+        "clemente": {
+          "9": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "10": {
+            "horas": "0",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Falta"
+          },
+          "11": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          }
+        },
+        "dasos.545": {
+          "1": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          }
+        },
+        "1768272284299": {
+          "1": "9"
+        }
+      },
+      "players": [
+        {
+          "id": 1,
+          "tipo": "barco",
+          "saldo": 260000,
+          "nombre": "El Barco"
+        },
+        {
+          "id": 2,
+          "tipo": "cueva",
+          "saldo": 270000,
+          "nombre": "La Cueva"
+        }
+      ],
+      "usdtRate": 1534,
+      "employees": [
+        {
+          "id": "romero",
+          "name": "Romero",
+          "email": "romero",
+          "group": "Barco",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "alfredo",
+          "name": "Alfredo",
+          "email": "alfredo",
+          "group": "Barco",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "francel",
+          "name": "Francel",
+          "email": "francel",
+          "group": "Cueva",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "willy",
+          "name": "Willy",
+          "email": "willy",
+          "group": "Cueva",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "francis",
+          "name": "Francis",
+          "email": "francis",
+          "group": "Franquero",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "clemente",
+          "name": "Clemente",
+          "email": "clemente",
+          "group": "Barco",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "dasos.545",
+          "name": "Dasos",
+          "email": "dasos.545",
+          "group": "Cueva",
+          "shift": "Mañana",
+          "status": "Renunció"
+        }
+      ],
+      "operative": [
+        {
+          "id": "2025-12-29",
+          "dia": "29",
+          "drop": 0,
+          "barco": 87800,
+          "cueva": 114450,
+          "gastos": 0,
+          "fullDate": "2025-12-29",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2025-12-30",
+          "dia": "30",
+          "drop": 0,
+          "barco": 72300,
+          "cueva": 132496,
+          "gastos": 0,
+          "fullDate": "2025-12-30",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2025-12-31",
+          "dia": "31",
+          "drop": 0,
+          "barco": 55400,
+          "cueva": 78940,
+          "gastos": 0,
+          "fullDate": "2025-12-31",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-01",
+          "dia": "1",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 73649,
+          "gastos": 0,
+          "fullDate": "2026-01-01",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 81
+        },
+        {
+          "id": "2026-01-02",
+          "dia": "2",
+          "drop": 0,
+          "barco": 11040,
+          "cueva": 53072,
+          "gastos": 0,
+          "fullDate": "2026-01-02",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 17,
+          "mesasCueva": 75
+        },
+        {
+          "id": "2026-01-03",
+          "dia": "3",
+          "drop": 0,
+          "barco": 43712,
+          "cueva": 53152,
+          "gastos": 0,
+          "fullDate": "2026-01-03",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 44,
+          "mesasCueva": 75
+        },
+        {
+          "id": "2026-01-04",
+          "dia": "4",
+          "drop": 0,
+          "barco": 27392,
+          "cueva": 39632,
+          "gastos": 0,
+          "fullDate": "2026-01-04",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 44,
+          "mesasCueva": 60
+        },
+        {
+          "id": "2026-01-05",
+          "dia": "5",
+          "drop": 0,
+          "barco": 32624,
+          "cueva": 66048,
+          "gastos": 0,
+          "fullDate": "2026-01-05",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 53,
+          "mesasCueva": 90
+        },
+        {
+          "id": "2026-01-06",
+          "dia": "6",
+          "drop": 0,
+          "barco": 45760,
+          "cueva": 64544,
+          "gastos": 0,
+          "fullDate": "2026-01-06",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 77,
+          "mesasCueva": 88
+        },
+        {
+          "id": "2026-01-07",
+          "dia": "7",
+          "drop": 0,
+          "barco": 91536,
+          "cueva": 83712,
+          "gastos": 0,
+          "fullDate": "2026-01-07",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 131,
+          "mesasCueva": 111
+        },
+        {
+          "id": "2026-01-08",
+          "dia": "8",
+          "drop": 0,
+          "barco": 63328,
+          "cueva": 60016,
+          "gastos": 0,
+          "fullDate": "2026-01-08",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 96,
+          "mesasCueva": 119
+        },
+        {
+          "id": "2026-01-09",
+          "dia": "9",
+          "drop": 0,
+          "barco": 94832,
+          "cueva": 111920,
+          "gastos": 0,
+          "fullDate": "2026-01-09",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 143,
+          "mesasCueva": 146
+        },
+        {
+          "id": "2026-01-10",
+          "dia": "10",
+          "drop": 0,
+          "barco": 56849,
+          "cueva": 94352,
+          "gastos": 0,
+          "fullDate": "2026-01-10",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 92,
+          "mesasCueva": 116
+        },
+        {
+          "id": "2026-01-11",
+          "dia": "11",
+          "drop": 0,
+          "barco": 73056,
+          "cueva": 77168,
+          "gastos": 0,
+          "fullDate": "2026-01-11",
+          "utilidad": 0,
+          "mesasBarco": 104,
+          "mesasCueva": 104
+        },
+        {
+          "id": "2026-01-12",
+          "dia": "12",
+          "drop": 0,
+          "barco": 57488,
+          "cueva": 60704,
+          "gastos": 0,
+          "fullDate": "2026-01-12",
+          "utilidad": 0,
+          "mesasBarco": 81,
+          "mesasCueva": 84
+        },
+        {
+          "id": "2026-01-13",
+          "dia": "13",
+          "drop": 0,
+          "barco": 18912,
+          "cueva": 39920,
+          "gastos": 0,
+          "fullDate": "2026-01-13",
+          "utilidad": 0,
+          "mesasBarco": 31,
+          "mesasCueva": 48
+        },
+        {
+          "id": "2026-01-14",
+          "dia": "14",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 0,
+          "gastos": 0,
+          "fullDate": "2026-01-14",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-15",
+          "dia": "15",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 0,
+          "gastos": 0,
+          "fullDate": "2026-01-15",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        }
+      ],
+      "shipments": [
+        {
+          "id": 1,
+          "nota": "",
+          "fecha": "29/12",
+          "monto": 317000
+        },
+        {
+          "id": 2,
+          "nota": "",
+          "fecha": "31/12",
+          "monto": 350000
+        },
+        {
+          "id": 3,
+          "nota": "",
+          "fecha": "04/01",
+          "monto": 250000
+        },
+        {
+          "id": 4,
+          "nota": "ADELANTO",
+          "fecha": "05/01",
+          "monto": 76000,
+          "comprobante": ""
+        },
+        {
+          "id": 5,
+          "nota": "",
+          "fecha": "06/01",
+          "monto": 200000
+        },
+        {
+          "id": 6,
+          "nota": "",
+          "fecha": "08/01",
+          "monto": 330000
+        },
+        {
+          "id": 7,
+          "nota": "",
+          "fecha": "09/01",
+          "monto": 210000
+        },
+        {
+          "id": 1768271049430,
+          "nota": "",
+          "fecha": "09/01",
+          "monto": 205000,
+          "comprobante": ""
+        },
+        {
+          "id": 1768271062375,
+          "nota": "",
+          "fecha": "11/01",
+          "monto": 200000,
+          "comprobante": ""
+        }
+      ],
+      "shiftsNotes": {
+        "1": {
+          "1": "Whatsapp Caido"
+        }
+      },
+      "publicityActive": {
+        "2026-01-01": {
+          "Barco": 25000,
+          "Cueva": 0,
+          "Total": 25000
+        }
+      },
+      "includePublicityInTotal": false
+    }
+  },
+  {
+    "id": 1,
+    "updated_at": "2026-01-13T19:31:08.706+00:00",
+    "content": {
+      "meta": {
+        "user": "admin",
+        "sessionId": "ui16aj",
+        "timestamp": "2026-01-13T19:31:08.706Z"
+      },
+      "banks": [
+        {
+          "id": 1,
+          "monto": 149559,
+          "nombre": "Personal Pay - Claudio"
+        },
+        {
+          "id": 2,
+          "monto": 120000,
+          "nombre": "Personal Pay - Juan"
+        },
+        {
+          "id": 3,
+          "monto": 6100,
+          "nombre": "Claro Pay - Cristian"
+        }
+      ],
+      "felipe": {
+        "days": 13,
+        "free": 2,
+        "extra": 2,
+        "advances": [
+          {
+            "id": 1768271780464,
+            "monto": 50,
+            "motivo": "Router Nuevo"
+          }
+        ]
+      },
+      "pubARS": 0,
+      "pubUSD": 0,
+      "shifts": {
+        "1": {
+          "1": "0",
+          "2": "4,5",
+          "3": "4,5",
+          "4": "9",
+          "5": "4,5",
+          "6": "9",
+          "7": "0",
+          "8": "9",
+          "9": "9",
+          "10": "9",
+          "11": "8,5",
+          "12": "9",
+          "13": "9",
+          "14": "0",
+          "15": "9"
+        },
+        "2": {
+          "1": "0",
+          "2": "0",
+          "3": "0",
+          "4": "9",
+          "5": "9",
+          "6": "18",
+          "7": "17",
+          "8": "9",
+          "9": "0",
+          "10": "9",
+          "11": "9",
+          "12": "9",
+          "13": "9",
+          "14": "9",
+          "15": "9"
+        },
+        "3": {
+          "1": "9",
+          "2": "0",
+          "3": "0",
+          "4": "0",
+          "5": "9",
+          "6": "9",
+          "7": "9",
+          "8": "9",
+          "9": "9",
+          "10": "9",
+          "11": "0",
+          "12": "9",
+          "13": "9",
+          "14": "9",
+          "15": "9"
+        },
+        "4": {
+          "1": "9",
+          "2": "13,5",
+          "3": "31,5",
+          "4": "18",
+          "5": "13,5",
+          "6": "0",
+          "7": "4",
+          "8": "9",
+          "9": "9",
+          "10": "9",
+          "11": "0",
+          "12": "9",
+          "13": "9",
+          "14": "9",
+          "15": "9"
+        },
+        "5": {
+          "7": "6",
+          "11": "9",
+          "14": "9"
+        },
+        "6": {
+          "9": "9",
+          "11": "9"
+        },
+        "willy": {
+          "1": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "2": {
+            "horas": "13.5",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "3": {
+            "horas": "31.5",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "4": {
+            "horas": "18",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "5": {
+            "horas": "13.5",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "7": {
+            "horas": "4",
+            "notas": "Hasta las 3pm",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "8": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "9": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "10": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "11": {
+            "horas": "0",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Franco"
+          },
+          "12": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "13": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "14": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "15": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          }
+        },
+        "romero": {
+          "1": {
+            "horas": "0",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Falta"
+          },
+          "2": {
+            "horas": "4.5",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "3": {
+            "horas": "4.5",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "4": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "5": {
+            "horas": "4.5",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "6": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "7": {
+            "horas": "0",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Franco"
+          },
+          "8": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "9": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "10": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "11": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "12": {
+            "horas": "8.5",
+            "notas": "30 min de Retraso",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "13": {
+            "horas": "8.5",
+            "notas": "30 min de Retraso",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "14": {
+            "horas": "0",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Franco"
+          },
+          "15": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          }
+        },
+        "alfredo": {
+          "4": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "5": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "6": {
+            "horas": "18",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "7": {
+            "horas": "17",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "8": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "9": {
+            "horas": "0",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Franco"
+          },
+          "10": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "11": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "12": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "13": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "14": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "15": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          }
+        },
+        "francel": {
+          "1": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "5": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "6": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "7": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "8": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "9": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "10": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "11": {
+            "horas": "0",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Franco"
+          },
+          "12": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "13": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "14": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "15": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          }
+        },
+        "francis": {
+          "7": {
+            "horas": "6",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "11": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "14": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          }
+        },
+        "clemente": {
+          "9": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "10": {
+            "horas": "0",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Falta"
+          },
+          "11": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          }
+        },
+        "dasos.545": {
+          "1": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          }
+        },
+        "1768272284299": {
+          "1": "9"
+        }
+      },
+      "players": [
+        {
+          "id": 1,
+          "tipo": "barco",
+          "saldo": 260000,
+          "nombre": "El Barco"
+        },
+        {
+          "id": 2,
+          "tipo": "cueva",
+          "saldo": 270000,
+          "nombre": "La Cueva"
+        }
+      ],
+      "usdtRate": 1534,
+      "employees": [
+        {
+          "id": "romero",
+          "name": "Romero",
+          "email": "romero",
+          "group": "Barco",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "alfredo",
+          "name": "Alfredo",
+          "email": "alfredo",
+          "group": "Barco",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "francel",
+          "name": "Francel",
+          "email": "francel",
+          "group": "Cueva",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "willy",
+          "name": "Willy",
+          "email": "willy",
+          "group": "Cueva",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "francis",
+          "name": "Francis",
+          "email": "francis",
+          "group": "Franquero",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "dasos.545",
+          "name": "Dasos",
+          "email": "dasos.545",
+          "group": "Cueva",
+          "shift": "Mañana",
+          "status": "Renunció"
+        },
+        {
+          "id": "clemente",
+          "name": "Clemente",
+          "email": "clemente",
+          "group": "Franquero",
+          "shift": "Mañana",
+          "status": "Activo"
+        }
+      ],
+      "operative": [
+        {
+          "id": "2025-12-29",
+          "dia": "29",
+          "drop": 0,
+          "barco": 87800,
+          "cueva": 114450,
+          "gastos": 0,
+          "fullDate": "2025-12-29",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2025-12-30",
+          "dia": "30",
+          "drop": 0,
+          "barco": 72300,
+          "cueva": 132496,
+          "gastos": 0,
+          "fullDate": "2025-12-30",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2025-12-31",
+          "dia": "31",
+          "drop": 0,
+          "barco": 55400,
+          "cueva": 78940,
+          "gastos": 0,
+          "fullDate": "2025-12-31",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-01",
+          "dia": "1",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 73649,
+          "gastos": 0,
+          "fullDate": "2026-01-01",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 81
+        },
+        {
+          "id": "2026-01-02",
+          "dia": "2",
+          "drop": 0,
+          "barco": 11040,
+          "cueva": 53072,
+          "gastos": 0,
+          "fullDate": "2026-01-02",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 17,
+          "mesasCueva": 75
+        },
+        {
+          "id": "2026-01-03",
+          "dia": "3",
+          "drop": 0,
+          "barco": 43712,
+          "cueva": 53152,
+          "gastos": 0,
+          "fullDate": "2026-01-03",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 44,
+          "mesasCueva": 75
+        },
+        {
+          "id": "2026-01-04",
+          "dia": "4",
+          "drop": 0,
+          "barco": 27392,
+          "cueva": 39632,
+          "gastos": 0,
+          "fullDate": "2026-01-04",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 44,
+          "mesasCueva": 60
+        },
+        {
+          "id": "2026-01-05",
+          "dia": "5",
+          "drop": 0,
+          "barco": 32624,
+          "cueva": 66048,
+          "gastos": 0,
+          "fullDate": "2026-01-05",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 53,
+          "mesasCueva": 90
+        },
+        {
+          "id": "2026-01-06",
+          "dia": "6",
+          "drop": 0,
+          "barco": 45760,
+          "cueva": 64544,
+          "gastos": 0,
+          "fullDate": "2026-01-06",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 77,
+          "mesasCueva": 88
+        },
+        {
+          "id": "2026-01-07",
+          "dia": "7",
+          "drop": 0,
+          "barco": 91536,
+          "cueva": 83712,
+          "gastos": 0,
+          "fullDate": "2026-01-07",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 131,
+          "mesasCueva": 111
+        },
+        {
+          "id": "2026-01-08",
+          "dia": "8",
+          "drop": 0,
+          "barco": 63328,
+          "cueva": 60016,
+          "gastos": 0,
+          "fullDate": "2026-01-08",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 96,
+          "mesasCueva": 119
+        },
+        {
+          "id": "2026-01-09",
+          "dia": "9",
+          "drop": 0,
+          "barco": 94832,
+          "cueva": 111920,
+          "gastos": 0,
+          "fullDate": "2026-01-09",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 143,
+          "mesasCueva": 146
+        },
+        {
+          "id": "2026-01-10",
+          "dia": "10",
+          "drop": 0,
+          "barco": 56849,
+          "cueva": 94352,
+          "gastos": 0,
+          "fullDate": "2026-01-10",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 92,
+          "mesasCueva": 116
+        },
+        {
+          "id": "2026-01-11",
+          "dia": "11",
+          "drop": 0,
+          "barco": 73056,
+          "cueva": 77168,
+          "gastos": 0,
+          "fullDate": "2026-01-11",
+          "utilidad": 0,
+          "mesasBarco": 104,
+          "mesasCueva": 104
+        },
+        {
+          "id": "2026-01-12",
+          "dia": "12",
+          "drop": 0,
+          "barco": 57488,
+          "cueva": 60704,
+          "gastos": 0,
+          "fullDate": "2026-01-12",
+          "utilidad": 0,
+          "mesasBarco": 81,
+          "mesasCueva": 84
+        },
+        {
+          "id": "2026-01-13",
+          "dia": "13",
+          "drop": 0,
+          "barco": 18912,
+          "cueva": 39920,
+          "gastos": 0,
+          "fullDate": "2026-01-13",
+          "utilidad": 0,
+          "mesasBarco": 31,
+          "mesasCueva": 48
+        },
+        {
+          "id": "2026-01-14",
+          "dia": "14",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 0,
+          "gastos": 0,
+          "fullDate": "2026-01-14",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-15",
+          "dia": "15",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 0,
+          "gastos": 0,
+          "fullDate": "2026-01-15",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        }
+      ],
+      "shipments": [
+        {
+          "id": 1,
+          "nota": "",
+          "fecha": "29/12",
+          "monto": 317000
+        },
+        {
+          "id": 2,
+          "nota": "",
+          "fecha": "31/12",
+          "monto": 350000
+        },
+        {
+          "id": 3,
+          "nota": "",
+          "fecha": "04/01",
+          "monto": 250000
+        },
+        {
+          "id": 4,
+          "nota": "ADELANTO",
+          "fecha": "05/01",
+          "monto": 76000,
+          "comprobante": ""
+        },
+        {
+          "id": 5,
+          "nota": "",
+          "fecha": "06/01",
+          "monto": 200000
+        },
+        {
+          "id": 6,
+          "nota": "",
+          "fecha": "08/01",
+          "monto": 330000
+        },
+        {
+          "id": 7,
+          "nota": "",
+          "fecha": "09/01",
+          "monto": 210000
+        },
+        {
+          "id": 1768271049430,
+          "nota": "",
+          "fecha": "09/01",
+          "monto": 205000,
+          "comprobante": ""
+        },
+        {
+          "id": 1768271062375,
+          "nota": "",
+          "fecha": "11/01",
+          "monto": 200000,
+          "comprobante": ""
+        }
+      ],
+      "shiftsNotes": {
+        "1": {
+          "1": "Whatsapp Caido"
+        }
+      },
+      "publicityActive": {
+        "2026-01-01": {
+          "Barco": 25000,
+          "Cueva": 0,
+          "Total": 25000
+        }
+      },
+      "includePublicityInTotal": false
+    }
+  },
+  {
+    "id": 491200,
+    "updated_at": "2026-01-13T16:57:48.593+00:00",
+    "content": {
+      "meta": {
+        "user": "admin",
+        "sessionId": "lnlp1",
+        "timestamp": "2026-01-13T16:57:48.293Z"
+      },
+      "banks": [
+        {
+          "id": 1,
+          "monto": 105859,
+          "nombre": "Personal Pay - Claudio"
+        },
+        {
+          "id": 2,
+          "monto": 138201,
+          "nombre": "Personal Pay - Juan"
+        },
+        {
+          "id": 3,
+          "monto": 6100,
+          "nombre": "Claro Pay - Cristian"
+        }
+      ],
+      "felipe": {
+        "days": 13,
+        "free": 2,
+        "extra": 2,
+        "advances": [
+          {
+            "id": 1768271780464,
+            "monto": 50,
+            "motivo": "Router Nuevo"
+          }
+        ]
+      },
+      "pubARS": 0,
+      "pubUSD": 0,
+      "shifts": {
+        "1": {
+          "1": "0",
+          "2": "4,5",
+          "3": "4,5",
+          "4": "9",
+          "5": "4,5",
+          "6": "9",
+          "7": "0",
+          "8": "9",
+          "9": "9",
+          "10": "9",
+          "11": "8,5",
+          "12": "9",
+          "13": "9",
+          "14": "0",
+          "15": "9"
+        },
+        "2": {
+          "1": "0",
+          "2": "0",
+          "3": "0",
+          "4": "9",
+          "5": "9",
+          "6": "18",
+          "7": "17",
+          "8": "9",
+          "9": "0",
+          "10": "9",
+          "11": "9",
+          "12": "9",
+          "13": "9",
+          "14": "9",
+          "15": "9"
+        },
+        "3": {
+          "1": "9",
+          "2": "0",
+          "3": "0",
+          "4": "0",
+          "5": "9",
+          "6": "9",
+          "7": "9",
+          "8": "9",
+          "9": "9",
+          "10": "9",
+          "11": "0",
+          "12": "9",
+          "13": "9",
+          "14": "9",
+          "15": "9"
+        },
+        "4": {
+          "1": "9",
+          "2": "13,5",
+          "3": "31,5",
+          "4": "18",
+          "5": "13,5",
+          "6": "0",
+          "7": "4",
+          "8": "9",
+          "9": "9",
+          "10": "9",
+          "11": "0",
+          "12": "9",
+          "13": "9",
+          "14": "9",
+          "15": "9"
+        },
+        "5": {
+          "7": "6",
+          "11": "9",
+          "14": "9"
+        },
+        "6": {
+          "9": "9",
+          "11": "9"
+        },
+        "dasos.545": {
+          "1": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          }
+        },
+        "1768272284299": {
+          "1": "9"
+        }
+      },
+      "players": [
+        {
+          "id": 1,
+          "tipo": "barco",
+          "saldo": 260000,
+          "nombre": "El Barco"
+        },
+        {
+          "id": 2,
+          "tipo": "cueva",
+          "saldo": 270000,
+          "nombre": "La Cueva"
+        }
+      ],
+      "usdtRate": 1534,
+      "employees": [
+        {
+          "id": "romero",
+          "name": "Romero",
+          "email": "romero",
+          "group": "Barco",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "alfredo",
+          "name": "Alfredo",
+          "email": "alfredo",
+          "group": "Barco",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "francel",
+          "name": "Francel",
+          "email": "francel",
+          "group": "Cueva",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "willy",
+          "name": "Willy",
+          "email": "willy",
+          "group": "Cueva",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "francis",
+          "name": "Francis",
+          "email": "francis",
+          "group": "Barco",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "clemente",
+          "name": "Clemente",
+          "email": "clemente",
+          "group": "Barco",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "dasos.545",
+          "name": "Dasos",
+          "email": "dasos.545",
+          "group": "Cueva",
+          "shift": "Mañana",
+          "status": "Renunció"
+        }
+      ],
+      "operative": [
+        {
+          "id": "2025-12-29",
+          "dia": "29",
+          "drop": 0,
+          "barco": 87800,
+          "cueva": 114450,
+          "gastos": 0,
+          "fullDate": "2025-12-29",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2025-12-30",
+          "dia": "30",
+          "drop": 0,
+          "barco": 72300,
+          "cueva": 132496,
+          "gastos": 0,
+          "fullDate": "2025-12-30",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2025-12-31",
+          "dia": "31",
+          "drop": 0,
+          "barco": 55400,
+          "cueva": 78940,
+          "gastos": 0,
+          "fullDate": "2025-12-31",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-01",
+          "dia": "1",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 73649,
+          "gastos": 0,
+          "fullDate": "2026-01-01",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 81
+        },
+        {
+          "id": "2026-01-02",
+          "dia": "2",
+          "drop": 0,
+          "barco": 11040,
+          "cueva": 53072,
+          "gastos": 0,
+          "fullDate": "2026-01-02",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 17,
+          "mesasCueva": 75
+        },
+        {
+          "id": "2026-01-03",
+          "dia": "3",
+          "drop": 0,
+          "barco": 43712,
+          "cueva": 53152,
+          "gastos": 0,
+          "fullDate": "2026-01-03",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 44,
+          "mesasCueva": 75
+        },
+        {
+          "id": "2026-01-04",
+          "dia": "4",
+          "drop": 0,
+          "barco": 27392,
+          "cueva": 39632,
+          "gastos": 0,
+          "fullDate": "2026-01-04",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 44,
+          "mesasCueva": 60
+        },
+        {
+          "id": "2026-01-05",
+          "dia": "5",
+          "drop": 0,
+          "barco": 32624,
+          "cueva": 66048,
+          "gastos": 0,
+          "fullDate": "2026-01-05",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 53,
+          "mesasCueva": 90
+        },
+        {
+          "id": "2026-01-06",
+          "dia": "6",
+          "drop": 0,
+          "barco": 45760,
+          "cueva": 64544,
+          "gastos": 0,
+          "fullDate": "2026-01-06",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 77,
+          "mesasCueva": 88
+        },
+        {
+          "id": "2026-01-07",
+          "dia": "7",
+          "drop": 0,
+          "barco": 91536,
+          "cueva": 83712,
+          "gastos": 0,
+          "fullDate": "2026-01-07",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 131,
+          "mesasCueva": 111
+        },
+        {
+          "id": "2026-01-08",
+          "dia": "8",
+          "drop": 0,
+          "barco": 63328,
+          "cueva": 60016,
+          "gastos": 0,
+          "fullDate": "2026-01-08",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 96,
+          "mesasCueva": 119
+        },
+        {
+          "id": "2026-01-09",
+          "dia": "9",
+          "drop": 0,
+          "barco": 94832,
+          "cueva": 111920,
+          "gastos": 0,
+          "fullDate": "2026-01-09",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 143,
+          "mesasCueva": 146
+        },
+        {
+          "id": "2026-01-10",
+          "dia": "10",
+          "drop": 0,
+          "barco": 56849,
+          "cueva": 94352,
+          "gastos": 0,
+          "fullDate": "2026-01-10",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 92,
+          "mesasCueva": 116
+        },
+        {
+          "id": "2026-01-11",
+          "dia": "11",
+          "drop": 0,
+          "barco": 73056,
+          "cueva": 77168,
+          "gastos": 0,
+          "fullDate": "2026-01-11",
+          "utilidad": 0,
+          "mesasBarco": 104,
+          "mesasCueva": 104
+        },
+        {
+          "id": "2026-01-12",
+          "dia": "12",
+          "drop": 0,
+          "barco": 57488,
+          "cueva": 60704,
+          "gastos": 0,
+          "fullDate": "2026-01-12",
+          "utilidad": 0,
+          "mesasBarco": 81,
+          "mesasCueva": 84
+        },
+        {
+          "id": "2026-01-13",
+          "dia": "13",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 0,
+          "gastos": 0,
+          "fullDate": "2026-01-13",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-14",
+          "dia": "14",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 0,
+          "gastos": 0,
+          "fullDate": "2026-01-14",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-15",
+          "dia": "15",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 0,
+          "gastos": 0,
+          "fullDate": "2026-01-15",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        }
+      ],
+      "shipments": [
+        {
+          "id": 1,
+          "nota": "",
+          "fecha": "29/12",
+          "monto": 317000
+        },
+        {
+          "id": 2,
+          "nota": "",
+          "fecha": "31/12",
+          "monto": 350000
+        },
+        {
+          "id": 3,
+          "nota": "",
+          "fecha": "04/01",
+          "monto": 250000
+        },
+        {
+          "id": 4,
+          "nota": "ADELANTO",
+          "fecha": "05/01",
+          "monto": 76000,
+          "comprobante": ""
+        },
+        {
+          "id": 5,
+          "nota": "",
+          "fecha": "06/01",
+          "monto": 200000
+        },
+        {
+          "id": 6,
+          "nota": "",
+          "fecha": "08/01",
+          "monto": 330000
+        },
+        {
+          "id": 7,
+          "nota": "",
+          "fecha": "09/01",
+          "monto": 210000
+        },
+        {
+          "id": 1768271049430,
+          "nota": "",
+          "fecha": "09/01",
+          "monto": 205000,
+          "comprobante": ""
+        },
+        {
+          "id": 1768271062375,
+          "nota": "",
+          "fecha": "11/01",
+          "monto": 200000,
+          "comprobante": ""
+        }
+      ],
+      "shiftsNotes": {
+        "1": {
+          "1": "Whatsapp Caido"
+        }
+      },
+      "publicityActive": {
+        "2026-01-01": {
+          "Barco": 25000,
+          "Cueva": 0,
+          "Total": 25000
+        }
+      },
+      "includePublicityInTotal": true
+    }
+  },
+  {
+    "id": 491201,
+    "updated_at": "2026-01-13T17:57:57.963+00:00",
+    "content": {
+      "meta": {
+        "user": "admin",
+        "sessionId": "44p6pd",
+        "timestamp": "2026-01-13T17:57:57.780Z"
+      },
+      "banks": [
+        {
+          "id": 1,
+          "monto": 124000,
+          "nombre": "Personal Pay - Claudio"
+        },
+        {
+          "id": 2,
+          "monto": 120000,
+          "nombre": "Personal Pay - Juan"
+        },
+        {
+          "id": 3,
+          "monto": 6100,
+          "nombre": "Claro Pay - Cristian"
+        }
+      ],
+      "felipe": {
+        "days": 13,
+        "free": 2,
+        "extra": 2,
+        "advances": [
+          {
+            "id": 1768271780464,
+            "monto": 50,
+            "motivo": "Router Nuevo"
+          }
+        ]
+      },
+      "pubARS": 0,
+      "pubUSD": 0,
+      "shifts": {
+        "1": {
+          "1": "0",
+          "2": "4,5",
+          "3": "4,5",
+          "4": "9",
+          "5": "4,5",
+          "6": "9",
+          "7": "0",
+          "8": "9",
+          "9": "9",
+          "10": "9",
+          "11": "8,5",
+          "12": "9",
+          "13": "9",
+          "14": "0",
+          "15": "9"
+        },
+        "2": {
+          "1": "0",
+          "2": "0",
+          "3": "0",
+          "4": "9",
+          "5": "9",
+          "6": "18",
+          "7": "17",
+          "8": "9",
+          "9": "0",
+          "10": "9",
+          "11": "9",
+          "12": "9",
+          "13": "9",
+          "14": "9",
+          "15": "9"
+        },
+        "3": {
+          "1": "9",
+          "2": "0",
+          "3": "0",
+          "4": "0",
+          "5": "9",
+          "6": "9",
+          "7": "9",
+          "8": "9",
+          "9": "9",
+          "10": "9",
+          "11": "0",
+          "12": "9",
+          "13": "9",
+          "14": "9",
+          "15": "9"
+        },
+        "4": {
+          "1": "9",
+          "2": "13,5",
+          "3": "31,5",
+          "4": "18",
+          "5": "13,5",
+          "6": "0",
+          "7": "4",
+          "8": "9",
+          "9": "9",
+          "10": "9",
+          "11": "0",
+          "12": "9",
+          "13": "9",
+          "14": "9",
+          "15": "9"
+        },
+        "5": {
+          "7": "6",
+          "11": "9",
+          "14": "9"
+        },
+        "6": {
+          "9": "9",
+          "11": "9"
+        },
+        "willy": {
+          "1": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "2": {
+            "horas": "13.5",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "3": {
+            "horas": "31.5",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "4": {
+            "horas": "18",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "5": {
+            "horas": "13.5",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "7": {
+            "horas": "4",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          }
+        },
+        "romero": {
+          "1": {
+            "horas": "0",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Falta"
+          },
+          "2": {
+            "horas": "4.5",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "3": {
+            "horas": "4.5",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "4": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "5": {
+            "horas": "4.5",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "6": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "7": {
+            "horas": "0",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Franco"
+          }
+        },
+        "alfredo": {
+          "4": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "5": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "6": {
+            "horas": "18",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "7": {
+            "horas": "17",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          }
+        },
+        "francel": {
+          "1": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          },
+          "6": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          }
+        },
+        "francis": {
+          "7": {
+            "horas": "6",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          }
+        },
+        "dasos.545": {
+          "1": {
+            "horas": "9",
+            "notas": "",
+            "salida": "",
+            "entrada": "",
+            "estatus": "Presente"
+          }
+        },
+        "1768272284299": {
+          "1": "9"
+        }
+      },
+      "players": [
+        {
+          "id": 1,
+          "tipo": "barco",
+          "saldo": 260000,
+          "nombre": "El Barco"
+        },
+        {
+          "id": 2,
+          "tipo": "cueva",
+          "saldo": 270000,
+          "nombre": "La Cueva"
+        }
+      ],
+      "usdtRate": 1534,
+      "employees": [
+        {
+          "id": "romero",
+          "name": "Romero",
+          "email": "romero",
+          "group": "Barco",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "alfredo",
+          "name": "Alfredo",
+          "email": "alfredo",
+          "group": "Barco",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "francel",
+          "name": "Francel",
+          "email": "francel",
+          "group": "Cueva",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "willy",
+          "name": "Willy",
+          "email": "willy",
+          "group": "Cueva",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "francis",
+          "name": "Francis",
+          "email": "francis",
+          "group": "Barco",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "clemente",
+          "name": "Clemente",
+          "email": "clemente",
+          "group": "Barco",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "dasos.545",
+          "name": "Dasos",
+          "email": "dasos.545",
+          "group": "Cueva",
+          "shift": "Mañana",
+          "status": "Renunció"
+        }
+      ],
+      "operative": [
+        {
+          "id": "2025-12-29",
+          "dia": "29",
+          "drop": 0,
+          "barco": 87800,
+          "cueva": 114450,
+          "gastos": 0,
+          "fullDate": "2025-12-29",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2025-12-30",
+          "dia": "30",
+          "drop": 0,
+          "barco": 72300,
+          "cueva": 132496,
+          "gastos": 0,
+          "fullDate": "2025-12-30",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2025-12-31",
+          "dia": "31",
+          "drop": 0,
+          "barco": 55400,
+          "cueva": 78940,
+          "gastos": 0,
+          "fullDate": "2025-12-31",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-01",
+          "dia": "1",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 73649,
+          "gastos": 0,
+          "fullDate": "2026-01-01",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 81
+        },
+        {
+          "id": "2026-01-02",
+          "dia": "2",
+          "drop": 0,
+          "barco": 11040,
+          "cueva": 53072,
+          "gastos": 0,
+          "fullDate": "2026-01-02",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 17,
+          "mesasCueva": 75
+        },
+        {
+          "id": "2026-01-03",
+          "dia": "3",
+          "drop": 0,
+          "barco": 43712,
+          "cueva": 53152,
+          "gastos": 0,
+          "fullDate": "2026-01-03",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 44,
+          "mesasCueva": 75
+        },
+        {
+          "id": "2026-01-04",
+          "dia": "4",
+          "drop": 0,
+          "barco": 27392,
+          "cueva": 39632,
+          "gastos": 0,
+          "fullDate": "2026-01-04",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 44,
+          "mesasCueva": 60
+        },
+        {
+          "id": "2026-01-05",
+          "dia": "5",
+          "drop": 0,
+          "barco": 32624,
+          "cueva": 66048,
+          "gastos": 0,
+          "fullDate": "2026-01-05",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 53,
+          "mesasCueva": 90
+        },
+        {
+          "id": "2026-01-06",
+          "dia": "6",
+          "drop": 0,
+          "barco": 45760,
+          "cueva": 64544,
+          "gastos": 0,
+          "fullDate": "2026-01-06",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 77,
+          "mesasCueva": 88
+        },
+        {
+          "id": "2026-01-07",
+          "dia": "7",
+          "drop": 0,
+          "barco": 91536,
+          "cueva": 83712,
+          "gastos": 0,
+          "fullDate": "2026-01-07",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 131,
+          "mesasCueva": 111
+        },
+        {
+          "id": "2026-01-08",
+          "dia": "8",
+          "drop": 0,
+          "barco": 63328,
+          "cueva": 60016,
+          "gastos": 0,
+          "fullDate": "2026-01-08",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 96,
+          "mesasCueva": 119
+        },
+        {
+          "id": "2026-01-09",
+          "dia": "9",
+          "drop": 0,
+          "barco": 94832,
+          "cueva": 111920,
+          "gastos": 0,
+          "fullDate": "2026-01-09",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 143,
+          "mesasCueva": 146
+        },
+        {
+          "id": "2026-01-10",
+          "dia": "10",
+          "drop": 0,
+          "barco": 56849,
+          "cueva": 94352,
+          "gastos": 0,
+          "fullDate": "2026-01-10",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 92,
+          "mesasCueva": 116
+        },
+        {
+          "id": "2026-01-11",
+          "dia": "11",
+          "drop": 0,
+          "barco": 73056,
+          "cueva": 77168,
+          "gastos": 0,
+          "fullDate": "2026-01-11",
+          "utilidad": 0,
+          "mesasBarco": 104,
+          "mesasCueva": 104
+        },
+        {
+          "id": "2026-01-12",
+          "dia": "12",
+          "drop": 0,
+          "barco": 57488,
+          "cueva": 60704,
+          "gastos": 0,
+          "fullDate": "2026-01-12",
+          "utilidad": 0,
+          "mesasBarco": 81,
+          "mesasCueva": 84
+        },
+        {
+          "id": "2026-01-13",
+          "dia": "13",
+          "drop": 0,
+          "barco": 14512,
+          "cueva": 31856,
+          "gastos": 0,
+          "fullDate": "2026-01-13",
+          "utilidad": 0,
+          "mesasBarco": 24,
+          "mesasCueva": 35
+        },
+        {
+          "id": "2026-01-14",
+          "dia": "14",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 0,
+          "gastos": 0,
+          "fullDate": "2026-01-14",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-15",
+          "dia": "15",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 0,
+          "gastos": 0,
+          "fullDate": "2026-01-15",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        }
+      ],
+      "shipments": [
+        {
+          "id": 1,
+          "nota": "",
+          "fecha": "29/12",
+          "monto": 317000
+        },
+        {
+          "id": 2,
+          "nota": "",
+          "fecha": "31/12",
+          "monto": 350000
+        },
+        {
+          "id": 3,
+          "nota": "",
+          "fecha": "04/01",
+          "monto": 250000
+        },
+        {
+          "id": 4,
+          "nota": "ADELANTO",
+          "fecha": "05/01",
+          "monto": 76000,
+          "comprobante": ""
+        },
+        {
+          "id": 5,
+          "nota": "",
+          "fecha": "06/01",
+          "monto": 200000
+        },
+        {
+          "id": 6,
+          "nota": "",
+          "fecha": "08/01",
+          "monto": 330000
+        },
+        {
+          "id": 7,
+          "nota": "",
+          "fecha": "09/01",
+          "monto": 210000
+        },
+        {
+          "id": 1768271049430,
+          "nota": "",
+          "fecha": "09/01",
+          "monto": 205000,
+          "comprobante": ""
+        },
+        {
+          "id": 1768271062375,
+          "nota": "",
+          "fecha": "11/01",
+          "monto": 200000,
+          "comprobante": ""
+        }
+      ],
+      "shiftsNotes": {
+        "1": {
+          "1": "Whatsapp Caido"
+        }
+      },
+      "publicityActive": {
+        "2026-01-01": {
+          "Barco": 25000,
+          "Cueva": 0,
+          "Total": 25000
+        }
+      },
+      "includePublicityInTotal": true
+    }
+  },
+  {
+    "id": 491187,
+    "updated_at": "2026-01-13T03:57:24.588+00:00",
+    "content": {
+      "meta": {
+        "user": "admin",
+        "sessionId": "frpll2c",
+        "timestamp": "2026-01-13T03:57:24.374Z"
+      },
+      "banks": [
+        {
+          "id": 1,
+          "monto": 144359,
+          "nombre": "Personal Pay - Claudio"
+        },
+        {
+          "id": 2,
+          "monto": 139000,
+          "nombre": "Personal Pay - Juan"
+        },
+        {
+          "id": 3,
+          "monto": 6100,
+          "nombre": "Claro Pay - Cristian"
+        }
+      ],
+      "felipe": {
+        "days": 13,
+        "free": 2,
+        "extra": 2,
+        "advances": [
+          {
+            "id": 1768271780464,
+            "monto": 50,
+            "motivo": "Router Nuevo"
+          }
+        ]
+      },
+      "pubARS": 0,
+      "pubUSD": 0,
+      "shifts": {
+        "1": {
+          "1": "0"
+        },
+        "2": {
+          "1": "0",
+          "2": "0",
+          "3": "0"
+        },
+        "3": {
+          "1": "0"
+        },
+        "4": {
+          "1": ""
+        },
+        "5": {
+          "7": "6",
+          "11": "9",
+          "14": "9"
+        },
+        "6": {
+          "9": "9",
+          "11": "9"
+        },
+        "1768272284299": {
+          "1": "9"
+        }
+      },
+      "players": [
+        {
+          "id": 1,
+          "tipo": "barco",
+          "saldo": 260000,
+          "nombre": "El Barco"
+        },
+        {
+          "id": 2,
+          "tipo": "cueva",
+          "saldo": 270000,
+          "nombre": "La Cueva"
+        }
+      ],
+      "usdtRate": 1534,
+      "employees": [
+        {
+          "id": 1,
+          "name": "Romero",
+          "email": "romero@sistema.com",
+          "group": "Barco",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": 2,
+          "name": "Alfredo",
+          "email": "alfredo@sistema.com",
+          "group": "Barco",
+          "shift": "Noche",
+          "status": "Activo"
+        },
+        {
+          "id": 3,
+          "name": "Francel",
+          "email": "francel@sistema.com",
+          "group": "Cueva",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": 4,
+          "name": "Willy",
+          "email": "willy@sistema.com",
+          "group": "Cueva",
+          "shift": "Noche",
+          "status": "Activo"
+        },
+        {
+          "id": 5,
+          "name": "Francis",
+          "email": "francis@sistema.com",
+          "group": "Barco",
+          "shift": "Franquero",
+          "status": "Activo"
+        },
+        {
+          "id": 6,
+          "name": "Clemente",
+          "email": "clemente@sistema.com",
+          "group": "Cueva",
+          "shift": "Franquero",
+          "status": "Activo"
+        },
+        {
+          "id": 1768272284299,
+          "name": "Dasos",
+          "group": "Cueva",
+          "shift": "Noche",
+          "status": "Renunció"
+        }
+      ],
+      "operative": [
+        {
+          "id": "2025-12-29",
+          "dia": "29",
+          "drop": 0,
+          "barco": 87800,
+          "cueva": 114450,
+          "gastos": 0,
+          "fullDate": "2025-12-29",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2025-12-30",
+          "dia": "30",
+          "drop": 0,
+          "barco": 72300,
+          "cueva": 132496,
+          "gastos": 0,
+          "fullDate": "2025-12-30",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2025-12-31",
+          "dia": "31",
+          "drop": 0,
+          "barco": 55400,
+          "cueva": 78940,
+          "gastos": 0,
+          "fullDate": "2025-12-31",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-01",
+          "dia": "1",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 73649,
+          "gastos": 0,
+          "fullDate": "2026-01-01",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-02",
+          "dia": "2",
+          "drop": 0,
+          "barco": 11040,
+          "cueva": 53072,
+          "gastos": 0,
+          "fullDate": "2026-01-02",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-03",
+          "dia": "3",
+          "drop": 0,
+          "barco": 43712,
+          "cueva": 53152,
+          "gastos": 0,
+          "fullDate": "2026-01-03",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-04",
+          "dia": "4",
+          "drop": 0,
+          "barco": 27392,
+          "cueva": 39632,
+          "gastos": 0,
+          "fullDate": "2026-01-04",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-05",
+          "dia": "5",
+          "drop": 0,
+          "barco": 32624,
+          "cueva": 66048,
+          "gastos": 0,
+          "fullDate": "2026-01-05",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-06",
+          "dia": "6",
+          "drop": 0,
+          "barco": 45760,
+          "cueva": 64544,
+          "gastos": 0,
+          "fullDate": "2026-01-06",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-07",
+          "dia": "7",
+          "drop": 0,
+          "barco": 91536,
+          "cueva": 83712,
+          "gastos": 0,
+          "fullDate": "2026-01-07",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-08",
+          "dia": "8",
+          "drop": 0,
+          "barco": 63328,
+          "cueva": 60016,
+          "gastos": 0,
+          "fullDate": "2026-01-08",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-09",
+          "dia": "9",
+          "drop": 0,
+          "barco": 94832,
+          "cueva": 111920,
+          "gastos": 0,
+          "fullDate": "2026-01-09",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-10",
+          "dia": "10",
+          "drop": 0,
+          "barco": 56849,
+          "cueva": 94352,
+          "gastos": 0,
+          "fullDate": "2026-01-10",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 92,
+          "mesasCueva": 116
+        },
+        {
+          "id": "2026-01-11",
+          "dia": "11",
+          "drop": 0,
+          "barco": 73056,
+          "cueva": 77168,
+          "gastos": 0,
+          "fullDate": "2026-01-11",
+          "utilidad": 0,
+          "mesasBarco": 104,
+          "mesasCueva": 104
+        },
+        {
+          "id": "2026-01-12",
+          "dia": "12",
+          "drop": 0,
+          "barco": 38368,
+          "cueva": 36496,
+          "gastos": 0,
+          "fullDate": "2026-01-12",
+          "utilidad": 0,
+          "mesasBarco": 57,
+          "mesasCueva": 50
+        },
+        {
+          "id": "2026-01-13",
+          "dia": "13",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 0,
+          "gastos": 0,
+          "fullDate": "2026-01-13",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-14",
+          "dia": "14",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 0,
+          "gastos": 0,
+          "fullDate": "2026-01-14",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-15",
+          "dia": "15",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 0,
+          "gastos": 0,
+          "fullDate": "2026-01-15",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        }
+      ],
+      "shipments": [
+        {
+          "id": 1,
+          "nota": "",
+          "fecha": "29/12",
+          "monto": 317000
+        },
+        {
+          "id": 2,
+          "nota": "",
+          "fecha": "31/12",
+          "monto": 350000
+        },
+        {
+          "id": 3,
+          "nota": "",
+          "fecha": "04/01",
+          "monto": 250000
+        },
+        {
+          "id": 4,
+          "nota": "ADELANTO",
+          "fecha": "05/01",
+          "monto": 76000,
+          "comprobante": ""
+        },
+        {
+          "id": 5,
+          "nota": "",
+          "fecha": "06/01",
+          "monto": 200000
+        },
+        {
+          "id": 6,
+          "nota": "",
+          "fecha": "08/01",
+          "monto": 330000
+        },
+        {
+          "id": 7,
+          "nota": "",
+          "fecha": "09/01",
+          "monto": 210000
+        },
+        {
+          "id": 1768271049430,
+          "nota": "",
+          "fecha": "09/01",
+          "monto": 205000,
+          "comprobante": ""
+        },
+        {
+          "id": 1768271062375,
+          "nota": "",
+          "fecha": "11/01",
+          "monto": 200000,
+          "comprobante": ""
+        }
+      ],
+      "shiftsNotes": {},
+      "publicityActive": {
+        "2026-01-01": {
+          "Barco": 25000,
+          "Cueva": 0,
+          "Total": 25000
+        }
+      }
+    }
+  },
+  {
+    "id": 491188,
+    "updated_at": "2026-01-13T04:43:11.457+00:00",
+    "content": {
+      "meta": {
+        "user": "admin",
+        "sessionId": "er6nj",
+        "timestamp": "2026-01-13T04:43:11.294Z"
+      },
+      "banks": [
+        {
+          "id": 1,
+          "monto": 144359,
+          "nombre": "Personal Pay - Claudio"
+        },
+        {
+          "id": 2,
+          "monto": 139000,
+          "nombre": "Personal Pay - Juan"
+        },
+        {
+          "id": 3,
+          "monto": 6100,
+          "nombre": "Claro Pay - Cristian"
+        }
+      ],
+      "felipe": {
+        "days": 13,
+        "free": 2,
+        "extra": 2,
+        "advances": [
+          {
+            "id": 1768271780464,
+            "monto": 50,
+            "motivo": "Router Nuevo"
+          }
+        ]
+      },
+      "pubARS": 0,
+      "pubUSD": 0,
+      "shifts": {
+        "1": {
+          "1": "0"
+        },
+        "2": {
+          "1": "0",
+          "2": "0",
+          "3": "0"
+        },
+        "3": {
+          "1": "0"
+        },
+        "4": {
+          "1": ""
+        },
+        "5": {
+          "7": "6",
+          "11": "9",
+          "14": "9"
+        },
+        "6": {
+          "9": "9",
+          "11": "9"
+        },
+        "1768272284299": {
+          "1": "9"
+        }
+      },
+      "players": [
+        {
+          "id": 1,
+          "tipo": "barco",
+          "saldo": 260000,
+          "nombre": "El Barco"
+        },
+        {
+          "id": 2,
+          "tipo": "cueva",
+          "saldo": 270000,
+          "nombre": "La Cueva"
+        }
+      ],
+      "usdtRate": 1534,
+      "employees": [
+        {
+          "id": 1,
+          "name": "Romero",
+          "email": "romero@sistema.com",
+          "group": "Barco",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": 2,
+          "name": "Alfredo",
+          "email": "alfredo@sistema.com",
+          "group": "Barco",
+          "shift": "Noche",
+          "status": "Activo"
+        },
+        {
+          "id": 3,
+          "name": "Francel",
+          "email": "francel@sistema.com",
+          "group": "Cueva",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": 4,
+          "name": "Willy",
+          "email": "willy@sistema.com",
+          "group": "Cueva",
+          "shift": "Noche",
+          "status": "Activo"
+        },
+        {
+          "id": 5,
+          "name": "Francis",
+          "email": "francis@sistema.com",
+          "group": "Barco",
+          "shift": "Franquero",
+          "status": "Activo"
+        },
+        {
+          "id": 6,
+          "name": "Clemente",
+          "email": "clemente@sistema.com",
+          "group": "Cueva",
+          "shift": "Franquero",
+          "status": "Activo"
+        },
+        {
+          "id": 1768272284299,
+          "name": "Dasos",
+          "group": "Cueva",
+          "shift": "Noche",
+          "status": "Renunció"
+        }
+      ],
+      "operative": [
+        {
+          "id": "2025-12-29",
+          "dia": "29",
+          "drop": 0,
+          "barco": 87800,
+          "cueva": 114450,
+          "gastos": 0,
+          "fullDate": "2025-12-29",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2025-12-30",
+          "dia": "30",
+          "drop": 0,
+          "barco": 72300,
+          "cueva": 132496,
+          "gastos": 0,
+          "fullDate": "2025-12-30",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2025-12-31",
+          "dia": "31",
+          "drop": 0,
+          "barco": 55400,
+          "cueva": 78940,
+          "gastos": 0,
+          "fullDate": "2025-12-31",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-01",
+          "dia": "1",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 73649,
+          "gastos": 0,
+          "fullDate": "2026-01-01",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-02",
+          "dia": "2",
+          "drop": 0,
+          "barco": 11040,
+          "cueva": 53072,
+          "gastos": 0,
+          "fullDate": "2026-01-02",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-03",
+          "dia": "3",
+          "drop": 0,
+          "barco": 43712,
+          "cueva": 53152,
+          "gastos": 0,
+          "fullDate": "2026-01-03",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-04",
+          "dia": "4",
+          "drop": 0,
+          "barco": 27392,
+          "cueva": 39632,
+          "gastos": 0,
+          "fullDate": "2026-01-04",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-05",
+          "dia": "5",
+          "drop": 0,
+          "barco": 32624,
+          "cueva": 66048,
+          "gastos": 0,
+          "fullDate": "2026-01-05",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-06",
+          "dia": "6",
+          "drop": 0,
+          "barco": 45760,
+          "cueva": 64544,
+          "gastos": 0,
+          "fullDate": "2026-01-06",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-07",
+          "dia": "7",
+          "drop": 0,
+          "barco": 91536,
+          "cueva": 83712,
+          "gastos": 0,
+          "fullDate": "2026-01-07",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-08",
+          "dia": "8",
+          "drop": 0,
+          "barco": 63328,
+          "cueva": 60016,
+          "gastos": 0,
+          "fullDate": "2026-01-08",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-09",
+          "dia": "9",
+          "drop": 0,
+          "barco": 94832,
+          "cueva": 111920,
+          "gastos": 0,
+          "fullDate": "2026-01-09",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-10",
+          "dia": "10",
+          "drop": 0,
+          "barco": 56849,
+          "cueva": 94352,
+          "gastos": 0,
+          "fullDate": "2026-01-10",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 92,
+          "mesasCueva": 116
+        },
+        {
+          "id": "2026-01-11",
+          "dia": "11",
+          "drop": 0,
+          "barco": 73056,
+          "cueva": 77168,
+          "gastos": 0,
+          "fullDate": "2026-01-11",
+          "utilidad": 0,
+          "mesasBarco": 104,
+          "mesasCueva": 104
+        },
+        {
+          "id": "2026-01-12",
+          "dia": "12",
+          "drop": 0,
+          "barco": 43408,
+          "cueva": 37136,
+          "gastos": 0,
+          "fullDate": "2026-01-12",
+          "utilidad": 0,
+          "mesasBarco": 63,
+          "mesasCueva": 51
+        },
+        {
+          "id": "2026-01-13",
+          "dia": "13",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 0,
+          "gastos": 0,
+          "fullDate": "2026-01-13",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-14",
+          "dia": "14",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 0,
+          "gastos": 0,
+          "fullDate": "2026-01-14",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-15",
+          "dia": "15",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 0,
+          "gastos": 0,
+          "fullDate": "2026-01-15",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        }
+      ],
+      "shipments": [
+        {
+          "id": 1,
+          "nota": "",
+          "fecha": "29/12",
+          "monto": 317000
+        },
+        {
+          "id": 2,
+          "nota": "",
+          "fecha": "31/12",
+          "monto": 350000
+        },
+        {
+          "id": 3,
+          "nota": "",
+          "fecha": "04/01",
+          "monto": 250000
+        },
+        {
+          "id": 4,
+          "nota": "ADELANTO",
+          "fecha": "05/01",
+          "monto": 76000,
+          "comprobante": ""
+        },
+        {
+          "id": 5,
+          "nota": "",
+          "fecha": "06/01",
+          "monto": 200000
+        },
+        {
+          "id": 6,
+          "nota": "",
+          "fecha": "08/01",
+          "monto": 330000
+        },
+        {
+          "id": 7,
+          "nota": "",
+          "fecha": "09/01",
+          "monto": 210000
+        },
+        {
+          "id": 1768271049430,
+          "nota": "",
+          "fecha": "09/01",
+          "monto": 205000,
+          "comprobante": ""
+        },
+        {
+          "id": 1768271062375,
+          "nota": "",
+          "fecha": "11/01",
+          "monto": 200000,
+          "comprobante": ""
+        }
+      ],
+      "shiftsNotes": {},
+      "publicityActive": {
+        "2026-01-01": {
+          "Barco": 25000,
+          "Cueva": 0,
+          "Total": 25000
+        }
+      },
+      "includePublicityInTotal": true
+    }
+  },
+  {
+    "id": 491189,
+    "updated_at": "2026-01-13T05:59:47.966+00:00",
+    "content": {
+      "meta": {
+        "user": "admin",
+        "sessionId": "9005rq",
+        "timestamp": "2026-01-13T05:59:47.803Z"
+      },
+      "banks": [
+        {
+          "id": 1,
+          "monto": 144359,
+          "nombre": "Personal Pay - Claudio"
+        },
+        {
+          "id": 2,
+          "monto": 139000,
+          "nombre": "Personal Pay - Juan"
+        },
+        {
+          "id": 3,
+          "monto": 6100,
+          "nombre": "Claro Pay - Cristian"
+        }
+      ],
+      "felipe": {
+        "days": 13,
+        "free": 2,
+        "extra": 2,
+        "advances": [
+          {
+            "id": 1768271780464,
+            "monto": 50,
+            "motivo": "Router Nuevo"
+          }
+        ]
+      },
+      "pubARS": 0,
+      "pubUSD": 0,
+      "shifts": {
+        "1": {
+          "1": "0",
+          "2": "4,5",
+          "3": "4,5",
+          "4": "9",
+          "5": "4,5",
+          "6": "9",
+          "7": "0",
+          "8": "9",
+          "9": "9",
+          "10": "9",
+          "11": "8,5",
+          "12": "9",
+          "13": "9",
+          "14": "0",
+          "15": "9"
+        },
+        "2": {
+          "1": "0",
+          "2": "0",
+          "3": "0",
+          "4": "9",
+          "5": "9",
+          "6": "18",
+          "7": "17",
+          "8": "9",
+          "9": "0",
+          "10": "9",
+          "11": "9",
+          "12": "9",
+          "13": "9",
+          "14": "9",
+          "15": "9"
+        },
+        "3": {
+          "1": "9",
+          "2": "0",
+          "3": "0",
+          "4": "0",
+          "5": "9",
+          "6": "9",
+          "7": "9",
+          "8": "9",
+          "9": "9",
+          "10": "9",
+          "11": "0",
+          "12": "9",
+          "13": "9",
+          "14": "9",
+          "15": "9"
+        },
+        "4": {
+          "1": "9",
+          "2": "13,5",
+          "3": "31,5",
+          "4": "18",
+          "5": "13,5",
+          "6": "0",
+          "7": "4",
+          "8": "9",
+          "9": "9",
+          "10": "9",
+          "11": "0",
+          "12": "9",
+          "13": "9",
+          "14": "9",
+          "15": "9"
+        },
+        "5": {
+          "7": "6",
+          "11": "9",
+          "14": "9"
+        },
+        "6": {
+          "9": "9",
+          "11": "9"
+        },
+        "1768272284299": {
+          "1": "9"
+        }
+      },
+      "players": [
+        {
+          "id": 1,
+          "tipo": "barco",
+          "saldo": 260000,
+          "nombre": "El Barco"
+        },
+        {
+          "id": 2,
+          "tipo": "cueva",
+          "saldo": 270000,
+          "nombre": "La Cueva"
+        }
+      ],
+      "usdtRate": 1534,
+      "employees": [
+        {
+          "id": "romero",
+          "name": "Romero",
+          "email": "romero",
+          "group": "Barco",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "alfredo",
+          "name": "Alfredo",
+          "email": "alfredo",
+          "group": "Barco",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "francel",
+          "name": "Francel",
+          "email": "francel",
+          "group": "Cueva",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "willy",
+          "name": "Willy",
+          "email": "willy",
+          "group": "Cueva",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "francis",
+          "name": "Francis",
+          "email": "francis",
+          "group": "Barco",
+          "shift": "Mañana",
+          "status": "Activo"
+        },
+        {
+          "id": "clemente",
+          "name": "Clemente",
+          "email": "clemente",
+          "group": "Barco",
+          "shift": "Mañana",
+          "status": "Activo"
+        }
+      ],
+      "operative": [
+        {
+          "id": "2025-12-29",
+          "dia": "29",
+          "drop": 0,
+          "barco": 87800,
+          "cueva": 114450,
+          "gastos": 0,
+          "fullDate": "2025-12-29",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2025-12-30",
+          "dia": "30",
+          "drop": 0,
+          "barco": 72300,
+          "cueva": 132496,
+          "gastos": 0,
+          "fullDate": "2025-12-30",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2025-12-31",
+          "dia": "31",
+          "drop": 0,
+          "barco": 55400,
+          "cueva": 78940,
+          "gastos": 0,
+          "fullDate": "2025-12-31",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-01",
+          "dia": "1",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 73649,
+          "gastos": 0,
+          "fullDate": "2026-01-01",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 81
+        },
+        {
+          "id": "2026-01-02",
+          "dia": "2",
+          "drop": 0,
+          "barco": 11040,
+          "cueva": 53072,
+          "gastos": 0,
+          "fullDate": "2026-01-02",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 17,
+          "mesasCueva": 75
+        },
+        {
+          "id": "2026-01-03",
+          "dia": "3",
+          "drop": 0,
+          "barco": 43712,
+          "cueva": 53152,
+          "gastos": 0,
+          "fullDate": "2026-01-03",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 44,
+          "mesasCueva": 75
+        },
+        {
+          "id": "2026-01-04",
+          "dia": "4",
+          "drop": 0,
+          "barco": 27392,
+          "cueva": 39632,
+          "gastos": 0,
+          "fullDate": "2026-01-04",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 44,
+          "mesasCueva": 60
+        },
+        {
+          "id": "2026-01-05",
+          "dia": "5",
+          "drop": 0,
+          "barco": 32624,
+          "cueva": 66048,
+          "gastos": 0,
+          "fullDate": "2026-01-05",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 53,
+          "mesasCueva": 90
+        },
+        {
+          "id": "2026-01-06",
+          "dia": "6",
+          "drop": 0,
+          "barco": 45760,
+          "cueva": 64544,
+          "gastos": 0,
+          "fullDate": "2026-01-06",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 77,
+          "mesasCueva": 88
+        },
+        {
+          "id": "2026-01-07",
+          "dia": "7",
+          "drop": 0,
+          "barco": 91536,
+          "cueva": 83712,
+          "gastos": 0,
+          "fullDate": "2026-01-07",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 131,
+          "mesasCueva": 111
+        },
+        {
+          "id": "2026-01-08",
+          "dia": "8",
+          "drop": 0,
+          "barco": 63328,
+          "cueva": 60016,
+          "gastos": 0,
+          "fullDate": "2026-01-08",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 96,
+          "mesasCueva": 119
+        },
+        {
+          "id": "2026-01-09",
+          "dia": "9",
+          "drop": 0,
+          "barco": 94832,
+          "cueva": 111920,
+          "gastos": 0,
+          "fullDate": "2026-01-09",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 143,
+          "mesasCueva": 146
+        },
+        {
+          "id": "2026-01-10",
+          "dia": "10",
+          "drop": 0,
+          "barco": 56849,
+          "cueva": 94352,
+          "gastos": 0,
+          "fullDate": "2026-01-10",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 92,
+          "mesasCueva": 116
+        },
+        {
+          "id": "2026-01-11",
+          "dia": "11",
+          "drop": 0,
+          "barco": 73056,
+          "cueva": 77168,
+          "gastos": 0,
+          "fullDate": "2026-01-11",
+          "utilidad": 0,
+          "mesasBarco": 104,
+          "mesasCueva": 104
+        },
+        {
+          "id": "2026-01-12",
+          "dia": "12",
+          "drop": 0,
+          "barco": 57488,
+          "cueva": 60704,
+          "gastos": 0,
+          "fullDate": "2026-01-12",
+          "utilidad": 0,
+          "mesasBarco": 81,
+          "mesasCueva": 84
+        },
+        {
+          "id": "2026-01-13",
+          "dia": "13",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 0,
+          "gastos": 0,
+          "fullDate": "2026-01-13",
+          "isManual": true,
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-14",
+          "dia": "14",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 0,
+          "gastos": 0,
+          "fullDate": "2026-01-14",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        },
+        {
+          "id": "2026-01-15",
+          "dia": "15",
+          "drop": 0,
+          "barco": 0,
+          "cueva": 0,
+          "gastos": 0,
+          "fullDate": "2026-01-15",
+          "utilidad": 0,
+          "mesasBarco": 0,
+          "mesasCueva": 0
+        }
+      ],
+      "shipments": [
+        {
+          "id": 1,
+          "nota": "",
+          "fecha": "29/12",
+          "monto": 317000
+        },
+        {
+          "id": 2,
+          "nota": "",
+          "fecha": "31/12",
+          "monto": 350000
+        },
+        {
+          "id": 3,
+          "nota": "",
+          "fecha": "04/01",
+          "monto": 250000
+        },
+        {
+          "id": 4,
+          "nota": "ADELANTO",
+          "fecha": "05/01",
+          "monto": 76000,
+          "comprobante": ""
+        },
+        {
+          "id": 5,
+          "nota": "",
+          "fecha": "06/01",
+          "monto": 200000
+        },
+        {
+          "id": 6,
+          "nota": "",
+          "fecha": "08/01",
+          "monto": 330000
+        },
+        {
+          "id": 7,
+          "nota": "",
+          "fecha": "09/01",
+          "monto": 210000
+        },
+        {
+          "id": 1768271049430,
+          "nota": "",
+          "fecha": "09/01",
+          "monto": 205000,
+          "comprobante": ""
+        },
+        {
+          "id": 1768271062375,
+          "nota": "",
+          "fecha": "11/01",
+          "monto": 200000,
+          "comprobante": ""
+        }
+      ],
+      "shiftsNotes": {},
+      "publicityActive": {
+        "2026-01-01": {
+          "Barco": 25000,
+          "Cueva": 0,
+          "Total": 25000
+        }
+      },
+      "includePublicityInTotal": true
+    }
+  }
+]

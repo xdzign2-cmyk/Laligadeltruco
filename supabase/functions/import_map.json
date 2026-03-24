@@ -1,0 +1,6 @@
+{
+    "imports": {
+        "googleapis": "https://esm.sh/googleapis@144.0.0",
+        "jsr:@supabase/functions-js": "https://esm.sh/@supabase/functions-js@2.4.1"
+    }
+}

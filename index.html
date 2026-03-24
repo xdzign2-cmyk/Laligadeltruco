@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Felipe Manager - Sistema Administrativo Interactivo</title>
+  </head>
+  <script>
+    window.addEventListener('error', function(event) {
+      document.body.innerHTML = '<div style="color:red; font-size: 20px; padding: 20px; background: white;"><h1>Error Detected</h1><p>' + event.message + '</p><pre>' + (event.error ? event.error.stack : '') + '</pre></div>';
+    });
+    window.addEventListener('unhandledrejection', function(event) {
+      document.body.innerHTML = '<div style="color:red; font-size: 20px; padding: 20px; background: white;"><h1>Promise Rejection</h1><p>' + event.reason + '</p></div>';
+    });
+  </script>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
