@@ -367,19 +367,19 @@ function App() {
         <div className="absolute w-[600px] h-[600px] bg-[#FF6B00]/5 rounded-full blur-[100px] z-0 animate-pulse-slow"></div>
 
         {/* --- GLASSMORPHISM LOGIN CARD --- */}
-        <div className="w-full max-w-[390px] relative z-20 animate-in zoom-in-95 fade-in duration-500 fill-mode-both">
+        <div className="w-full max-w-[360px] relative z-20 animate-in zoom-in-95 fade-in duration-500 fill-mode-both">
           {/* Tarjeta de Inicio de Sesión */}
           <div className="relative group/card">
             <div className="absolute -inset-[1px] bg-gradient-to-tr from-[#FFB800]/20 via-orange-500/10 to-[#FFB800]/20 rounded-[32px] blur-sm opacity-50 transition-opacity"></div>
-            <div className="relative bg-[#000000]/80 backdrop-blur-3xl p-10 rounded-[32px] border border-white/10 shadow-[0_30px_90px_rgba(0,0,0,1)]">
+            <div className="relative bg-[#000000]/85 backdrop-blur-3xl p-8 rounded-[32px] border border-white/10 shadow-[0_30px_90px_rgba(0,0,0,1)]">
               
-              <div className="flex flex-col items-center mb-10">
-                <div className="relative mb-8 animate-in slide-in-from-bottom-2 fade-in duration-500">
+              <div className="flex flex-col items-center mb-8">
+                <div className="relative mb-6 animate-in slide-in-from-bottom-2 fade-in duration-500">
                   <div className="absolute -inset-4 bg-[#FFB800]/10 rounded-full blur-xl animate-pulse"></div>
                   <img 
                     src="/logo.png" 
                     alt="Logo" 
-                    className="w-32 h-32 object-contain contrast-125 brightness-110 drop-shadow-[0_0_25px_rgba(255,184,0,0.5)]" 
+                    className="w-40 h-40 object-contain contrast-125 brightness-110 drop-shadow-[0_0_25px_rgba(255,184,0,0.5)]" 
                   />
                 </div>
                 <h1 className="text-2xl font-black text-white tracking-[0.4em] uppercase text-center animate-in slide-in-from-bottom-2 fade-in duration-500 delay-100">
