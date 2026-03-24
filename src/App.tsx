@@ -19,11 +19,6 @@ function App() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  // 2FA STATE
-  const [show2FA, setShow2FA] = useState(false);
-  const [twoFACode, setTwoFACode] = useState('');
-  const [tempUser, setTempUser] = useState<any>(null); // Store user while waiting for 2FA
-  const [showPIN, setShowPIN] = useState(false); // Toggle visibility for PIN
 
 
   // Generador de ID de dispositivo único
@@ -121,14 +116,6 @@ function App() {
         return;
       }
 
-      // 2FA CHECK FOR ADMINS
-      if (dbUser.role === 'admin' || dbUser.role === 'vicepresident') {
-        // Check if user has 2FA configured
-        setTempUser(dbUser);
-        setShow2FA(true);
-        setLoading(false);
-        return;
-      }
 
       // --- ACCESO TOTAL ADMIN (SIN LÍMITES 4X4) ---
       await trackSession(dbUser.username);
@@ -146,64 +133,10 @@ function App() {
       console.error("Login error:", err);
       setError('Error de conexión con el servidor');
     } finally {
-      if (!show2FA) setLoading(false);
-    }
-  };
-
-  const handleVerify2FA = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setError('');
-
-    try {
-      let isValid = false;
-
-      // 1. CHECK PIN (User PIN or Master PIN)
-      if (twoFACode === '119296' || (tempUser.pin_code && tempUser.pin_code === twoFACode)) {
-        isValid = true;
-      }
-
-      // 2. CHECK TOTP (If not valid yet AND user has secret)
-      if (!isValid && tempUser.secret_2fa) {
-        try {
-          const OTPAuth = await import('otpauth');
-          const totp = new OTPAuth.TOTP({
-            secret: OTPAuth.Secret.fromBase32(tempUser.secret_2fa),
-            algorithm: 'SHA1',
-            digits: 6,
-            period: 30
-          });
-          // Verify with window 10
-          const delta = totp.validate({ token: twoFACode, window: 10 });
-
-          if (delta !== null) isValid = true;
-        } catch (otpErr) {
-          console.error("OTP Check Error", otpErr);
-        }
-      }
-
-      if (isValid) {
-        // LOGIN SUCCESS
-        await trackSession(tempUser.username);
-        const sessionUser = {
-          email: tempUser.username,
-          role: tempUser.role,
-          name: tempUser.nombre
-        };
-        localStorage.setItem('dashboard_user', JSON.stringify(sessionUser));
-        setUser(sessionUser);
-        setIsAuthenticated(true);
-      } else {
-        setError('Código o PIN Incorrecto');
-        setLoading(false);
-      }
-
-    } catch (err) {
-      console.error("2FA Error:", err);
-      setError('Error validando 2FA');
       setLoading(false);
     }
   };
+
 
   const handleLogout = () => {
     localStorage.removeItem('dashboard_user');
@@ -387,55 +320,6 @@ function App() {
                 </h1>
               </div>
 
-          {show2FA ? (
-               <form onSubmit={handleVerify2FA} className="w-full space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300 fill-mode-both">
-               <div className="text-center">
-                 <p className="text-white/60 text-sm tracking-widest uppercase">Verificación de Seguridad</p>
-                 <p className="text-[10px] text-orange-500 mt-2 font-mono">2FA / PIN REQUERIDO</p>
-               </div>
-               
-               <div className="login-input-group">
-                   <input
-                     autoFocus
-                     type={showPIN ? "text" : "password"}
-                     maxLength={6}
-                     className="login-input text-center text-3xl tracking-[0.4em] font-mono"
-                     placeholder="000000"
-                     value={twoFACode}
-                     onChange={(e) => setTwoFACode(e.target.value.replace(/[^0-9]/g, ''))}
-                   />
-                   <button
-                     type="button"
-                     onClick={() => setShowPIN(!showPIN)}
-                     className="absolute right-5 top-1/2 -translate-y-1/2 text-white/30 hover:text-white transition-colors outline-none"
-                   >
-                     {showPIN ? <EyeOff size={20} /> : <Eye size={20} />}
-                   </button>
-               </div>
-
-               <div className={`overflow-hidden transition-all duration-300 ${error ? 'max-h-20 opacity-100 animate-[shake_0.4s_ease-in-out]' : 'max-h-0 opacity-0'}`}>
-                 <div className="text-red-400 text-[11px] text-center font-bold bg-red-950/40 py-3 px-6 rounded-2xl border border-red-500/20">
-                   {error}
-                 </div>
-               </div>
-
-               <div className="flex gap-4">
-                 <button
-                   type="button"
-                   onClick={() => { setShow2FA(false); setTempUser(null); setTwoFACode(''); setError(''); }}
-                   className="w-1/3 bg-white/5 hover:bg-white/10 text-white/60 font-black py-4 rounded-2xl transition-all text-[11px] tracking-widest border border-white/5"
-                 >
-                   VOLVER
-                 </button>
-                 <button
-                   disabled={loading || twoFACode.length < 4}
-                   className="w-2/3 bg-gradient-to-r from-[#FF6B00] to-[#FFB800] text-black font-black py-4 rounded-2xl transition-all tracking-[0.1em] text-[11px] flex justify-center items-center gap-2 shadow-[0_10px_30px_rgba(255,107,0,0.3)] hover:brightness-110 active:scale-95 disabled:opacity-50 gold-glow-btn"
-                 >
-                   {loading ? <RefreshCw className="animate-spin" size={16} /> : 'VERIFICAR'}
-                 </button>
-               </div>
-             </form>
-          ) : (
             <form onSubmit={handleLogin} className="w-full space-y-4">
               
               <div className="space-y-3">
@@ -501,7 +385,6 @@ function App() {
                 </button>
               </div>
             </form>
-          )}
             </div>
           </div>
         </div>
