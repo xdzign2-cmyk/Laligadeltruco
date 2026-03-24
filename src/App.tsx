@@ -275,10 +275,6 @@ function App() {
           ctx.beginPath();
           ctx.arc(this.x, this.y, size, 0, Math.PI * 2);
           ctx.fillStyle = `hsla(${goldHue}, 100%, 50%, ${this.z * 0.4 + 0.2})`;
-          
-          // Brillo sutil (sin pixelar gracias al DPR)
-          ctx.shadowBlur = 15;
-          ctx.shadowColor = `hsla(${goldHue}, 100%, 50%, 0.5)`;
           ctx.fill();
         }
       }
@@ -371,15 +367,25 @@ function App() {
         <div className="absolute w-[600px] h-[600px] bg-[#FF6B00]/5 rounded-full blur-[100px] z-0 animate-pulse-slow"></div>
 
         {/* --- GLASSMORPHISM LOGIN CARD --- */}
-        <div className="relative z-10 w-full max-w-[420px] login-glass-card p-8 md:p-10 flex flex-col items-center animate-in fade-in slide-in-from-bottom-24 duration-1000 ease-out border border-white/5 shadow-[0_50px_100px_rgba(0,0,0,1)]">
-          
-          <div className="flex justify-center mb-6 hover:scale-105 transition-transform duration-700 animate-in zoom-in-50 duration-1000">
-               <img src="/logo.png" alt="La Liga Logo" className="w-52 h-auto drop-shadow-[0_0_35px_rgba(255,107,0,0.4)]" />
-          </div>
-
-          <div className="flex gap-8 mb-10">
-              <div className="sign-in-tab text-[38px]">Entrar</div>
-          </div>
+        <div className="w-full max-w-[420px] relative z-20 animate-in zoom-in-95 fade-in duration-500 fill-mode-both">
+          {/* Tarjeta de Inicio de Sesión */}
+          <div className="relative group/card">
+            <div className="absolute -inset-[1px] bg-gradient-to-tr from-[#FFB800]/20 via-orange-500/10 to-[#FFB800]/20 rounded-[32px] blur-sm opacity-50 transition-opacity"></div>
+            <div className="relative bg-[#000000]/80 backdrop-blur-3xl p-10 rounded-[32px] border border-white/10 shadow-[0_30px_90px_rgba(0,0,0,1)]">
+              
+              <div className="flex flex-col items-center mb-10">
+                <div className="relative mb-8 animate-in slide-in-from-bottom-2 fade-in duration-500">
+                  <div className="absolute -inset-4 bg-[#FFB800]/10 rounded-full blur-xl animate-pulse"></div>
+                  <img 
+                    src="/logo.png" 
+                    alt="Logo" 
+                    className="w-24 h-24 object-contain contrast-125 brightness-110 drop-shadow-[0_0_25px_rgba(255,184,0,0.5)]" 
+                  />
+                </div>
+                <h1 className="text-2xl font-black text-white tracking-[0.4em] uppercase text-center animate-in slide-in-from-bottom-2 fade-in duration-500 delay-100">
+                  Entrar
+                </h1>
+              </div>
 
           {show2FA ? (
                <form onSubmit={handleVerify2FA} className="w-full space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300 fill-mode-both">
@@ -433,7 +439,7 @@ function App() {
             <form onSubmit={handleLogin} className="w-full space-y-7">
               
               <div className="space-y-5">
-                  <div className="login-input-group animate-in slide-in-from-left-8 fade-in duration-700 delay-500 fill-mode-both">
+                  <div className="login-input-group animate-in slide-in-from-bottom-4 fade-in duration-500 fill-mode-both">
                     <label className="text-[11px] text-white/40 ml-1 mb-2 block font-bold tracking-[0.2em] uppercase">Usuario o Email</label>
                     <input
                       type="text"
@@ -444,7 +450,7 @@ function App() {
                     />
                   </div>
 
-                  <div className="login-input-group animate-in slide-in-from-left-8 fade-in duration-700 delay-700 fill-mode-both">
+                  <div className="login-input-group animate-in slide-in-from-bottom-4 fade-in duration-500 delay-150 fill-mode-both">
                     <label className="text-[11px] text-white/40 ml-1 mb-2 block font-bold tracking-[0.2em] uppercase">Contraseña</label>
                     <div className="relative">
                       <input
@@ -465,7 +471,7 @@ function App() {
                   </div>
               </div>
 
-              <div className="flex justify-between items-center text-[11px] text-white/40 px-1 animate-in fade-in duration-1000 delay-1000 fill-mode-both">
+              <div className="flex justify-between items-center text-[11px] text-white/40 px-1 animate-in fade-in duration-500 delay-200 fill-mode-both">
                 <label className="flex items-center gap-3 cursor-pointer hover:text-white/60 transition-colors py-1 group">
                   <input type="checkbox" className="w-5 h-5 rounded-lg border-white/10 bg-white/5 accent-[#FF6B00] transition-all cursor-pointer group-hover:scale-110" />
                   <span className="font-medium tracking-wide">Recordarme</span>
@@ -481,7 +487,7 @@ function App() {
                 </div>
               </div>
 
-              <div className="pt-4 flex flex-col gap-8 items-center animate-in slide-in-from-bottom-8 fade-in duration-700 delay-[1.2s] fill-mode-both">
+              <div className="pt-4 flex flex-col gap-8 items-center animate-in slide-in-from-bottom-4 fade-in duration-500 delay-250 fill-mode-both">
                 <button
                   disabled={loading}
                   className="w-full bg-[#FF6B00] hover:bg-[#FF8A00] text-black font-black py-5 rounded-3xl transition-all tracking-[0.3em] text-[12px] flex justify-center items-center gap-2 shadow-[0_20px_50px_rgba(255,107,0,0.4)] active:scale-95 disabled:opacity-50 gold-glow-btn group"
@@ -494,9 +500,10 @@ function App() {
                   )}
                 </button>
               </div>
-
             </form>
           )}
+            </div>
+          </div>
         </div>
       </div>
     );
