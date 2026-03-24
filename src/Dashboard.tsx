@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { AreaChart, Area, Tooltip, ResponsiveContainer, XAxis, YAxis, CartesianGrid } from 'recharts';
+import { ComposedChart, AreaChart, Area, Bar, Line, Tooltip, ResponsiveContainer, XAxis, YAxis } from 'recharts';
 import {
     Users, X, Edit2, Trash2, PlusCircle, User, Ship, Mountain, Lock, FileText, Upload, Plus,
     RefreshCw, Send, Landmark, Activity, Trophy, Medal, Calculator as CalcIcon, CircleDollarSign,
@@ -109,7 +109,48 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
     const [showPublicityAnalytics, setShowPublicityAnalytics] = useState(false);
     const isAdminOrVice = role === 'admin' || role === 'vicepresident';
     const isOnlyAdmin = role === 'admin';
-    const [dashboardGroup, setDashboardGroup] = useState<'Barco' | 'Cueva' | 'Todos'>('Todos');
+
+    // --- GRUPOS DINÁMICOS ---
+    const defaultGroups = [
+        { id: 'barco', name: 'Barco', color: '#FF6B00', icon: 'ship' },
+        { id: 'cueva', name: 'Cueva', color: '#FFB800', icon: 'mountain' },
+    ];
+    const [groups, setGroups] = useState<{ id: string; name: string; color: string; icon: string }[]>(() => {
+        try {
+            const saved = localStorage.getItem('fmx_groups');
+            return saved ? JSON.parse(saved) : defaultGroups;
+        } catch { return defaultGroups; }
+    });
+    const [showGroupsModal, setShowGroupsModal] = useState(false);
+    const [groupForm, setGroupForm] = useState({ id: '', name: '', color: '#5A8CFF', icon: 'users' });
+    const [editingGroupId, setEditingGroupId] = useState<string | null>(null);
+
+    // Persistir grupos
+    useEffect(() => {
+        localStorage.setItem('fmx_groups', JSON.stringify(groups));
+    }, [groups]);
+
+    const handleSaveGroup = () => {
+        if (!groupForm.name.trim()) return;
+        const slug = groupForm.name.toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '');
+        if (editingGroupId) {
+            setGroups(prev => prev.map(g => g.id === editingGroupId ? { ...g, name: groupForm.name, color: groupForm.color, icon: groupForm.icon } : g));
+        } else {
+            if (groups.find(g => g.id === slug)) return alert('Ya existe un grupo con ese nombre');
+            setGroups(prev => [...prev, { id: slug, name: groupForm.name, color: groupForm.color, icon: groupForm.icon }]);
+        }
+        setGroupForm({ id: '', name: '', color: '#5A8CFF', icon: 'users' });
+        setEditingGroupId(null);
+    };
+
+    const handleDeleteGroup = (id: string) => {
+        if (groups.length <= 1) return alert('Debe existir al menos un grupo');
+        if (!confirm('¿Borrar este grupo? Los datos existentes conservarán el nombre anterior.')) return;
+        setGroups(prev => prev.filter(g => g.id !== id));
+        if (dashboardGroup === groups.find(g => g.id === id)?.name) setDashboardGroup('Todos');
+    };
+
+    const [dashboardGroup, setDashboardGroup] = useState<string>('Todos');
 
 
     // --- STATES & PERSISTENCE ---
@@ -217,7 +258,7 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
     };
 
     const handleConfirm2FA = async () => {
-        if (!verifCode) return alert("Ingresa el código para verificar");
+        if (!verifCode) return alert("Ingresa el cÃ³digo para verificar");
 
         // Verify code
         const totp = new TOTP({
@@ -230,7 +271,7 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
         const delta = totp.validate({ token: verifCode, window: 10 });
 
         if (delta === null) {
-            return alert(`Código incorrecto.\nRevisa la hora de tu PC y celular.`);
+            return alert(`CÃ³digo incorrecto.\nRevisa la hora de tu PC y celular.`);
         }
 
         // Save to DB
@@ -268,7 +309,7 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
 
     const handleKickUser = async (userEmailToKick: string, deviceId: string) => {
         if (!isOnlyAdmin) return;
-        if (!confirm(`¿Cerrar sesión forzosamente a ${userEmailToKick}?`)) return;
+        if (!confirm(`Â¿Cerrar sesiÃ³n forzosamente a ${userEmailToKick}?`)) return;
 
         const { error } = await supabase
             .from('gestor_sesiones')
@@ -296,7 +337,7 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
     };
 
     const handleDenyUser = async (id: string) => {
-        if (!confirm('¿Denegar acceso definitivamente?')) return;
+        if (!confirm('Â¿Denegar acceso definitivamente?')) return;
         const { error } = await supabase.from('usuarios_sistema').update({ estado: 'denegado' }).eq('id', id);
         if (error) alert(error.message);
         else loadPendingApprovals();
@@ -356,7 +397,7 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
 
     const handleDeleteMasterLog = async (id: string) => {
         if (role === 'guest') return;
-        if (!confirm('¿Eliminar registro?')) return;
+        if (!confirm('Â¿Eliminar registro?')) return;
         const { error } = await supabase.from('registros_operativos').delete().eq('id', id);
         if (error) alert(error.message);
         else loadMasterLogs();
@@ -422,7 +463,7 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                 endDate = new Date(selectedYear, selectedMonth + 1, 0); // End of month
             }
 
-            console.log('🗓️ Current view settings:', { viewMode, selectedMonth, selectedYear, startDate: startDate.toISOString().split('T')[0], endDate: endDate.toISOString().split('T')[0] });
+            console.log('ðŸ—“ï¸ Current view settings:', { viewMode, selectedMonth, selectedYear, startDate: startDate.toISOString().split('T')[0], endDate: endDate.toISOString().split('T')[0] });
 
             // DATOS HISTORICOS DEMO (Hardcoded as requested)
             const prevYear = selectedYear - 1;
@@ -501,7 +542,7 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                 return saved ? { ...r, ...saved } : r;
             });
 
-            console.log('📅 Querying DB from', fmtStartDate, 'to', fmtEndDate);
+            console.log('ðŸ“… Querying DB from', fmtStartDate, 'to', fmtEndDate);
 
             // 4. Aggregate DB Data (Real Profit)
             // PRODUCTION: Fetch ALL records using pagination (Supabase max is 1000 per query)
@@ -514,9 +555,9 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
             // Only use cache if not forcing sync
             if (operativeQueryCache.current[cacheKey] && forceSyncCount === 0) {
                 dbRegs = operativeQueryCache.current[cacheKey];
-                console.log('⚡ CACHE HIT: Usando datos locales para', cacheKey);
+                console.log('âš¡ CACHE HIT: Usando datos locales para', cacheKey);
             } else {
-                console.log('🌍 CACHE MISS: Descargando datos de Supabase para', cacheKey);
+                console.log('ðŸŒ CACHE MISS: Descargando datos de Supabase para', cacheKey);
                 let rangeStart = 0;
                 const batchSize = 1000;
                 let hasMore = true;
@@ -539,7 +580,7 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                 }
                 // Save to cache
                 operativeQueryCache.current[cacheKey] = dbRegs;
-                console.log('✅ Fetched and Cached', dbRegs.length, 'records');
+                console.log('âœ… Fetched and Cached', dbRegs.length, 'records');
             }
             // Removed .limit() to fetch all records
 
@@ -557,12 +598,12 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                     }
                 });
             }
-            console.log('📊 DB Query returned', dbRegs?.length, 'records');
-            console.log('📊 Aggregated sums for Jan 22-23:', {
+            console.log('ðŸ“Š DB Query returned', dbRegs?.length, 'records');
+            console.log('ðŸ“Š Aggregated sums for Jan 22-23:', {
                 '2026-01-22': sums['2026-01-22'],
                 '2026-01-23': sums['2026-01-23']
             });
-            console.log('📊 All dates in sums:', Object.keys(sums).sort());
+            console.log('ðŸ“Š All dates in sums:', Object.keys(sums).sort());
 
 
             // --- MERGE DB DATA WITH ROWS ---
@@ -581,7 +622,7 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                     isManual: false
                 };
             });
-            console.log('🔍 Final data being set:', initialRows.filter(r => r.fullDate === '2026-01-22' || r.fullDate === '2026-01-23').map(r => ({ date: r.fullDate, barco: r.barco, cueva: r.cueva, mesasBarco: r.mesasBarco, mesasCueva: r.mesasCueva })));
+            console.log('ðŸ” Final data being set:', initialRows.filter(r => r.fullDate === '2026-01-22' || r.fullDate === '2026-01-23').map(r => ({ date: r.fullDate, barco: r.barco, cueva: r.cueva, mesasBarco: r.mesasBarco, mesasCueva: r.mesasCueva })));
             // BLINDAJE ANTI-PARPADEO: Prioridad absoluta al Estado Local sobre la Base de Datos
             setData(prev => {
                 if (prev.length === 0) return initialRows;
@@ -617,28 +658,28 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
     useEffect(() => { localStorage.setItem('employeesData', JSON.stringify(employees)); }, [employees]);
     useEffect(() => { localStorage.setItem('playersData', JSON.stringify(players)); }, [players]);
 
-    const [felipeDays, setFelipeDays] = useState(() => loadState('felipeDays', 15));
-    const [felipeExtraDays, setFelipeExtraDays] = useState(() => loadState('felipeExtraDays', 0));
-    const [felipeAssignedFreeDays, setFelipeAssignedFreeDays] = useState(() => loadState('felipeAssignedFreeDays', 2)); // Default 2 días libres
-    const [felipeAdvances, setFelipeAdvances] = useState(() => loadState('felipeAdvances', [])); // Nuevo Estado para Adelantos
+    const [supervisorDays, setSupervisorDays] = useState(() => loadState('supervisorDays', 15));
+    const [supervisorExtraDays, setSupervisorExtraDays] = useState(() => loadState('supervisorExtraDays', 0));
+    const [supervisorAssignedFreeDays, setSupervisorAssignedFreeDays] = useState(() => loadState('supervisorAssignedFreeDays', 2)); // Default 2 días libres
+    const [supervisorAdvances, setSupervisorAdvances] = useState(() => loadState('supervisorAdvances', [])); // Nuevo Estado para Adelantos
 
     const [usdtRate, setUsdtRate] = useState(() => Number(loadState('usdtRate', 1100)));
     const [publicityActive, setPublicityActive] = useState(() => loadState('publicityActive', {}));
     const [pubARS, setPubARS] = useState(() => Number(loadState('pubARS', 0)));
     const [pubUSD, setPubUSD] = useState(() => Number(loadState('pubUSD', 0)));
 
-    useEffect(() => { localStorage.setItem('felipeAssignedFreeDays', JSON.stringify(felipeAssignedFreeDays)); }, [felipeAssignedFreeDays]);
+    useEffect(() => { localStorage.setItem('supervisorAssignedFreeDays', JSON.stringify(supervisorAssignedFreeDays)); }, [supervisorAssignedFreeDays]);
 
     useEffect(() => {
-        localStorage.setItem('felipeDays', JSON.stringify(felipeDays));
-        localStorage.setItem('felipeExtraDays', JSON.stringify(felipeExtraDays));
-        localStorage.setItem('felipeAssignedFreeDays', JSON.stringify(felipeAssignedFreeDays));
-        localStorage.setItem('felipeAdvances', JSON.stringify(felipeAdvances));
+        localStorage.setItem('supervisorDays', JSON.stringify(supervisorDays));
+        localStorage.setItem('supervisorExtraDays', JSON.stringify(supervisorExtraDays));
+        localStorage.setItem('supervisorAssignedFreeDays', JSON.stringify(supervisorAssignedFreeDays));
+        localStorage.setItem('supervisorAdvances', JSON.stringify(supervisorAdvances));
         localStorage.setItem('usdtRate', JSON.stringify(usdtRate));
         localStorage.setItem('publicityActive', JSON.stringify(publicityActive));
         localStorage.setItem('pubARS', JSON.stringify(pubARS));
         localStorage.setItem('pubUSD', JSON.stringify(pubUSD));
-    }, [felipeDays, felipeExtraDays, felipeAssignedFreeDays, felipeAdvances, usdtRate, publicityActive, pubARS, pubUSD]);
+    }, [supervisorDays, supervisorExtraDays, supervisorAssignedFreeDays, supervisorAdvances, usdtRate, publicityActive, pubARS, pubUSD]);
 
 
 
@@ -653,7 +694,7 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
     const [playerForm, setPlayerForm] = useState({ nombre: '', saldo: '' });
     const [employeeForm, setEmployeeForm] = useState({ name: '', password: '', status: 'Activo', group: 'Barco', shift: 'Mañana', pago: '9.6' });
 
-    const [felipeAdvanceForm, setFelipeAdvanceForm] = useState({ motivo: '', monto: '' });
+    const [supervisorAdvanceForm, setSupervisorAdvanceForm] = useState({ motivo: '', monto: '' });
     const [guests, setGuests] = useState<any[]>([]);
     const [guestForm, setGuestForm] = useState({ username: '', password: '', status: 'aprobado' });
 
@@ -851,7 +892,7 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
 
     const handleClearMonth = () => {
         if (!isAdminOrVice) return;
-        if (!confirm(`¿⚠️ ATENCIÓN: Estás seguro de BORRAR TODOS los datos de ${monthNames[selectedMonth]} ${selectedYear}? Esta acción es irreversible.`)) return;
+        if (!confirm(`⚠️ ATENCIÓN: Estás seguro de BORRAR TODOS los datos de ${monthNames[selectedMonth]} ${selectedYear}? Esta acción es irreversible.`)) return;
 
         const updated = { ...shiftsMatrix };
         const lastDay = new Date(selectedYear, selectedMonth + 1, 0).getDate();
@@ -1077,13 +1118,13 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
         else setData([...data, newItem]);
         setActiveModal(null);
     };
-    const handleDeleteOp = (id: number) => { if (role === 'guest') return; if (confirm('Borrar?')) setData(data.filter((d: any) => d.id !== id)); };
+    const handleDeleteOp = (id: number) => { if (role === 'guest') return; if (confirm('¿Borrar?')) setData(data.filter((d: any) => d.id !== id)); };
 
     const handleSaveShip = (e: any) => { e.preventDefault(); if (role === 'guest') return; const newItem = { id: editingItem?.id || Date.now(), fecha: shipForm.fecha, monto: parseFloat(shipForm.monto), nota: shipForm.nota, comprobante: shipForm.comprobante }; if (editingItem) setShipments(shipments.map((s: any) => s.id === newItem.id ? newItem : s)); else setShipments([...shipments, newItem]); setActiveModal(null); };
-    const handleDeleteShip = (id: number) => { if (role === 'guest') return; if (confirm('Borrar?')) setShipments(shipments.filter((s: any) => s.id !== id)); };
+    const handleDeleteShip = (id: number) => { if (role === 'guest') return; if (confirm('¿Borrar?')) setShipments(shipments.filter((s: any) => s.id !== id)); };
 
     const handleSaveBank = (e: any) => { e.preventDefault(); if (role === 'guest') return; const newItem = { id: editingItem?.id || Date.now(), nombre: bankForm.nombre, monto: parseFloat(bankForm.monto) }; if (editingItem) setBanks(banks.map((b: any) => b.id === newItem.id ? newItem : b)); else setBanks([...banks, newItem]); setActiveModal(null); };
-    const handleDeleteBank = (id: number) => { if (role === 'guest') return; if (confirm('Borrar?')) setBanks(banks.filter((b: any) => b.id !== id)); };
+    const handleDeleteBank = (id: number) => { if (role === 'guest') return; if (confirm('¿Borrar?')) setBanks(banks.filter((b: any) => b.id !== id)); };
 
     const handleSaveEmployee = async (e: any) => {
         e.preventDefault();
@@ -1182,15 +1223,15 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
         }
     };
 
-    const handleSaveFelipeAdvance = (e: any) => {
+    const handleSaveSupervisorAdvance = (e: any) => {
         e.preventDefault();
         if (role === 'guest') return;
-        const newItem = { id: editingItem?.id || Date.now(), motivo: felipeAdvanceForm.motivo, monto: parseFloat(felipeAdvanceForm.monto) };
-        if (editingItem) setFelipeAdvances(felipeAdvances.map((a: any) => a.id === newItem.id ? newItem : a));
-        else setFelipeAdvances([...(felipeAdvances || []), newItem]);
+        const newItem = { id: editingItem?.id || Date.now(), motivo: supervisorAdvanceForm.motivo, monto: parseFloat(supervisorAdvanceForm.monto) };
+        if (editingItem) setSupervisorAdvances(supervisorAdvances.map((a: any) => a.id === newItem.id ? newItem : a));
+        else setSupervisorAdvances([...(supervisorAdvances || []), newItem]);
         setActiveModal(null);
     };
-    const handleDeleteFelipeAdvance = (id: number) => { if (role === 'guest') return; if (confirm('Borrar adelanto?')) setFelipeAdvances(felipeAdvances.filter((a: any) => a.id !== id)); };
+    const handleDeleteSupervisorAdvance = (id: number) => { if (role === 'guest') return; if (confirm('¿Borrar adelanto?')) setSupervisorAdvances(supervisorAdvances.filter((a: any) => a.id !== id)); };
 
     // --- GUEST MANAGEMENT LOGIC ---
     const loadGuests = async () => {
@@ -1389,11 +1430,11 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                 setShiftsNotes(c.shiftsNotes);
             }
 
-            if (c.felipe) {
-                if (c.felipe.days !== undefined) setFelipeDays(c.felipe.days);
-                if (c.felipe.extra !== undefined) setFelipeExtraDays(c.felipe.extra);
-                if (c.felipe.free !== undefined) setFelipeAssignedFreeDays(c.felipe.free);
-                if (c.felipe.advances !== undefined) setFelipeAdvances(c.felipe.advances);
+            if (c.supervisor) {
+                if (c.supervisor.days !== undefined) setSupervisorDays(c.supervisor.days);
+                if (c.supervisor.extra !== undefined) setSupervisorExtraDays(c.supervisor.extra);
+                if (c.supervisor.free !== undefined) setSupervisorAssignedFreeDays(c.supervisor.free);
+                if (c.supervisor.advances !== undefined) setSupervisorAdvances(c.supervisor.advances);
             }
             if (c.usdtRate !== undefined) setUsdtRate(c.usdtRate);
             if (c.publicityActive !== undefined) setPublicityActive(c.publicityActive);
@@ -1433,7 +1474,7 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                     if (newContent?.meta?.sessionId === sessionId) {
                         return;
                     }
-                    console.log('📡 Cambio recibido en tiempo real de otro usuario!');
+                    console.log('📣 Cambio recibido en tiempo real de otro usuario!');
                     hydrateState(newContent);
                     syncEmployeesWithDB();
                     setSaveStatus('saved');
@@ -1460,7 +1501,7 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
             employees: employees,
             shifts: shiftsMatrix,
             shiftsNotes: shiftsNotes,
-            felipe: { days: felipeDays, extra: felipeExtraDays, free: felipeAssignedFreeDays, advances: felipeAdvances },
+            supervisor: { days: supervisorDays, extra: supervisorExtraDays, free: supervisorAssignedFreeDays, advances: supervisorAdvances },
             usdtRate: usdtRate,
             publicityActive: publicityActive,
             pubARS: pubARS,
@@ -1530,7 +1571,7 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
         }, 5000); // PRODUCTION: Increased to 5s to reduce Supabase writes
 
         return () => clearTimeout(timer);
-    }, [data, shipments, banks, players, employees, shiftsMatrix, shiftsNotes, felipeDays, felipeExtraDays, felipeAssignedFreeDays, felipeAdvances, usdtRate, publicityActive, pubARS, pubUSD, isLoaded]);
+    }, [data, shipments, banks, players, employees, shiftsMatrix, shiftsNotes, supervisorDays, supervisorExtraDays, supervisorAssignedFreeDays, supervisorAdvances, usdtRate, publicityActive, pubARS, pubUSD, isLoaded]);
 
     // 4. Bloqueo de salida si está guardando
     useEffect(() => {
@@ -1641,8 +1682,8 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
 
     // --- CALCULOS NOMINA FINAL ---
     const staffTotalUSD = employees.reduce((acc: number, emp: any) => acc + (calculateEmployeeStats(emp.id)?.totalPayUSD || 0), 0);
-    const felipeTotalUSD = (((felipeDays || 0) + (felipeExtraDays || 0)) * 28.84) - ((felipeAdvances || []).reduce((acc: number, cur: any) => acc + (cur.monto || 0), 0));
-    const subTotalPayrollUSD = staffTotalUSD + felipeTotalUSD;
+    const supervisorTotalUSD = (((supervisorDays || 0) + (supervisorExtraDays || 0)) * 28.84) - ((supervisorAdvances || []).reduce((acc: number, cur: any) => acc + (cur.monto || 0), 0));
+    const subTotalPayrollUSD = staffTotalUSD + supervisorTotalUSD;
     const grandTotalUSD = subTotalPayrollUSD + (includePublicityInTotal ? (totalFortnightPubUSD_Total || 0) : 0);
 
     const fetchLivePrice = async () => {
@@ -1701,11 +1742,11 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
     }
 
     if (showPublicityAnalytics) {
-        return <PublicityDashboard user={{ email: userEmail, role, name: role === 'admin' ? 'Master Admin' : 'Admin User' }} onLogout={onLogout} onBack={() => setShowPublicityAnalytics(false)} readOnly={role === 'guest'} usdtRate={usdtRate} initialGroup={dashboardGroup === 'Todos' ? 'Barco' : dashboardGroup} />;
+        return <PublicityDashboard user={{ email: userEmail, role, name: role === 'admin' ? 'Master Admin' : 'Admin User' }} onLogout={onLogout} onBack={() => setShowPublicityAnalytics(false)} readOnly={role === 'guest'} usdtRate={usdtRate} initialGroup={(dashboardGroup === 'Todos' ? groups[0]?.name : dashboardGroup) as any} />;
     }
 
     return (
-        <div className="min-h-screen bg-slate-950 text-slate-100 font-sans relative pb-20 selection:bg-purple-500/50">
+        <div className="dashboard-crypto-ui min-h-screen bg-[#080808] text-[#FFFFFF] font-sans relative pb-20 selection:bg-[#FF6B00]/40">
             {/* STATUS INDICATOR BOTTOM RIGHT */}
             <div className={`fixed bottom-4 right-4 z-[100] px-4 py-2 rounded-full border backdrop-blur-md shadow-lg flex items-center gap-3 transition-all duration-300 font-bold text-xs uppercase tracking-widest ${!isOnline ? 'bg-red-500/20 border-red-500/50 text-red-500 translate-y-0 opacity-100' : saveStatus === 'saving' ? 'bg-yellow-500/10 border-yellow-500/30 text-yellow-400 translate-y-0 opacity-100' : saveStatus === 'saved' ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400 translate-y-0 opacity-100' : saveStatus === 'error' ? 'bg-red-500/10 border-red-500/30 text-red-500 translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
                 {!isOnline && (
@@ -1735,13 +1776,12 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                 {isOnline && saveStatus === 'error' && <span>Error al guardar</span>}
             </div>
 
-            {/* FUTURISTIC BACKGROUND */}
-            {/* MODERN DEEP BACKGROUND - NO NOISE */}
-            <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 bg-slate-950">
-                <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-[#0f0c29] to-[#0b0f19] opacity-100"></div>
-                <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#4f46e5]/10 rounded-full blur-[120px] animate-pulse-slow"></div>
-                <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-[#3b82f6]/10 rounded-full blur-[120px] animate-pulse-slow delay-1000"></div>
-                <div className="absolute top-[40%] left-[20%] w-[30%] h-[30%] bg-[#a855f7]/5 rounded-full blur-[100px]"></div>
+            {/* DARK FIRE BACKGROUND */}
+            <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 bg-[#080808]">
+                {/* Glow naranja — arriba derecha */}
+                <div className="absolute top-[-10%] right-[-5%] w-[50vw] h-[50vw] bg-[#FF6B00]/08 rounded-full blur-[130px] pointer-events-none" style={{animation:'ember-pulse 5s ease-in-out infinite'}}></div>
+                {/* Glow dorado — abajo izquierda */}
+                <div className="absolute bottom-[-10%] left-[-8%] w-[35vw] h-[35vw] bg-[#FFB800]/06 rounded-full blur-[110px] pointer-events-none" style={{animation:'ember-pulse 7s ease-in-out infinite', animationDelay:'2s'}}></div>
             </div>
 
             <div className="relative z-10 p-4 max-w-[1800px] mx-auto space-y-6">
@@ -1751,34 +1791,65 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                     <div className="flex flex-col items-center md:items-start gap-3">
                         <div className="flex justify-center md:justify-start relative group">
                             <div className="absolute inset-0 bg-indigo-500/20 blur-xl rounded-full opacity-0 group-hover:opacity-30 transition-opacity duration-1000"></div>
-                            <img src="/logo.png" alt="FMX Logo" className="w-64 md:w-80 h-auto drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] filter brightness-125 animate-pulse relative z-10" />
+                            <img src="/logo.png" alt="La Liga del Truco" className="w-64 md:w-80 h-auto drop-shadow-[0_0_20px_rgba(255,184,0,0.4)] hover:brightness-150 transition-all duration-700 relative z-10" />
                         </div>
-                        <div className="flex items-center gap-2 text-[10px] text-indigo-300/80 font-mono tracking-[0.2em] uppercase bg-black/20 px-3 py-1.5 rounded-full border border-white/5">
+                        <div className="flex items-center gap-2 text-[10px] text-[#FF6B00]/80 font-mono tracking-[0.2em] uppercase bg-black/20 px-3 py-1.5 rounded-full border border-[#FF6B00]/10">
                             <div className="flex items-center gap-1.5">
                                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399] animate-pulse"></span>
                                 <span className="text-emerald-400">ONLINE</span>
                             </div>
-                            <span className="text-slate-600 mx-1">|</span>
-                            <span>SISTEMA OPERATIVO V3.1</span>
+                            <span className="text-[#FF6B00]/20 mx-1">|</span>
+                            <span style={{color:'#FFB800'}}>SISTEMA OPERATIVO V4.0</span>
                         </div>
 
-                        {/* SELECTOR DE GRUPO GLOBAL */}
-                        <div className="flex bg-slate-950/60 p-1 rounded-xl border border-white/5 shadow-inner">
-                            {['Todos', 'Barco', 'Cueva'].map((g) => (
+                        {/* SELECTOR DE GRUPO GLOBAL — DINÁMICO */}
+                        <div className="flex items-center gap-1 bg-slate-950/60 p-1 rounded-xl border border-white/5 shadow-inner">
+                            {/* Botón Todos */}
+                            <button
+                                onClick={() => setDashboardGroup('Todos')}
+                                className={`px-3 py-2 rounded-lg text-[9px] font-black uppercase transition-all flex items-center gap-1.5 ${
+                                    dashboardGroup === 'Todos'
+                                        ? 'text-black shadow-lg'
+                                        : 'text-[#6B5F4A] hover:text-[#FFB800]'
+                                }`}
+                                style={dashboardGroup === 'Todos' ? {
+                                    background: 'linear-gradient(135deg, #FF6B00, #FFB800)',
+                                    boxShadow: '0 0 14px rgba(255,107,0,0.4)'
+                                } : {}}
+                            >
+                                <Users size={11} /> General
+                            </button>
+
+                            {/* Grupos dinámicos */}
+                            {groups.map((g) => (
                                 <button
-                                    key={g}
-                                    onClick={() => setDashboardGroup(g as any)}
-                                    className={`px-4 py-2 rounded-lg text-[9px] font-black uppercase transition-all flex items-center gap-2 
-                                    ${dashboardGroup === g
-                                            ? g === 'Barco' ? 'bg-yellow-500/20 text-yellow-500 border border-yellow-500/50 shadow-[0_0_15px_rgba(234,179,8,0.3)]'
-                                                : g === 'Cueva' ? 'bg-slate-700 text-slate-200 border border-slate-600 shadow-lg'
-                                                    : 'bg-indigo-600 text-white shadow-lg'
-                                            : 'text-slate-500 hover:text-slate-300'}`}
+                                    key={g.id}
+                                    onClick={() => setDashboardGroup(g.name)}
+                                    className={`px-3 py-2 rounded-lg text-[9px] font-black uppercase transition-all flex items-center gap-1.5 ${
+                                        dashboardGroup === g.name
+                                            ? 'text-[#0D0F17] shadow-lg'
+                                            : 'text-slate-500 hover:text-slate-300'
+                                    }`}
+                                    style={dashboardGroup === g.name ? {
+                                        background: g.color,
+                                        boxShadow: `0 0 16px ${g.color}55`
+                                    } : {}}
                                 >
-                                    {g === 'Todos' ? <Users size={12} /> : g === 'Barco' ? <Ship size={12} /> : <Mountain size={12} />}
-                                    {g === 'Todos' ? 'General' : g}
+                                    {g.icon === 'ship' ? <Ship size={11} /> : g.icon === 'mountain' ? <Mountain size={11} /> : <Users size={11} />}
+                                    {g.name}
                                 </button>
                             ))}
+
+                            {/* Botón gestión grupos (ADMIN) */}
+                            {isOnlyAdmin && (
+                                <button
+                                    onClick={() => { setShowGroupsModal(true); setEditingGroupId(null); setGroupForm({ id: '', name: '', color: '#FF6B00', icon: 'users' }); }}
+                                    className="ml-1 p-1.5 rounded-lg border border-dashed border-[#FF6B00]/20 text-[#6B5F4A] hover:text-[#FF6B00] hover:border-[#FF6B00]/40 transition-all"
+                                    title="Gestionar Grupos"
+                                >
+                                    <Edit2 size={11} />
+                                </button>
+                            )}
                         </div>
                     </div>
                     <div className="flex gap-3 items-center flex-wrap justify-center md:justify-end">
@@ -1798,7 +1869,7 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
 
                         {/* 2FA SETUP (ADMIN ONLY) */}
                         {role === 'admin' && (
-                            <button onClick={handleOpen2FAModal} className="p-2.5 rounded-xl bg-fuchsia-500/10 border border-fuchsia-500/20 text-fuchsia-400 hover:bg-fuchsia-500/20 transition-all no-print active:scale-95" title="Configurar Google Authenticator">
+                            <button onClick={handleOpen2FAModal} className="p-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 hover:bg-blue-500/20 transition-all no-print active:scale-95" title="Configurar Google Authenticator">
                                 <ScanLine size={20} />
                             </button>
                         )}
@@ -1834,7 +1905,7 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
 
                         {/* ADD DAY (ADMIN) */}
                         {role === 'admin' && (
-                            <button onClick={() => { setActiveModal('operative'); setEditingItem(null); setOpForm({ dia: '', barco: '', cueva: '', mesasBarco: '', mesasCueva: '' }) }} className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white px-3 py-2 md:px-5 md:py-2.5 rounded-xl flex items-center gap-1.5 md:gap-2 text-[10px] md:text-sm font-bold shadow-lg shadow-emerald-500/20 transition-all border border-emerald-400/20 hover:scale-105 active:scale-95 no-print uppercase">
+                            <button onClick={() => { setActiveModal('operative'); setEditingItem(null); setOpForm({ dia: '', barco: '', cueva: '', mesasBarco: '', mesasCueva: '' }) }} className="bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white px-3 py-2 md:px-5 md:py-2.5 rounded-xl flex items-center gap-1.5 md:gap-2 text-[10px] md:text-sm font-bold shadow-lg shadow-orange-500/20 transition-all border border-orange-400/20 hover:scale-105 active:scale-95 no-print uppercase">
                                 <PlusCircle size={14} className="md:w-[18px] md:h-[18px]" /> AGREGAR DÍA
                             </button>
                         )}
@@ -1847,37 +1918,36 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                         {
                             title: `GANANCIA ${monthNames[selectedMonth].toUpperCase()} (${viewMode})`,
                             icon: Activity,
-                            color: 'indigo',
+                            color: 'orange',
                             value: totalBarco + totalCueva,
                             details: [
-                                { label: 'Barco', val: totalBarco, color: 'text-yellow-400' },
-                                { label: 'Cueva', val: totalCueva, color: 'text-pink-400' }
+                                { label: 'Barco', val: totalBarco, color: 'text-[#FF6B00]' },
+                                { label: 'Cueva', val: totalCueva, color: 'text-[#FFB800]' }
                             ]
                         },
                         {
                             title: `ENVIADO ${monthNames[selectedMonth].toUpperCase()}`,
                             icon: Send,
-                            color: 'purple',
+                            color: 'gold',
                             value: filteredShipments.filter((s: any) => dashboardGroup === 'Todos' || s.grupo === dashboardGroup).reduce((acc: any, s: any) => acc + s.monto, 0),
                             details: [
-                                { label: `Q1: ${selectedMonth === 1 ? '31/01' : '01'} - 15/${(selectedMonth + 1).toString().padStart(2, '0')}`, val: q1TotalSent, color: 'text-purple-300' },
-                                { label: `Q2: 16 - Fin/${(selectedMonth + 1).toString().padStart(2, '0')}`, val: q2TotalSent, color: 'text-purple-400' }
+                                { label: `Q1: ${selectedMonth === 1 ? '31/01' : '01'} - 15/${(selectedMonth + 1).toString().padStart(2, '0')}`, val: q1TotalSent, color: 'text-[#FF6B00]/70' },
+                                { label: `Q2: 16 - Fin/${(selectedMonth + 1).toString().padStart(2, '0')}`, val: q2TotalSent, color: 'text-[#FFB800]/70' }
                             ]
                         },
                         {
                             title: 'LIQUIDEZ BANCOS',
                             icon: Landmark,
-                            color: 'emerald',
+                            color: 'amber',
                             value: banks.reduce((acc: any, b: any) => acc + (parseFloat(b.monto) || 0), 0)
                         },
                     ].map((kpi: any, idx) => {
                         const colorMap: any = {
-                            indigo: { border: 'border-indigo-500/20', icon: 'text-indigo-500', title: 'text-indigo-400', hover: 'hover:border-indigo-500/40 hover:shadow-indigo-500/10' },
-                            purple: { border: 'border-purple-500/20', icon: 'text-purple-500', title: 'text-purple-400', hover: 'hover:border-purple-500/40 hover:shadow-purple-500/10' },
-                            emerald: { border: 'border-emerald-500/20', icon: 'text-emerald-500', title: 'text-emerald-400', hover: 'hover:border-emerald-500/40 hover:shadow-emerald-500/10' },
-                            rose: { border: 'border-rose-500/20', icon: 'text-rose-500', title: 'text-rose-400', hover: 'hover:border-rose-500/40 hover:shadow-rose-500/10' }
+                            orange: { border: 'border-[#FF6B00]/20', icon: 'text-[#FF6B00]', title: 'text-[#FF6B00]', hover: 'hover:border-[#FF6B00]/40 hover:shadow-[#FF6B00]/10' },
+                            gold: { border: 'border-[#FFB800]/20', icon: 'text-[#FFB800]', title: 'text-[#FFB800]', hover: 'hover:border-[#FFB800]/40 hover:shadow-[#FFB800]/10' },
+                            amber: { border: 'border-[#FFCC00]/20', icon: 'text-[#FFCC00]', title: 'text-[#FFCC00]', hover: 'hover:border-[#FFCC00]/40 hover:shadow-[#FFCC00]/10' }
                         };
-                        const colors = colorMap[kpi.color] || colorMap.indigo;
+                        const colors = colorMap[kpi.color] || colorMap.orange;
 
                         return (
                             <div key={idx} className={`bg-slate-900/60 backdrop-blur-2xl border p-4 md:p-6 rounded-[2rem] relative overflow-hidden group transition-all duration-500 hover:shadow-2xl ${colors.border} ${colors.hover}`}>
@@ -1986,41 +2056,195 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                                 </div>
                             </div>
 
-
-                            {/* --- CHART SECTION --- */}
-                            <div className="h-64 w-full bg-slate-900/40 border-b border-slate-800/50 relative">
-                                <div className="absolute top-4 right-4 flex gap-4 text-[10px] font-bold uppercase tracking-widest z-10">
-                                    {(dashboardGroup === 'Todos' || dashboardGroup === 'Barco') && <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-yellow-400 shadow-[0_0_8px_#facc15]"></span> Barco</div>}
-                                    {(dashboardGroup === 'Todos' || dashboardGroup === 'Cueva') && <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-[#ff0099] shadow-[0_0_10px_#ff0099]"></span> Cueva</div>}
+                            {/* --- CHART SECTION PREMIUM --- */}
+                            <div className="h-72 w-full relative overflow-hidden" style={{background:'transparent'}}>
+                                {/* Leyenda top-right */}
+                                <div className="absolute top-3 right-4 flex gap-4 text-[9px] font-black uppercase tracking-widest z-10">
+                                    {(dashboardGroup === 'Todos' || dashboardGroup === 'Barco') && (
+                                        <div className="flex items-center gap-1.5">
+                                            <span className="w-2.5 h-0.5 rounded-full inline-block" style={{background:'#FF6B00',boxShadow:'0 0 6px #FF6B00'}}></span>
+                                            <span style={{color:'#FF6B00'}}>BARCO</span>
+                                        </div>
+                                    )}
+                                    {(dashboardGroup === 'Todos' || dashboardGroup === 'Cueva') && (
+                                        <div className="flex items-center gap-1.5">
+                                            <span className="w-2.5 h-0.5 rounded-full inline-block" style={{background:'#FFB800',boxShadow:'0 0 6px #FFB800'}}></span>
+                                            <span style={{color:'#FFB800'}}>CUEVA</span>
+                                        </div>
+                                    )}
                                 </div>
+
                                 <ResponsiveContainer width="100%" height="100%">
-                                    <AreaChart data={data} margin={{ top: 20, right: 10, left: 0, bottom: 0 }}>
+                                    <ComposedChart data={data} margin={{ top: 24, right: 20, left: 0, bottom: 0 }}
+                                        style={{background:'transparent'}}
+                                    >
                                         <defs>
-                                            <linearGradient id="colorBarco" x1="0" y1="0" x2="0" y2="1">
-                                                <stop offset="5%" stopColor="#facc15" stopOpacity={0.6} />
-                                                <stop offset="95%" stopColor="#facc15" stopOpacity={0} />
+                                            {/* Gradiente de área Barco */}
+                                            <linearGradient id="gradBarco" x1="0" y1="0" x2="0" y2="1">
+                                                <stop offset="0%"  stopColor="#FF6B00" stopOpacity={0.18} />
+                                                <stop offset="100%" stopColor="#FF6B00" stopOpacity={0} />
                                             </linearGradient>
-                                            <linearGradient id="colorCueva" x1="0" y1="0" x2="0" y2="1">
-                                                <stop offset="5%" stopColor="#ff0099" stopOpacity={0.6} />
-                                                <stop offset="95%" stopColor="#ff0099" stopOpacity={0} />
+                                            {/* Gradiente de área Cueva */}
+                                            <linearGradient id="gradCueva" x1="0" y1="0" x2="0" y2="1">
+                                                <stop offset="0%"  stopColor="#FFB800" stopOpacity={0.15} />
+                                                <stop offset="100%" stopColor="#FFB800" stopOpacity={0} />
                                             </linearGradient>
+                                            {/* Filtro glow para la línea */}
+                                            <filter id="glowOrange" x="-20%" y="-100%" width="140%" height="300%">
+                                                <feGaussianBlur stdDeviation="4" result="blur" />
+                                                <feMerge>
+                                                    <feMergeNode in="blur" />
+                                                    <feMergeNode in="SourceGraphic" />
+                                                </feMerge>
+                                            </filter>
+                                            <filter id="glowGold" x="-20%" y="-100%" width="140%" height="300%">
+                                                <feGaussianBlur stdDeviation="3.5" result="blur" />
+                                                <feMerge>
+                                                    <feMergeNode in="blur" />
+                                                    <feMergeNode in="SourceGraphic" />
+                                                </feMerge>
+                                            </filter>
                                         </defs>
-                                        <CartesianGrid strokeDasharray="3 3" stroke="#334155" opacity={0.3} vertical={false} />
-                                        <XAxis dataKey="dia" stroke="#94a3b8" fontSize={10} tickLine={false} axisLine={false} />
-                                        <YAxis stroke="#94a3b8" fontSize={10} tickLine={false} axisLine={false} tickFormatter={(value) => `$${value / 1000}k`} />
-                                        <Tooltip
-                                            contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', borderColor: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(10px)', color: '#f1f5f9', borderRadius: '12px', boxShadow: '0 0 20px rgba(0,0,0,0.5)' }}
-                                            itemStyle={{ fontSize: '12px', fontWeight: 'bold' }}
-                                            formatter={(value: number | undefined) => formatCurrency(value || 0)}
-                                            labelStyle={{ color: '#94a3b8', marginBottom: '5px' }}
+
+                                        {/* Eje Y con ticks limpios */}
+                                        <YAxis
+                                            stroke="transparent"
+                                            tick={{ fill: '#FFB80099', fontSize: 9, fontWeight: 700 }}
+                                            tickLine={false}
+                                            axisLine={false}
+                                            tickFormatter={(v: number) => v >= 1000000 ? `$${(v/1000000).toFixed(1)}M` : v >= 1000 ? `$${(v/1000).toFixed(0)}k` : `$${v}`}
+                                            width={42}
                                         />
+
+                                        {/* Eje X sutil */}
+                                        <XAxis
+                                            dataKey="dia"
+                                            tick={{ fill: '#FFB80099', fontSize: 9 }}
+                                            tickLine={false}
+                                            axisLine={false}
+                                        />
+
+                                        {/* Barras delgadas Barco — fondo translúcido */}
                                         {(dashboardGroup === 'Todos' || dashboardGroup === 'Barco') && (
-                                            <Area type="monotone" dataKey="barco" stroke="#facc15" strokeWidth={3} fillOpacity={1} fill="url(#colorBarco)" animationDuration={2000} animationEasing="ease-in-out" style={{ filter: 'drop-shadow(0 0 8px rgba(250, 204, 21, 0.5))' }} />
+                                            <Bar
+                                                dataKey="barco"
+                                                fill="rgba(255,107,0,0.10)"
+                                                radius={[2, 2, 0, 0]}
+                                                barSize={4}
+                                                animationDuration={1200}
+                                            />
                                         )}
+                                        {/* Barras delgadas Cueva — fondo translúcido */}
                                         {(dashboardGroup === 'Todos' || dashboardGroup === 'Cueva') && (
-                                            <Area type="monotone" dataKey="cueva" stroke="#ff0099" strokeWidth={3} fillOpacity={1} fill="url(#colorCueva)" animationDuration={2500} animationEasing="ease-in-out" style={{ filter: 'drop-shadow(0 0 10px rgba(255, 0, 153, 0.5))' }} />
+                                            <Bar
+                                                dataKey="cueva"
+                                                fill="rgba(255,184,0,0.08)"
+                                                radius={[2, 2, 0, 0]}
+                                                barSize={4}
+                                                animationDuration={1400}
+                                            />
                                         )}
-                                    </AreaChart>
+
+                                        {/* Área suave Barco */}
+                                        {(dashboardGroup === 'Todos' || dashboardGroup === 'Barco') && (
+                                            <Area
+                                                type="monotoneX"
+                                                dataKey="barco"
+                                                stroke="transparent"
+                                                fill="url(#gradBarco)"
+                                                fillOpacity={1}
+                                                dot={false}
+                                                activeDot={false}
+                                                animationDuration={1800}
+                                            />
+                                        )}
+                                        {/* Área suave Cueva */}
+                                        {(dashboardGroup === 'Todos' || dashboardGroup === 'Cueva') && (
+                                            <Area
+                                                type="monotoneX"
+                                                dataKey="cueva"
+                                                stroke="transparent"
+                                                fill="url(#gradCueva)"
+                                                fillOpacity={1}
+                                                dot={false}
+                                                activeDot={false}
+                                                animationDuration={2000}
+                                            />
+                                        )}
+
+                                        {/* Línea brillante Barco con glow */}
+                                        {(dashboardGroup === 'Todos' || dashboardGroup === 'Barco') && (
+                                            <Line
+                                                type="monotoneX"
+                                                dataKey="barco"
+                                                stroke="#FF6B00"
+                                                strokeWidth={2}
+                                                dot={false}
+                                                activeDot={{
+                                                    r: 6,
+                                                    fill: '#ffffff',
+                                                    stroke: '#FF6B00',
+                                                    strokeWidth: 2.5,
+                                                    filter: 'drop-shadow(0 0 8px #FF6B00) drop-shadow(0 0 16px #FF6B0088)'
+                                                }}
+                                                animationDuration={2000}
+                                                style={{ filter: 'drop-shadow(0 0 6px rgba(255,107,0,0.9)) drop-shadow(0 0 12px rgba(255,107,0,0.5))' }}
+                                            />
+                                        )}
+                                        {/* Línea brillante Cueva con glow */}
+                                        {(dashboardGroup === 'Todos' || dashboardGroup === 'Cueva') && (
+                                            <Line
+                                                type="monotoneX"
+                                                dataKey="cueva"
+                                                stroke="#FFB800"
+                                                strokeWidth={2}
+                                                dot={false}
+                                                activeDot={{
+                                                    r: 6,
+                                                    fill: '#ffffff',
+                                                    stroke: '#FFB800',
+                                                    strokeWidth: 2.5,
+                                                    filter: 'drop-shadow(0 0 8px #FFB800) drop-shadow(0 0 16px #FFB80088)'
+                                                }}
+                                                animationDuration={2400}
+                                                style={{ filter: 'drop-shadow(0 0 6px rgba(255,184,0,0.9)) drop-shadow(0 0 12px rgba(255,184,0,0.5))' }}
+                                            />
+                                        )}
+
+                                        {/* Tooltip flotante premium */}
+                                        <Tooltip
+                                            cursor={{
+                                                stroke: 'rgba(255,255,255,0.15)',
+                                                strokeWidth: 1,
+                                                strokeDasharray: '4 4',
+                                            }}
+                                            content={({ active, payload, label }: any) => {
+                                                if (!active || !payload?.length) return null;
+                                                return (
+                                                    <div style={{
+                                                        background: 'rgba(8,8,8,0.92)',
+                                                        border: '1px solid rgba(255,107,0,0.25)',
+                                                        borderRadius: '10px',
+                                                        padding: '8px 14px',
+                                                        backdropFilter: 'blur(16px)',
+                                                        boxShadow: '0 0 24px rgba(255,107,0,0.2), 0 8px 32px rgba(0,0,0,0.6)',
+                                                        fontSize: '11px',
+                                                        fontWeight: 800,
+                                                        color: '#fff',
+                                                        letterSpacing: '0.02em',
+                                                    }}>
+                                                        <div style={{color:'rgba(255,255,255,0.4)', fontSize:'9px', marginBottom:'4px', textTransform:'uppercase', letterSpacing:'0.12em'}}>{label}</div>
+                                                        {payload.map((p: any, i: number) => (
+                                                            <div key={i} style={{display:'flex', alignItems:'center', gap:'6px', marginBottom: i < payload.length-1 ? '2px' : 0}}>
+                                                                <span style={{width:'8px', height:'2px', borderRadius:'9999px', background: p.color, display:'inline-block', boxShadow:`0 0 6px ${p.color}`}}></span>
+                                                                <span style={{color: p.color}}>+{formatCurrency(p.value || 0)}</span>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                );
+                                            }}
+                                        />
+                                    </ComposedChart>
                                 </ResponsiveContainer>
                             </div>
 
@@ -2030,9 +2254,9 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                                         <tr>
                                             <th className="p-4 text-center w-20 tracking-wider">Día</th>
                                             <th className="p-4 tracking-wider text-yellow-300">Barco</th>
-                                            <th className="p-4 tracking-wider text-pink-300">Cueva</th>
+                                            <th className="p-4 tracking-wider text-cyan-300">Cueva</th>
                                             <th className="p-2 text-center text-[10px] text-yellow-400 font-bold uppercase tracking-tighter">M. Barco</th>
-                                            <th className="p-2 text-center text-[10px] text-pink-400 font-bold uppercase tracking-tighter">M. Cueva</th>
+                                            <th className="p-2 text-center text-[10px] text-cyan-400 font-bold uppercase tracking-tighter">M. Cueva</th>
                                             <th className="p-4 tracking-wider font-bold text-white">Total</th>
                                             <th className="p-4 text-right"></th>
                                         </tr>
@@ -2044,9 +2268,9 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                                                     <span className="inline-block w-8 h-8 leading-8 rounded bg-slate-800/80 border border-slate-700 text-slate-200 font-mono font-bold shadow-inner">{row.dia}</span>
                                                 </td>
                                                 <td className="p-3 font-mono text-yellow-300 font-medium">{formatCurrency(row.barco)}</td>
-                                                <td className="p-3 font-mono text-pink-400 font-medium">{formatCurrency(row.cueva)}</td>
+                                                <td className="p-3 font-mono text-cyan-400 font-medium">{formatCurrency(row.cueva)}</td>
                                                 <td className="p-2 text-center font-mono text-yellow-500/70 font-bold text-xs">{row.mesasBarco || 0}</td>
-                                                <td className="p-2 text-center font-mono text-pink-500/70 font-bold text-xs">{row.mesasCueva || 0}</td>
+                                                <td className="p-2 text-center font-mono text-cyan-500/70 font-bold text-xs">{row.mesasCueva || 0}</td>
                                                 <td className="p-3 font-mono font-bold text-white shadow-cyan-500/5">{formatCurrency(row.barco + row.cueva)}</td>
                                                 <td className="p-3 text-right">
                                                     <div className="flex justify-end gap-2 text-slate-500">
@@ -2078,9 +2302,9 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                                         <tr className="bg-slate-950/80 border-t-2 border-slate-700 font-bold text-sm sticky bottom-0 z-10 shadow-2xl">
                                             <td className="p-4 text-center text-slate-400 uppercase tracking-widest text-xs">Totales</td>
                                             <td className="p-4 font-mono text-yellow-300 text-base">{formatCurrency(totalBarco)}</td>
-                                            <td className="p-4 font-mono text-pink-300 text-base">{formatCurrency(totalCueva)}</td>
+                                            <td className="p-4 font-mono text-cyan-300 text-base">{formatCurrency(totalCueva)}</td>
                                             <td className="p-2 text-center font-mono text-yellow-400 text-xs">{data.reduce((sum, r) => sum + (r.mesasBarco || 0), 0)}</td>
-                                            <td className="p-2 text-center font-mono text-pink-400 text-xs">{data.reduce((sum, r) => sum + (r.mesasCueva || 0), 0)}</td>
+                                            <td className="p-2 text-center font-mono text-cyan-400 text-xs">{data.reduce((sum, r) => sum + (r.mesasCueva || 0), 0)}</td>
                                             <td className="p-4 font-mono text-white text-lg bg-emerald-500/10 border border-emerald-500/20 rounded shadow-[0_0_15px_rgba(16,185,129,0.2)]">{formatCurrency(totalBarco + totalCueva)}</td>
                                             <td></td>
                                         </tr>
@@ -2141,7 +2365,7 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                                         </button>
                                         <button
                                             onClick={handleClearMonth}
-                                            className="text-[10px] bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 px-3 py-1.5 rounded-lg border border-rose-500/20 flex items-center gap-2 transition-all font-bold uppercase"
+                                            className="text-[10px] bg-amber-500/10 hover:bg-rose-500/20 text-amber-300 px-3 py-1.5 rounded-lg border border-amber-500/20 flex items-center gap-2 transition-all font-bold uppercase"
                                             title="Limpiar Mes Actual"
                                         >
                                             <Trash2 size={14} /> LIMPIAR MES
@@ -2181,17 +2405,17 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                                                         <div className="flex flex-col gap-1">
                                                             <div className="flex justify-between items-center">
                                                                 <span className={`font-bold text-sm tracking-wide ${emp.status === 'Renunció' ? 'text-slate-500 line-through' : 'text-white'}`}>{emp.name}</span>
-                                                                <span className={`text-[9px] px-1 rounded uppercase font-bold border ${emp.group === 'Barco' ? 'border-yellow-500/50 text-yellow-400 bg-yellow-500/10' : 'border-pink-500/50 text-pink-400 bg-pink-500/10'}`}>{emp.group || '?'}</span>
+                                                                <span className={`text-[9px] px-1 rounded uppercase font-bold border ${emp.group === 'Barco' ? 'border-orange-500/50 text-orange-400 bg-orange-500/10' : 'border-[#FFB800]/50 text-[#FFB800] bg-[#FFB800]/10'}`}>{emp.group || '?'}</span>
                                                             </div>
 
                                                             {/* SHIFT & STATUS ROW */}
                                                             <div className="flex items-center gap-1.5 flex-wrap">
                                                                 <select disabled={role !== 'admin'} value={emp.shift || 'Mañana'} onChange={(e) => { const updated = { ...emp, shift: e.target.value }; setEmployees(employees.map((em: any) => em.id === emp.id ? updated : em)); }} className="bg-slate-950/50 rounded px-1 py-0.5 text-[9px] uppercase font-bold border border-slate-700 text-slate-400 outline-none cursor-pointer hover:border-indigo-500/30 disabled:opacity-50 disabled:cursor-not-allowed">
                                                                     <option value="Mañana">☀️ Mañ</option>
-                                                                    <option value="Noche">🌙 Noc</option>
+                                                                    <option value="Noche">🌃 Noc</option>
                                                                 </select>
 
-                                                                <select disabled={role !== 'admin'} value={emp.status} onChange={(e) => { const updated = { ...emp, status: e.target.value }; setEmployees(employees.map((em: any) => em.id === emp.id ? updated : em)); }} className={`bg-slate-950/50 rounded px-1 py-0.5 text-[9px] uppercase font-bold border border-slate-700 outline-none cursor-pointer flex-1 ${emp.status === 'Activo' ? 'text-emerald-400 border-emerald-500/30' : emp.status === 'Ausente' ? 'text-red-400 border-red-500/30' : emp.status === 'Renunció' ? 'text-slate-500 border-slate-600' : 'text-blue-400 border-blue-500/30'} disabled:opacity-50 disabled:cursor-not-allowed`}>
+                                                                <select disabled={role !== 'admin'} value={emp.status} onChange={(e) => { const updated = { ...emp, status: e.target.value }; setEmployees(employees.map((em: any) => em.id === emp.id ? updated : em)); }} className={`bg-slate-950/50 rounded px-1 py-0.5 text-[9px] uppercase font-bold border border-slate-700 outline-none cursor-pointer flex-1 ${emp.status === 'Activo' ? 'text-orange-400 border-orange-500/30' : emp.status === 'Ausente' ? 'text-red-400 border-red-500/30' : emp.status === 'Suplente' ? 'text-amber-400 border-amber-500/30' : emp.status === 'Renunció' ? 'text-slate-500 border-slate-600' : 'text-blue-400 border-blue-500/30'} disabled:opacity-50 disabled:cursor-not-allowed`}>
                                                                     <option value="Activo">Activo</option>
                                                                     <option value="Ausente">Ausente</option>
                                                                     <option value="Suplente">Suplente</option>
@@ -2203,7 +2427,7 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                                                                 {role === 'admin' && (
                                                                     <>
                                                                         <button onClick={() => { setActiveModal('employee'); setEditingItem(emp); setEmployeeForm({ name: emp.name, password: '', status: emp.status, group: emp.group || 'Barco', shift: emp.shift || 'Mañana', pago: (emp.pago || 9.6).toString() }) }} className="text-slate-600 hover:text-indigo-400"><Edit2 size={12} /></button>
-                                                                        <button onClick={() => handleDeleteEmployee(emp.id)} className="text-slate-600 hover:text-pink-400"><Trash2 size={12} /></button>
+                                                                        <button onClick={() => handleDeleteEmployee(emp.id)} className="text-slate-600 hover:text-cyan-400"><Trash2 size={12} /></button>
                                                                     </>
                                                                 )}
                                                             </div>
@@ -2240,7 +2464,7 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                                                                         setActiveShiftDay({ empId: emp.id, day });
                                                                         setActiveModal('shiftDetail');
                                                                     }}
-                                                                    className={`w-full h-full py-4 text-center cursor-pointer font-mono font-bold transition-all flex flex-col items-center justify-center ${isPresent ? 'text-emerald-400 bg-emerald-500/5' : 'text-slate-600'} hover:bg-white/5`}
+                                                                    className={`w-full h-full py-4 text-center cursor-pointer font-mono font-bold transition-all flex flex-col items-center justify-center ${isPresent ? 'text-orange-400 bg-orange-500/5' : 'text-slate-600'} hover:bg-white/5`}
                                                                 >
                                                                     <span>{getShiftValue(emp.id, day) || '.'}</span>
                                                                 </div>
@@ -2251,11 +2475,11 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                                                         );
                                                     })}
                                                     <td className="p-2 text-center font-mono font-bold text-indigo-300 bg-indigo-500/5">{formatNumber(stats.totalHours)}</td>
-                                                    <td className="p-2 text-center font-mono font-bold text-emerald-400 bg-emerald-500/5 text-sm">
+                                                    <td className="p-2 text-center font-mono font-bold text-orange-400 bg-orange-500/5 text-sm">
                                                         {role === 'admin' ? (
                                                             <input
                                                                 type="text"
-                                                                className="w-full bg-transparent text-center border-b border-transparent hover:border-emerald-500/50 focus:border-emerald-500 outline-none text-emerald-400 font-bold placeholder-emerald-500/30"
+                                                                className="w-full bg-transparent text-center border-b border-transparent hover:border-orange-500/50 focus:border-orange-500 outline-none text-orange-400 font-bold placeholder-orange-500/30"
                                                                 placeholder={formatUSD(stats.totalPayUSD).replace('$', '')}
                                                                 defaultValue={shiftsMatrix[emp.id]?.[`TOTAL_OV_${selectedYear}_${selectedMonth}_${currentFortnight}`] || ''}
                                                                 onBlur={(e) => {
@@ -2281,28 +2505,39 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                                             );
                                         })}
                                     </tbody>
+                                    <tfoot>
+                                        <tr className="bg-slate-900/40 p-3 border-t border-indigo-500/20 flex justify-between items-center">
+                                            <td className="p-4 text-center text-slate-400 uppercase tracking-widest text-xs">Totales</td>
+                                            <td className="p-4 font-mono text-yellow-300 text-base">{formatCurrency(totalBarco)}</td>
+                                            <td className="p-4 font-mono text-cyan-300 text-base">{formatCurrency(totalCueva)}</td>
+                                            <td className="p-2 text-center font-mono text-yellow-400 text-xs">{data.reduce((sum, r) => sum + (r.mesasBarco || 0), 0)}</td>
+                                            <td className="p-2 text-center font-mono text-cyan-400 text-xs">{data.reduce((sum, r) => sum + (r.mesasCueva || 0), 0)}</td>
+                                            <td className="p-4 font-mono text-white text-lg bg-emerald-500/10 border border-emerald-500/20 rounded shadow-[0_0_15px_rgba(16,185,129,0.2)]">{formatCurrency(totalBarco + totalCueva)}</td>
+                                            <td></td>
+                                        </tr>
+                                    </tfoot>
                                 </table>
                             </div>
                             <div className="bg-slate-900/40 p-3 border-t border-indigo-500/20 flex justify-between items-center">
-                                <span className="text-slate-400 text-xs font-bold uppercase tracking-widest">Total Staff (Sin Felipe)</span>
-                                <span className="text-indigo-400 font-mono font-bold">{formatUSD(employees.reduce((acc: number, emp: any) => acc + calculateEmployeeStats(emp.id).totalPayUSD, 0))}</span>
+                                <span className="text-slate-400 text-xs font-bold uppercase tracking-widest">Total Staff (General)</span>
+                                <span className="font-mono font-bold" style={{color:'#FF6B00'}}>{formatUSD(employees.reduce((acc: number, emp: any) => acc + calculateEmployeeStats(emp.id).totalPayUSD, 0))}</span>
                             </div>
                         </div>
 
-                        {/* --- FELIPE SUPERVISOR SECTION --- */}
-                        {/* --- FELIPE SUPERVISOR SECTION --- */}
-                        <div className="bg-gradient-to-r from-slate-900 to-indigo-950/30 backdrop-blur-xl border border-indigo-500/30 rounded-2xl p-5 relative overflow-hidden shadow-2xl group transition-all hover:border-indigo-500/50">
-                            {/* CLEAN BACKGROUND, NO NOISE */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-purple-500/5 opacity-50"></div>
-                            <div className="absolute -right-4 -top-4 w-20 h-20 bg-indigo-500/20 rounded-full blur-xl"></div>
+                        {/* --- SUPERVISOR SECTION --- */}
+                        {/* --- SUPERVISOR SECTION --- */}
+                        <div className="backdrop-blur-xl border rounded-2xl p-5 relative overflow-hidden shadow-2xl group transition-all" style={{background:'linear-gradient(135deg,#0f0f0f,#1a0f00)', border:'1px solid rgba(255,107,0,0.25)'}}>
+                            {/* GLOW BACKGROUND */}
+                            <div className="absolute inset-0 opacity-40" style={{background:'radial-gradient(ellipse at top right, rgba(255,107,0,0.08), transparent 70%)'}}></div>
+                            <div className="absolute -right-4 -top-4 w-20 h-20 rounded-full blur-xl" style={{background:'rgba(255,107,0,0.12)'}}></div>
 
                             <div className="flex justify-between items-center relative z-10">
                                 <div>
-                                    <h3 className="text-indigo-300 font-bold uppercase tracking-widest text-xs mb-1 flex items-center gap-2">
-                                        <div className="p-1 bg-indigo-500/20 rounded"><Users size={14} /></div>
+                                    <h3 className="font-bold uppercase tracking-widest text-xs mb-1 flex items-center gap-2" style={{color:'#FF6B00'}}>
+                                        <div className="p-1.5 rounded" style={{background:'rgba(255,107,0,0.15)'}}><Users size={14} /></div>
                                         SUPERVISOR
                                     </h3>
-                                    <div className="text-2xl font-bold text-white tracking-tight">Felipe</div>
+                                    <div className="text-2xl font-bold text-white tracking-tight">Supervisor</div>
                                     <div className="text-[10px] text-slate-400 font-mono mt-1">TARIFA: $28.84 / DÍA</div>
                                 </div>
 
@@ -2313,26 +2548,26 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                                             <input
                                                 type="number"
                                                 disabled={role !== 'admin'}
-                                                className="w-12 bg-slate-900 border border-slate-700 rounded-lg py-2 px-1 text-center text-white font-bold focus:ring-2 focus:ring-indigo-500 outline-none"
-                                                value={felipeDays}
-                                                onChange={(e) => setFelipeDays(Number(e.target.value))}
+                                                className="w-12 bg-slate-900 border border-slate-700 rounded-lg py-2 px-1 text-center text-white font-bold focus:ring-2 focus:ring-amber-500 outline-none"
+                                                value={supervisorDays}
+                                                onChange={(e) => setSupervisorDays(Number(e.target.value))}
                                             />
-                                            {role === 'admin' && <button onClick={() => setFelipeDays(daysInFortnight.length)} className="text-[9px] bg-indigo-500/20 hover:bg-indigo-500 px-1.5 py-1 rounded text-indigo-300 hover:text-white transition-colors">FULL</button>}
+                                            {role === 'admin' && <button onClick={() => setSupervisorDays(daysInFortnight.length)} className="text-[9px] px-1.5 py-1 rounded transition-colors" style={{background:'rgba(255,107,0,0.15)',color:'#FF6B00'}}>FULL</button>}
                                         </div>
                                     </div>
 
                                     {/* SECCIÓN DÍAS LIBRES SEPARADA VISUALMENTE */}
-                                    <div className="flex flex-col items-center gap-1 bg-indigo-500/5 p-2 rounded-lg border border-indigo-500/10">
-                                        <label className="text-[9px] text-indigo-300/60 font-bold uppercase tracking-widest border-b border-indigo-500/10 pb-1 w-full text-center">DÍAS LIBRES</label>
+                                    <div className="flex flex-col items-center gap-1 p-2 rounded-lg border" style={{background:'rgba(255,107,0,0.04)',borderColor:'rgba(255,107,0,0.10)'}}>
+                                        <label className="text-[9px] font-bold uppercase tracking-widest border-b pb-1 w-full text-center" style={{color:'rgba(255,107,0,0.5)',borderColor:'rgba(255,107,0,0.10)'}}>DÍAS LIBRES</label>
                                         <div className="flex gap-2">
                                             <div className="flex flex-col items-center">
-                                                <label className="text-[8px] text-blue-400/50 uppercase">Asig.</label>
+                                                <label className="text-[8px] text-amber-400/50 uppercase">Asig.</label>
                                                 <input
                                                     type="number"
                                                     disabled={role !== 'admin'}
-                                                    className="w-10 bg-slate-900/50 border border-blue-500/20 rounded py-1 px-1 text-center text-blue-300 text-xs focus:ring-1 focus:ring-blue-500 outline-none"
-                                                    value={felipeAssignedFreeDays}
-                                                    onChange={(e) => setFelipeAssignedFreeDays(Number(e.target.value))}
+                                                    className="w-10 bg-slate-900/50 border border-amber-500/20 rounded py-1 px-1 text-center text-amber-300 text-xs focus:ring-1 focus:ring-amber-500 outline-none"
+                                                    value={supervisorAssignedFreeDays}
+                                                    onChange={(e) => setSupervisorAssignedFreeDays(Number(e.target.value))}
                                                 />
                                             </div>
                                             <div className="flex flex-col items-center">
@@ -2341,8 +2576,8 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                                                     type="number"
                                                     disabled={role !== 'admin'}
                                                     className="w-10 bg-slate-900 border border-emerald-500/40 rounded py-1 px-1 text-center text-emerald-400 font-bold text-lg focus:ring-1 focus:ring-emerald-500 outline-none shadow-[0_0_10px_rgba(16,185,129,0.1)]"
-                                                    value={felipeExtraDays}
-                                                    onChange={(e) => setFelipeExtraDays(Number(e.target.value))}
+                                                    value={supervisorExtraDays}
+                                                    onChange={(e) => setSupervisorExtraDays(Number(e.target.value))}
                                                 />
                                             </div>
                                         </div>
@@ -2351,20 +2586,20 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
 
                             </div>
 
-                            {/* --- SECCIÓN ADELANTOS FELIPE --- */}
-                            <div className="mt-4 bg-slate-950/40 rounded-xl p-4 border border-indigo-500/20 relative z-10">
+                            {/* --- SECCIÓN ADELANTOS SUPERVISOR --- */}
+                            <div className="mt-4 rounded-xl p-4 border relative z-10" style={{background:'rgba(5,5,5,0.7)',borderColor:'rgba(255,107,0,0.15)'}}>
                                 <div className="flex justify-between items-center mb-3">
-                                    <h4 className="text-[10px] text-indigo-300 font-bold uppercase tracking-widest flex items-center gap-2">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-indigo-500"></div> LISTADO DE ADELANTOS
+                                    <h4 className="text-[10px] font-bold uppercase tracking-widest flex items-center gap-2" style={{color:'#FF6B00'}}>
+                                        <div className="w-1.5 h-1.5 rounded-full" style={{background:'#FF6B00'}}></div> LISTADO DE ADELANTOS
                                     </h4>
                                     {role === 'admin' && (
                                         <button
                                             onClick={() => {
                                                 setEditingItem(null);
-                                                setFelipeAdvanceForm({ motivo: '', monto: '' });
-                                                setActiveModal('felipe_advance');
+                                                setSupervisorAdvanceForm({ motivo: '', monto: '' });
+                                                setActiveModal('supervisor_advance');
                                             }}
-                                            className="text-[9px] bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-300 px-2 py-1 rounded border border-indigo-500/30 flex items-center gap-1 transition-colors"
+                                            className="text-[9px] px-2 py-1 rounded border flex items-center gap-1 transition-colors" style={{background:'rgba(255,107,0,0.08)',color:'#FF6B00',borderColor:'rgba(255,107,0,0.25)'}}
                                         >
                                             <Plus size={10} /> AGREGAR ADELANTO
                                         </button>
@@ -2372,17 +2607,17 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                                 </div>
 
                                 <div className="space-y-1 mb-3">
-                                    {(felipeAdvances || []).length === 0 ? (
+                                    {(supervisorAdvances || []).length === 0 ? (
                                         <div className="text-center py-2 text-slate-600 text-[10px] italic">No hay adelantos registrados</div>
                                     ) : (
-                                        (felipeAdvances || []).map((adv: any) => (
-                                            <div key={adv.id} className="flex justify-between items-center text-xs bg-slate-900/50 p-2 rounded border border-indigo-500/10 group hover:border-indigo-500/30 transition-colors">
+                                        (supervisorAdvances || []).map((adv: any) => (
+                                            <div key={adv.id} className="flex justify-between items-center text-xs p-2 rounded border group hover:border-[#FF6B00]/25 transition-colors" style={{background:'rgba(5,5,5,0.5)',borderColor:'rgba(255,107,0,0.08)'}}>
                                                 <span className="text-slate-400 font-medium">{adv.motivo}</span>
                                                 <div className="flex items-center gap-3">
                                                     <span className="text-red-300 font-mono font-bold">- {formatUSD(adv.monto)}</span>
                                                     {role === 'admin' && (
                                                         <button
-                                                            onClick={() => handleDeleteFelipeAdvance(adv.id)}
+                                                            onClick={() => handleDeleteSupervisorAdvance(adv.id)}
                                                             className="text-slate-600 hover:text-red-400 opacity-0 group-hover:opacity-100 transition-opacity"
                                                         >
                                                             <Trash2 size={10} />
@@ -2397,28 +2632,28 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                                 <div className="flex justify-between items-center pt-2 border-t border-slate-800">
                                     <span className="text-[10px] text-slate-500 font-bold uppercase">Total Descuentos</span>
                                     <span className="text-sm text-red-400 font-mono font-bold">
-                                        - {formatUSD((felipeAdvances || []).reduce((acc: number, cur: any) => acc + (cur.monto || 0), 0))}
+                                        - {formatUSD((supervisorAdvances || []).reduce((acc: number, cur: any) => acc + (cur.monto || 0), 0))}
                                     </span>
                                 </div>
                             </div>
 
-                            <div className="mt-4 text-right bg-emerald-500/5 p-3 rounded-xl border border-emerald-500/10 min-w-[120px]">
+                            <div className="mt-4 text-right p-3 rounded-xl border min-w-[120px]" style={{background:'rgba(255,184,0,0.04)',borderColor:'rgba(255,184,0,0.12)'}}>
                                 <div className="text-[9px] text-emerald-400/60 font-bold uppercase mb-1">Total a Pagar (Neto)</div>
-                                <div className="text-2xl font-mono font-bold text-emerald-400 drop-shadow-[0_0_10px_rgba(52,211,153,0.3)]">
+                                <div className="text-2xl font-mono font-bold" style={{color:'#FFB800'}}>
                                     {formatUSD(
-                                        ((felipeDays + felipeExtraDays) * 28.84) -
-                                        ((felipeAdvances || []).reduce((acc: number, cur: any) => acc + (cur.monto || 0), 0))
+                                        ((supervisorDays + supervisorExtraDays) * 28.84) -
+                                        ((supervisorAdvances || []).reduce((acc: number, cur: any) => acc + (cur.monto || 0), 0))
                                     )}
                                 </div>
                             </div>
                         </div>
 
                         {/* TOTAL GENERAL NOMINA */}
-                        <div className="bg-slate-900/60 backdrop-blur-xl border border-emerald-500/30 rounded-2xl p-6 shadow-2xl relative overflow-hidden group">
-                            <div className="absolute top-0 right-0 p-4 opacity-5 text-emerald-500"><Landmark size={60} /></div>
+                        <div className="bg-slate-900/60 backdrop-blur-xl border border-[#FF6B00]/30 rounded-2xl p-6 shadow-2xl relative overflow-hidden group">
+                            <div className="absolute top-0 right-0 p-4 opacity-5 text-[#FF6B00]"><Landmark size={60} /></div>
 
-                            <h3 className="text-xs font-bold uppercase text-emerald-400 tracking-widest flex items-center gap-2 mb-6">
-                                <div className="p-1.5 bg-emerald-500/20 rounded-lg text-emerald-400"><Medal size={16} /></div>
+                            <h3 className="text-xs font-bold uppercase text-[#FF6B00] tracking-widest flex items-center gap-2 mb-6">
+                                <div className="p-1.5 bg-[#FF6B00]/20 rounded-lg text-[#FF6B00]"><Medal size={16} /></div>
                                 RESUMEN DE PAGO TOTAL
                             </h3>
 
@@ -2428,22 +2663,22 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                                     <span className="text-white font-mono font-bold">{formatUSD(staffTotalUSD)}</span>
                                 </div>
                                 <div className="flex justify-between items-center text-sm">
-                                    <span className="text-slate-500 font-bold">SUPERVISOR (FELIPE)</span>
-                                    <span className="text-white font-mono font-bold">{formatUSD(felipeTotalUSD)}</span>
+                                    <span className="text-slate-500 font-bold">SUPERVISOR</span>
+                                    <span className="text-white font-mono font-bold">{formatUSD(supervisorTotalUSD)}</span>
                                 </div>
 
                                 {/* SUBTOTAL NÓMINA */}
                                 <div className="flex justify-between items-center py-2 border-y border-slate-800/50 my-2">
-                                    <span className="text-emerald-400 font-bold text-xs uppercase tracking-widest">Subtotal Nómina</span>
-                                    <span className="text-emerald-400 font-mono font-bold">{formatUSD(subTotalPayrollUSD)}</span>
+                                    <span className="text-[#FF6B00] font-bold text-xs uppercase tracking-widest">Subtotal Nómina</span>
+                                    <span className="text-[#FF6B00] font-mono font-bold">{formatUSD(subTotalPayrollUSD)}</span>
                                 </div>
 
-                                {/* SECCION PUBLICIDAD POR GRUPO */}
+                                 {/* SECCION PUBLICIDAD POR GRUPO */}
                                 <div className="space-y-4 pt-2 border-t border-slate-800/30 mt-2">
                                     <div className="flex items-center justify-between mb-2">
                                         <div className="flex items-center gap-2">
-                                            <span className="text-blue-400 font-bold uppercase text-[10px] tracking-widest text-left">Inversión Publicidad (FMX Sync)</span>
-                                            <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></div>
+                                            <span className="text-[#FFB800] font-bold uppercase text-[10px] tracking-widest text-left">Inversión Publicidad (FMX Sync)</span>
+                                            <div className="w-1.5 h-1.5 rounded-full bg-[#FF6B00] animate-pulse"></div>
                                         </div>
 
                                         {/* TOGGLE SUMA PUBLICIDAD */}
@@ -2453,10 +2688,10 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                                                 setIncludePublicityInTotal(newVal);
                                                 localStorage.setItem('includePublicityInTotal', JSON.stringify(newVal));
                                             }}
-                                            className={`flex items-center gap-1.5 px-2 py-1 rounded-lg border transition-all ${includePublicityInTotal ? 'bg-blue-500/20 border-blue-500/40 text-blue-300' : 'bg-slate-800 border-slate-700 text-slate-500'}`}
+                                            className={`flex items-center gap-1.5 px-2 py-1 rounded-lg border transition-all ${includePublicityInTotal ? 'bg-[#FF6B00]/20 border-[#FF6B00]/40 text-[#FFB800]' : 'bg-slate-800 border-slate-700 text-slate-500'}`}
                                             title={includePublicityInTotal ? "Suma activa al total final" : "Suma desactivada"}
                                         >
-                                            <div className={`w-3 h-3 rounded-full flex items-center justify-center border ${includePublicityInTotal ? 'border-blue-400 bg-blue-500 shadow-[0_0_8px_#3b82f6]' : 'border-slate-500'}`}>
+                                            <div className={`w-3 h-3 rounded-full flex items-center justify-center border ${includePublicityInTotal ? 'border-[#FFB800] bg-[#FF6B00] shadow-[0_0_8px_#FF6B00]' : 'border-slate-500'}`}>
                                                 {includePublicityInTotal && <CheckCircle2 size={10} className="text-white" />}
                                             </div>
                                             <span className="text-[9px] font-black uppercase tracking-tighter">
@@ -2466,7 +2701,7 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                                     </div>
 
                                     {(dashboardGroup === 'Todos' || dashboardGroup === 'Barco') && (
-                                        <div className="flex justify-between items-center text-sm pl-2 border-l-2 border-emerald-500/30">
+                                        <div className="flex justify-between items-center text-sm pl-2 border-l-2 border-[#FF6B00]/30">
                                             <div className="flex flex-col">
                                                 <span className="text-slate-500 font-bold text-[10px]">EL BARCO</span>
                                                 <span className="text-[8px] text-slate-600 font-mono">Q: {formatCurrency(totalFortnightPubARS_Barco)}</span>
@@ -2486,25 +2721,25 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                                     )}
 
                                     {dashboardGroup === 'Todos' && (
-                                        <div className="flex justify-between items-center py-2 bg-blue-500/5 px-3 rounded-xl border border-blue-500/10">
+                                        <div className="flex justify-between items-center py-2 bg-[#FF6B00]/5 px-3 rounded-xl border border-[#FF6B00]/10">
                                             <div className="flex flex-col">
-                                                <span className="text-blue-400 font-black text-[10px] uppercase">Total Publicidad</span>
+                                                <span className="text-[#FF6B00] font-black text-[10px] uppercase">Total Publicidad</span>
                                                 <div className="flex items-center gap-2">
                                                     <span className="text-[9px] text-slate-400 font-mono">ARS: {formatCurrency(totalFortnightPubARS_Total)}</span>
                                                     <span className="text-[9px] text-slate-400 font-bold">• Mes: {formatUSD(totalMonthPubUSD_Total)}</span>
                                                 </div>
                                             </div>
-                                            <span className="text-blue-400 font-mono font-black text-lg">{formatUSD(totalFortnightPubUSD_Total)}</span>
+                                            <span className="text-[#FF6B00] font-mono font-black text-lg">{formatUSD(totalFortnightPubUSD_Total)}</span>
                                         </div>
                                     )}
-                                    <span className="text-[8px] text-blue-500/40 font-bold uppercase tracking-tighter block italic text-center">Datos sincronizados en tiempo real por grupo</span>
+                                    <span className="text-[8px] text-[#FF6B00]/40 font-bold uppercase tracking-tighter block italic text-center">Datos sincronizados en tiempo real por grupo</span>
                                 </div>
                             </div>
 
-                            <div className="pt-4 border-t border-emerald-500/20 flex justify-between items-end">
+                            <div className="pt-4 border-t border-[#FF6B00]/20 flex justify-between items-end">
                                 <div>
-                                    <span className="text-emerald-400/80 text-[10px] font-bold uppercase tracking-[0.2em] block mb-1">Total Final a Liquidar</span>
-                                    <div className="text-3xl font-mono font-bold text-emerald-400 drop-shadow-[0_0_15px_rgba(52,211,153,0.4)]">
+                                    <span className="text-[#FFB800]/80 text-[10px] font-bold uppercase tracking-[0.2em] block mb-1">Total Final a Liquidar</span>
+                                    <div className="text-3xl font-mono font-bold text-[#FF6B00] drop-shadow-[0_0_15px_rgba(255,107,0,0.4)]">
                                         {formatUSD(grandTotalUSD)}
                                     </div>
                                 </div>
@@ -2520,10 +2755,10 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                             <div className="space-y-6 animate-in slide-in-from-right duration-700">
 
                                 {/* MONITOREO DE SEGURIDAD (NEW: RESTRICCIONES) */}
-                                <div className="bg-slate-900/60 backdrop-blur-xl border border-rose-500/30 rounded-2xl p-6 shadow-2xl relative overflow-hidden group hover:border-rose-500/50 transition-all cursor-pointer" onClick={onNavigateToRestriccion}>
-                                    <div className="absolute top-0 right-0 p-4 opacity-5 text-rose-500 group-hover:scale-110 transition-transform"><ShieldAlert size={60} /></div>
-                                    <h3 className="text-xs font-bold uppercase text-rose-400 tracking-widest flex items-center gap-2 mb-4">
-                                        <div className="p-1.5 bg-rose-500/20 rounded-lg text-rose-500">
+                                <div className="bg-slate-900/60 backdrop-blur-xl border border-amber-500/30 rounded-2xl p-6 shadow-2xl relative overflow-hidden group hover:border-rose-500/50 transition-all cursor-pointer" onClick={onNavigateToRestriccion}>
+                                    <div className="absolute top-0 right-0 p-4 opacity-5 text-amber-500 group-hover:scale-110 transition-transform"><ShieldAlert size={60} /></div>
+                                    <h3 className="text-xs font-bold uppercase text-amber-400 tracking-widest flex items-center gap-2 mb-4">
+                                        <div className="p-1.5 bg-rose-500/20 rounded-lg text-amber-500">
                                             <ShieldAlert size={16} />
                                         </div>
                                         CENTRO DE SEGURIDAD
@@ -2534,30 +2769,30 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                                             <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1">Control de clientes y advertencias</p>
                                         </div>
                                         <button
-                                            className="w-full py-3 bg-rose-600/10 hover:bg-rose-600 text-rose-500 hover:text-white border border-rose-500/20 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] transition-all"
+                                            className="w-full py-3 bg-amber-600/10 hover:bg-amber-600 text-amber-500 hover:text-white border border-amber-500/20 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] transition-all"
                                         >
                                             ENTRAR AL MÓDULO
                                         </button>
                                     </div>
                                 </div>
 
-                                {/* MONITOR DE USUARIOS ONLINE (Admin & Vice) */}
-                                <div className="bg-slate-900/60 backdrop-blur-xl border border-blue-500/20 rounded-2xl p-5 shadow-2xl relative overflow-hidden group hover:border-blue-500/40 transition-all">
-                                    <div className="absolute -right-6 -top-6 w-20 h-20 bg-blue-500/10 rounded-full blur-2xl group-hover:bg-blue-500/20 transition-all"></div>
-                                    <h3 className="text-xs font-bold uppercase text-blue-400 tracking-widest flex items-center justify-between mb-4">
+                                 {/* MONITOR DE USUARIOS ONLINE (Admin & Vice) */}
+                                <div className="bg-slate-900/60 backdrop-blur-xl border border-[#FFB800]/20 rounded-2xl p-5 shadow-2xl relative overflow-hidden group hover:border-[#FFB800]/40 transition-all">
+                                    <div className="-right-6 -top-6 w-20 h-20 bg-[#FFB800]/10 rounded-full blur-2xl group-hover:bg-[#FFB800]/20 transition-all absolute"></div>
+                                    <h3 className="text-xs font-bold uppercase text-[#FFB800] tracking-widest flex items-center justify-between mb-4">
                                         <div className="flex items-center gap-2">
-                                            <div className="p-1.5 bg-blue-500/20 rounded-lg text-blue-400">
+                                            <div className="p-1.5 bg-[#FFB800]/20 rounded-lg text-[#FFB800]">
                                                 <Users size={16} />
                                             </div>
                                             USUARIOS ONLINE
                                         </div>
                                         <div className="flex items-center gap-1.5">
-                                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                                            <span className="text-[10px] text-emerald-400 font-mono">{onlineUsers.length} ACTIVOS</span>
+                                            <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse"></span>
+                                            <span className="text-[10px] text-orange-400 font-mono">{onlineUsers.length} ACTIVOS</span>
                                         </div>
                                     </h3>
 
-                                    <div className="space-y-3 max-h-[160px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-blue-900/30">
+                                    <div className="space-y-3 max-h-[160px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-orange-900/30">
                                         {onlineUsers.length === 0 ? (
                                             <div className="text-center py-4 text-slate-500 italic text-[10px]">No hay sesiones activas</div>
                                         ) : (
@@ -2645,15 +2880,15 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
 
 
                         {/* SALDO JUGADORES */}
-                        <div className="bg-slate-900/60 backdrop-blur-xl border border-pink-500/20 rounded-2xl p-5 space-y-4 hover:border-pink-500/40 transition-colors shadow-2xl relative overflow-hidden">
-                            <div className="absolute -right-10 -top-10 w-32 h-32 bg-pink-500/10 rounded-full blur-2xl pointer-events-none"></div>
-                            <h3 className="text-xs font-bold uppercase text-pink-400 tracking-widest flex items-center gap-2 mb-4">
-                                <div className="p-1 bg-pink-500/20 rounded"><User size={12} /></div> SALDOS JUGADORES
+                        <div className="bg-slate-900/60 backdrop-blur-xl border border-cyan-500/20 rounded-2xl p-5 space-y-4 hover:border-cyan-500/40 transition-colors shadow-2xl relative overflow-hidden">
+                            <div className="absolute -right-10 -top-10 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl pointer-events-none"></div>
+                            <h3 className="text-xs font-bold uppercase text-cyan-400 tracking-widest flex items-center gap-2 mb-4">
+                                <div className="p-1 bg-cyan-500/20 rounded"><User size={12} /></div> SALDOS JUGADORES
                             </h3>
                             {players.map((p: any) => (
                                 <div key={p.id} className={`flex justify-between items-center p-4 rounded-xl bg-slate-950/40 border border-slate-800 hover:border-${p.tipo === 'barco' ? 'yellow' : 'pink'}-500/50 transition-all group hover:shadow-[0_0_15px_rgba(${p.tipo === 'barco' ? '234,179,8' : '236,72,153'},0.1)]`}>
                                     <div className="flex items-center gap-3">
-                                        <div className={`p-2 rounded-lg ${p.tipo === 'barco' ? 'bg-yellow-500/10 text-yellow-400' : 'bg-fuchsia-500/10 text-fuchsia-400'}`}>
+                                        <div className={`p-2 rounded-lg ${p.tipo === 'barco' ? 'bg-yellow-500/10 text-yellow-400' : 'bg-blue-500/10 text-blue-400'}`}>
                                             {p.tipo === 'barco' ? <Ship size={18} /> : <Mountain size={18} />}
                                         </div>
                                         <span className="font-bold text-sm tracking-wide text-slate-200">{p.nombre}</span>
@@ -2697,7 +2932,7 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                         <div className="bg-slate-900/60 backdrop-blur-xl border border-purple-500/20 rounded-2xl overflow-hidden shadow-2xl">
                             <div className="p-4 border-b border-purple-500/10 flex justify-between items-center bg-slate-950/40">
                                 <h3 className="text-xs font-bold uppercase text-purple-400 tracking-widest flex items-center gap-2">
-                                    <div className="p-1 bg-purple-500/20 rounded"><Send size={12} /></div> ENVÍOS
+                                    <div className="p-1 bg-purple-500/20 rounded"><Send size={12} /></div> ENVÃOS
                                 </h3>
                                 <button onClick={() => { if (role === 'admin') { setActiveModal('shipment'); setEditingItem(null); setShipForm({ fecha: '', monto: '', nota: '', comprobante: '' }) } }} className={`text-purple-400/50 ${role === 'admin' ? 'hover:text-purple-300' : 'opacity-0 cursor-default'}`}><PlusCircle size={16} /></button>
                             </div>
@@ -2793,7 +3028,7 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                             <div className="p-4 bg-purple-500/5 border-t border-purple-500/20 flex justify-between items-center bg-slate-950/40">
                                 <div className="flex flex-col">
                                     <span className="text-[10px] text-purple-400 font-black uppercase tracking-[0.2em]">Total Acumulado</span>
-                                    <span className="text-[8px] text-slate-500 font-bold uppercase tracking-widest leading-none mt-0.5">Control de Envíos</span>
+                                    <span className="text-[8px] text-slate-500 font-bold uppercase tracking-widest leading-none mt-0.5">Control de EnvÃ­os</span>
                                 </div>
                                 <div className="text-right">
                                     <span className="text-xl font-mono font-black text-white drop-shadow-[0_0_15px_rgba(168,85,247,0.4)]">
@@ -2829,7 +3064,7 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                                                     </div>
                                                     <div className="flex flex-col">
                                                         <span className="text-sm font-bold text-white tracking-wide">{emp.name}</span>
-                                                        <span className={`text-[9px] font-bold uppercase tracking-widest ${emp.group === 'Barco' ? 'text-yellow-400' : 'text-fuchsia-400'}`}>{emp.group}</span>
+                                                        <span className={`text-[9px] font-bold uppercase tracking-widest ${emp.group === 'Barco' ? 'text-yellow-400' : 'text-blue-400'}`}>{emp.group}</span>
                                                     </div>
                                                 </div>
                                                 <div className="text-right">
@@ -2866,10 +3101,10 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                         </div>
 
                         {/* --- PUBLICIDAD SECTION (MOVED UP) --- */}
-                        <div className="bg-slate-900/60 backdrop-blur-xl border border-emerald-500/20 rounded-2xl p-5 shadow-2xl relative overflow-hidden group hover:border-emerald-500/30 transition-all">
-                            <div className="absolute top-0 right-0 p-4 opacity-5 text-emerald-500"><Activity size={40} /></div>
-                            <h3 className="text-xs font-bold uppercase text-emerald-400 tracking-widest flex items-center gap-2 mb-6">
-                                <div className="p-1.5 bg-emerald-500/20 rounded-lg text-emerald-400"><Activity size={16} /></div>
+                        <div className="bg-slate-900/60 backdrop-blur-xl border border-orange-500/20 rounded-2xl p-5 shadow-2xl relative overflow-hidden group hover:border-orange-500/30 transition-all">
+                            <div className="absolute top-0 right-0 p-4 opacity-5 text-orange-500"><Activity size={40} /></div>
+                            <h3 className="text-xs font-bold uppercase text-orange-400 tracking-widest flex items-center gap-2 mb-6">
+                                <div className="p-1.5 bg-orange-500/20 rounded-lg text-orange-400"><Activity size={16} /></div>
                                 CONTROL PUBLICIDAD
                             </h3>
 
@@ -2887,7 +3122,7 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                                         <div className="flex gap-4 items-center">
                                             <button
                                                 onClick={() => setShowPublicityAnalytics(true)}
-                                                className="px-2 py-1 bg-emerald-500/10 hover:bg-emerald-500/20 rounded border border-emerald-500/20 text-[9px] font-black uppercase text-emerald-400 transition-all flex items-center gap-1.5"
+                                                className="px-2 py-1 bg-orange-500/10 hover:bg-orange-500/20 rounded border border-orange-500/20 text-[9px] font-black uppercase text-orange-400 transition-all flex items-center gap-1.5"
                                             >
                                                 <TrendingUp size={10} /> Full Analytics
                                             </button>
@@ -2896,14 +3131,14 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                                                     <button
                                                         key={g}
                                                         onClick={() => setPubGridGroup(g)}
-                                                        className={`px-2 py-1 rounded text-[8px] font-black uppercase transition-all ${pubGridGroup === g ? 'bg-emerald-500 text-black shadow-lg shadow-emerald-500/20' : 'text-slate-500 hover:text-emerald-400'}`}
+                                                        className={`px-2 py-1 rounded text-[8px] font-black uppercase transition-all ${pubGridGroup === g ? 'bg-orange-500 text-black shadow-lg shadow-orange-500/20' : 'text-slate-500 hover:text-orange-400'}`}
                                                     >
                                                         {g === 'Todos' ? 'Total' : g}
                                                     </button>
                                                 ))}
                                             </div>
                                             <div className="text-right">
-                                                <div className="text-xs font-mono font-bold text-emerald-400">
+                                                <div className="text-xs font-mono font-bold text-orange-400">
                                                     Mes: {formatCurrency(Object.keys(publicityActive).filter(k => k.startsWith(`${pubYear}-${(pubMonth + 1).toString().padStart(2, '0')}`)).reduce((acc, k) => acc + (publicityActive[k]?.[pubGridGroup === 'Todos' ? 'Total' : pubGridGroup] || 0), 0) || 0)}
                                                 </div>
                                                 <div className="text-[9px] text-slate-500 font-bold uppercase">Inversión Lograda</div>
@@ -2921,7 +3156,7 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                                                 <button
                                                     key={day}
                                                     onClick={() => setShowPublicityAnalytics(true)}
-                                                    className={`aspect-square rounded-lg border flex flex-col items-center justify-center gap-0.5 transition-all ${hasWork ? 'bg-emerald-600 border-emerald-400 text-white shadow-lg shadow-emerald-500/20' : 'bg-slate-950/50 border-slate-800 text-slate-500 hover:border-slate-600'}`}
+                                                    className={`aspect-square rounded-lg border flex flex-col items-center justify-center gap-0.5 transition-all ${hasWork ? 'bg-orange-600 border-orange-400 text-white shadow-lg shadow-orange-500/20' : 'bg-slate-950/50 border-slate-800 text-slate-500 hover:border-slate-600'}`}
                                                     title={hasWork ? `Total: ${formatCurrency(dayData.Total)}\nBarco: ${formatCurrency(dayData.Barco || 0)}\nCueva: ${formatCurrency(dayData.Cueva || 0)}` : 'Sin gasto'}
                                                 >
                                                     <span className="text-[8px] font-bold opacity-60">D{day}</span>
@@ -2935,15 +3170,15 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                                                                 {formatCurrency(dayData[pubGridGroup === 'Todos' ? 'Total' : pubGridGroup]).replace('$', '').trim()}
                                                             </span>
                                                         </div>
-                                                    ) : <span className="text-xs font-bold font-mono text-white/5 italic">·</span>}
+                                                    ) : <span className="text-xs font-bold font-mono text-white/5 italic">Â·</span>}
                                                 </button>
                                             );
                                         })}
                                     </div>
                                 </div>
 
-                                {/* MINI CHART PUBLICIDAD (NEON GREEN) */}
-                                <div className="bg-black/60 rounded-xl p-4 border border-emerald-500/10 h-40 shadow-inner">
+                                 {/* MINI CHART PUBLICIDAD (ORANGE/GOLD FIRE) */}
+                                <div className="bg-black/60 rounded-xl p-4 border border-[#FF6B00]/10 h-40 shadow-inner">
                                     <ResponsiveContainer width="100%" height="100%">
                                         <AreaChart data={Array.from({ length: new Date(pubYear, pubMonth + 1, 0).getDate() }, (_, i) => {
                                             const day = i + 1;
@@ -2951,22 +3186,22 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                                             return { dia: day, activo: publicityActive[dateKey]?.[pubGridGroup === 'Todos' ? 'Total' : pubGridGroup] || 0 };
                                         })}>
                                             <defs>
-                                                <linearGradient id="colorPubNeon" x1="0" y1="0" x2="0" y2="1">
-                                                    <stop offset="5%" stopColor="#22c55e" stopOpacity={0.6} />
-                                                    <stop offset="95%" stopColor="#22c55e" stopOpacity={0} />
+                                                <linearGradient id="colorPubFire" x1="0" y1="0" x2="0" y2="1">
+                                                    <stop offset="5%" stopColor="#FF6B00" stopOpacity={0.6} />
+                                                    <stop offset="95%" stopColor="#FF6B00" stopOpacity={0} />
                                                 </linearGradient>
                                             </defs>
                                             <XAxis dataKey="dia" hide />
                                             <YAxis hide />
                                             <Tooltip
-                                                contentStyle={{ backgroundColor: '#052c16', border: '1px solid #16a34a', borderRadius: '12px', fontSize: '10px', boxShadow: '0 0 15px rgba(34,197,94,0.3)' }}
-                                                itemStyle={{ color: '#4ade80' }}
+                                                contentStyle={{ backgroundColor: '#0a0a0a', border: '1px solid #FF6B00', borderRadius: '12px', fontSize: '10px', boxShadow: '0 0 15px rgba(255,107,0,0.3)' }}
+                                                itemStyle={{ color: '#FFB800' }}
                                                 formatter={(value: any) => [formatCurrency(Number(value) || 0), 'Inversión']}
                                             />
-                                            <Area type="monotone" dataKey="activo" stroke="#4ade80" fill="url(#colorPubNeon)" strokeWidth={3} animationDuration={1500} />
+                                            <Area type="monotone" dataKey="activo" stroke="#FF6B00" fill="url(#colorPubFire)" strokeWidth={3} animationDuration={1500} />
                                         </AreaChart>
                                     </ResponsiveContainer>
-                                    <div className="text-center mt-2 text-[9px] text-emerald-500/50 font-bold uppercase tracking-[0.2em]">Live Pulse Investment</div>
+                                    <div className="text-center mt-2 text-[9px] text-[#FF6B00]/50 font-bold uppercase tracking-[0.2em]">Fire Pulse Investment Control</div>
                                 </div>
                             </div>
                         </div>
@@ -3036,7 +3271,7 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                                     {activeModal === 'employee' && (editingItem ? 'Editar Staff' : 'Nuevo Staff')}
                                     {activeModal === 'guest' && (editingItem ? 'Editar Invitado' : 'Nuevo Invitado')}
                                     {activeModal === 'player' && 'Actualizar Saldo'}
-                                    {activeModal === 'felipe_advance' && 'Nuevo Adelanto Felipe'}
+                                    {activeModal === 'supervisor_advance' && 'Nuevo Adelanto Supervisor'}
                                 </h3>
                                 <button onClick={() => setActiveModal(null)} className="text-slate-500 hover:text-white transition-colors bg-slate-800 p-1 rounded-full"><X size={16} /></button>
                             </div>
@@ -3046,7 +3281,7 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                                 else if (activeModal === 'shipment') handleSaveShip(e);
                                 else if (activeModal === 'bank') handleSaveBank(e);
                                 else if (activeModal === 'player') handleSavePlayer(e);
-                                else if (activeModal === 'felipe_advance') handleSaveFelipeAdvance(e);
+                                else if (activeModal === 'supervisor_advance') handleSaveSupervisorAdvance(e);
                                 else if (activeModal === 'guest') handleSaveGuest(e);
                                 else handleSaveEmployee(e);
                             }} className="p-5 space-y-4">
@@ -3060,7 +3295,7 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                                                 <input type="number" min="0" step="any" className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:ring-1 focus:ring-yellow-500 outline-none transition-all focus:border-yellow-500" placeholder="0" value={opForm.barco} onChange={e => setOpForm({ ...opForm, barco: e.target.value })} />
                                             </div>
                                             <div className="space-y-1">
-                                                <label className="text-[10px] text-pink-400 font-bold uppercase ml-1">Monto Cueva</label>
+                                                <label className="text-[10px] text-cyan-400 font-bold uppercase ml-1">Monto Cueva</label>
                                                 <input type="number" min="0" step="any" className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:ring-1 focus:ring-pink-500 outline-none transition-all focus:border-pink-500" placeholder="0" value={opForm.cueva} onChange={e => setOpForm({ ...opForm, cueva: e.target.value })} />
                                             </div>
                                             <div className="space-y-1">
@@ -3068,7 +3303,7 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                                                 <input type="number" min="0" className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:ring-1 focus:ring-yellow-500/50 outline-none" placeholder="0" value={opForm.mesasBarco} onChange={e => setOpForm({ ...opForm, mesasBarco: e.target.value })} />
                                             </div>
                                             <div className="space-y-1">
-                                                <label className="text-[10px] text-pink-400/60 font-bold uppercase ml-1">Mesas Cueva</label>
+                                                <label className="text-[10px] text-cyan-400/60 font-bold uppercase ml-1">Mesas Cueva</label>
                                                 <input type="number" min="0" className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:ring-1 focus:ring-pink-500/50 outline-none" placeholder="0" value={opForm.mesasCueva} onChange={e => setOpForm({ ...opForm, mesasCueva: e.target.value })} />
                                             </div>
                                         </div>
@@ -3150,10 +3385,10 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                                     </>
                                 )}
 
-                                {activeModal === 'felipe_advance' && (
+                                {activeModal === 'supervisor_advance' && (
                                     <>
-                                        <input autoFocus type="text" className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:ring-1 focus:ring-red-500 outline-none" placeholder="Motivo o Razón" value={felipeAdvanceForm.motivo} onChange={e => setFelipeAdvanceForm({ ...felipeAdvanceForm, motivo: e.target.value })} />
-                                        <input type="number" step="any" className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:ring-1 focus:ring-red-500 outline-none" placeholder="Monto a descontar ($)" value={felipeAdvanceForm.monto} onChange={e => setFelipeAdvanceForm({ ...felipeAdvanceForm, monto: e.target.value })} />
+                                        <input autoFocus type="text" className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:ring-1 focus:ring-red-500 outline-none" placeholder="Motivo o Razón" value={supervisorAdvanceForm.motivo} onChange={e => setSupervisorAdvanceForm({ ...supervisorAdvanceForm, motivo: e.target.value })} />
+                                        <input type="number" step="any" className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:ring-1 focus:ring-red-500 outline-none" placeholder="Monto a descontar ($)" value={supervisorAdvanceForm.monto} onChange={e => setSupervisorAdvanceForm({ ...supervisorAdvanceForm, monto: e.target.value })} />
                                     </>
                                 )}
 
@@ -3290,7 +3525,7 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                                                         <tr key={log.id} className="hover:bg-slate-800/50 transition-colors group">
                                                             <td className="p-3 font-mono text-xs">{log.fecha_operacion} <span className="text-slate-600">{log.hora_registro}</span></td>
                                                             <td className="p-3 text-white font-bold text-xs">{log.user_email.split('@')[0]}</td>
-                                                            <td className="p-3"><span className={`px-2 py-0.5 rounded text-[10px] uppercase font-bold border ${log.bando === 'Barco' ? 'border-yellow-500/30 text-yellow-400 bg-yellow-500/10' : 'border-pink-500/30 text-pink-400 bg-pink-500/10'}`}>{log.bando}</span></td>
+                                                            <td className="p-3"><span className={`px-2 py-0.5 rounded text-[10px] uppercase font-bold border ${log.bando === 'Barco' ? 'border-yellow-500/30 text-yellow-400 bg-yellow-500/10' : 'border-cyan-500/30 text-cyan-400 bg-cyan-500/10'}`}>{log.bando}</span></td>
                                                             <td className="p-3 text-white text-xs opacity-50">{log.mesa}</td>
                                                             <td className="p-3 text-right font-mono text-white">${log.monto_apuesta}</td>
                                                             <td className="p-3 text-right font-mono text-emerald-300 font-bold">+${log.ganancia_calculada.toFixed(2)}</td>
@@ -3412,7 +3647,7 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                                 <div className="space-y-1.5">
                                     <label className="text-[9px] text-slate-500 font-black uppercase tracking-widest ml-1">Cripto (USDT)</label>
                                     <div className="relative">
-                                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-yellow-500 font-black">₮</div>
+                                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-yellow-500 font-black">â‚®</div>
                                         <input
                                             type="number"
                                             className="w-full bg-slate-900/50 border border-slate-700/50 rounded-2xl pl-10 pr-4 py-3 text-white font-mono font-bold focus:ring-2 focus:ring-yellow-500/20 outline-none transition-all"
@@ -3524,16 +3759,16 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                     </div>
                 )
             }
-            {/* --- NÓMINA PRINCIPAL MOVED TO EARLY RETURN --- */}
+            {/* --- NÃ“MINA PRINCIPAL MOVED TO EARLY RETURN --- */}
             {/* 2FA SETUP MODAL */}
             {show2FAModal && (
                 <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-in fade-in duration-200">
-                    <div className="bg-slate-900 border border-fuchsia-500/30 rounded-2xl w-full max-w-md p-6 shadow-2xl relative overflow-hidden">
+                    <div className="bg-slate-900 border border-blue-500/30 rounded-2xl w-full max-w-md p-6 shadow-2xl relative overflow-hidden">
 
                         {/* Header */}
                         <div className="flex justify-between items-center mb-6">
                             <h2 className="text-xl font-bold text-white flex items-center gap-2">
-                                <ScanLine className="text-fuchsia-500" />
+                                <ScanLine className="text-blue-500" />
                                 Configurar Google Auth
                             </h2>
                             <button onClick={() => setShow2FAModal(false)} className="text-slate-400 hover:text-white"><X size={24} /></button>
@@ -3542,7 +3777,7 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                         {/* Content */}
                         <div className="space-y-6 text-center">
 
-                            <div className="bg-white p-4 rounded-xl inline-block mx-auto shadow-lg shadow-fuchsia-500/20">
+                            <div className="bg-white p-4 rounded-xl inline-block mx-auto shadow-lg shadow-blue-500/20">
                                 {qrCodeUrl && <img src={qrCodeUrl} alt="2FA QR Code" className="w-48 h-48 mix-blend-multiply" />}
                             </div>
 
@@ -3554,13 +3789,13 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
 
                             <div className="bg-slate-950/50 p-3 rounded-lg border border-white/5">
                                 <p className="text-[10px] text-slate-500 font-mono uppercase tracking-widest mb-1">Tu Clave Secreta (Backup)</p>
-                                <code className="text-fuchsia-400 font-mono text-xs select-all">{newSecret}</code>
+                                <code className="text-blue-400 font-mono text-xs select-all">{newSecret}</code>
                             </div>
 
                             <div className="space-y-3 pt-2">
                                 <input
                                     type="text"
-                                    className="w-full bg-black/40 border border-fuchsia-500/30 rounded-lg p-3 text-center text-white font-mono text-xl tracking-[0.5em] focus:border-fuchsia-500 focus:ring-0 outline-none placeholder:text-white/10"
+                                    className="w-full bg-black/40 border border-blue-500/30 rounded-lg p-3 text-center text-white font-mono text-xl tracking-[0.5em] focus:border-fuchsia-500 focus:ring-0 outline-none placeholder:text-white/10"
                                     placeholder="000000"
                                     maxLength={6}
                                     value={verifCode}
@@ -3568,12 +3803,158 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
                                 />
                                 <button
                                     onClick={handleConfirm2FA}
-                                    className="w-full py-3 bg-fuchsia-600 hover:bg-fuchsia-500 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-fuchsia-500/25 active:scale-95"
+                                    className="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-blue-500/25 active:scale-95"
                                 >
                                     VERIFICAR Y ACTIVAR
                                 </button>
                             </div>
 
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* ══════════ MODAL GESTIÓN DE GRUPOS ══════════ */}
+            {showGroupsModal && (
+                <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm" onClick={() => setShowGroupsModal(false)}>
+                    <div
+                        className="w-full max-w-md bg-[#0f0f0f] border border-[#FF6B00]/20 rounded-2xl shadow-2xl shadow-black/60 overflow-hidden"
+                        onClick={e => e.stopPropagation()}
+                        style={{ boxShadow: '0 0 60px rgba(255,107,0,0.10), 0 24px 64px rgba(0,0,0,0.8)' }}
+                    >
+                        {/* Header del Modal */}
+                        <div className="flex items-center justify-between px-6 py-4 border-b border-[#FF6B00]/10 bg-[#080808]">
+                            <div>
+                                <h2 className="text-white font-black text-sm uppercase tracking-widest flex items-center gap-2">
+                                    <span className="w-6 h-6 rounded-lg bg-[#FF6B00]/15 border border-[#FF6B00]/30 flex items-center justify-center">
+                                        <Users size={12} className="text-[#FF6B00]" />
+                                    </span>
+                                    Gestión de Grupos
+                                </h2>
+                                <p className="text-[10px] text-slate-500 mt-0.5 font-bold uppercase tracking-widest">Agrega, edita o elimina grupos operativos</p>
+                            </div>
+                            <button onClick={() => setShowGroupsModal(false)} className="p-1.5 rounded-lg hover:bg-white/5 text-slate-500 hover:text-white transition-all">
+                                <X size={16} />
+                            </button>
+                        </div>
+
+                        <div className="p-6 space-y-5">
+
+                            {/* LISTA DE GRUPOS ACTUALES */}
+                            <div className="space-y-2">
+                                <p className="text-[9px] text-slate-500 font-black uppercase tracking-[0.2em] mb-3">Grupos Activos ({groups.length})</p>
+                                {groups.map((g) => (
+                                    <div
+                                        key={g.id}
+                                        className="flex items-center justify-between p-3 rounded-xl border transition-all"
+                                        style={{ background: `${g.color}08`, borderColor: `${g.color}25` }}
+                                    >
+                                        <div className="flex items-center gap-3">
+                                            {/* Color dot */}
+                                            <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: `${g.color}20`, border: `1px solid ${g.color}40` }}>
+                                                {g.icon === 'ship' ? <Ship size={14} style={{ color: g.color }} />
+                                                    : g.icon === 'mountain' ? <Mountain size={14} style={{ color: g.color }} />
+                                                        : <Users size={14} style={{ color: g.color }} />}
+                                            </div>
+                                            <div>
+                                                <span className="text-white font-bold text-sm">{g.name}</span>
+                                                <div className="flex items-center gap-1.5 mt-0.5">
+                                                    <div className="w-2 h-2 rounded-full" style={{ background: g.color, boxShadow: `0 0 6px ${g.color}` }}></div>
+                                                    <span className="text-[9px] font-mono text-slate-500">{g.color}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <button
+                                                onClick={() => {
+                                                    setEditingGroupId(g.id);
+                                                    setGroupForm({ id: g.id, name: g.name, color: g.color, icon: g.icon });
+                                                }}
+                                                className="p-2 rounded-lg hover:bg-[#FF6B00]/10 text-[#6B5F4A] hover:text-[#FF6B00] transition-all border border-transparent hover:border-[#FF6B00]/20"
+                                                title="Editar"
+                                            ><Edit2 size={13} /></button>
+                                            <button
+                                                onClick={() => handleDeleteGroup(g.id)}
+                                                className="p-2 rounded-lg hover:bg-red-500/10 text-slate-500 hover:text-red-400 transition-all border border-transparent hover:border-red-500/20"
+                                                title="Eliminar grupo"
+                                            ><Trash2 size={13} /></button>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+
+                            {/* FORMULARIO AGREGAR / EDITAR */}
+                            <div className="border-t border-white/5 pt-5 space-y-3">
+                                <p className="text-[9px] text-[#FF6B00] font-black uppercase tracking-[0.2em]">
+                                    {editingGroupId ? '✏️ Editando Grupo' : '+ Nuevo Grupo'}
+                                </p>
+
+                                {/* Nombre */}
+                                <input
+                                    type="text"
+                                    placeholder="Nombre del grupo (ej: Casino, Sala VIP...)"
+                                    value={groupForm.name}
+                                    onChange={e => setGroupForm(prev => ({ ...prev, name: e.target.value }))}
+                                    className="w-full bg-[#050505] border border-[#FF6B00]/15 rounded-xl px-4 py-2.5 text-sm text-white placeholder:text-[#4a3f2f] focus:border-[#FF6B00]/50 outline-none transition-all"
+                                />
+
+                                {/* Color + Ícono */}
+                                <div className="grid grid-cols-2 gap-3">
+                                    <div className="space-y-1.5">
+                                        <p className="text-[9px] text-slate-500 font-bold uppercase tracking-wider">Color Acento</p>
+                                        <div className="flex items-center gap-2 bg-[#050505] border border-[#FF6B00]/15 rounded-xl px-3 py-2">
+                                            <input
+                                                type="color"
+                                                value={groupForm.color}
+                                                onChange={e => setGroupForm(prev => ({ ...prev, color: e.target.value }))}
+                                                className="w-6 h-6 rounded cursor-pointer border-0 bg-transparent"
+                                            />
+                                            <span className="text-xs font-mono text-slate-400">{groupForm.color}</span>
+                                        </div>
+                                    </div>
+                                    <div className="space-y-1.5">
+                                        <p className="text-[9px] text-slate-500 font-bold uppercase tracking-wider">Ícono</p>
+                                        <select
+                                            value={groupForm.icon}
+                                            onChange={e => setGroupForm(prev => ({ ...prev, icon: e.target.value }))}
+                                            className="w-full bg-[#050505] border border-[#FF6B00]/15 rounded-xl px-3 py-2.5 text-sm text-white focus:border-[#FF6B00]/50 outline-none"
+                                        >
+                                            <option value="users">👥 Usuarios</option>
+                                            <option value="ship">🚢 Barco</option>
+                                            <option value="mountain">⛰️ Montaña</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                {/* Preview */}
+                                {groupForm.name && (
+                                    <div className="flex items-center gap-2 px-3 py-2 rounded-xl" style={{ background: `${groupForm.color}12`, border: `1px solid ${groupForm.color}30` }}>
+                                        <span className="text-[9px] text-slate-500 font-bold uppercase tracking-wider">Preview:</span>
+                                        <span className="text-xs font-black uppercase px-2 py-1 rounded-lg" style={{ color: groupForm.color, background: `${groupForm.color}20` }}>
+                                            {groupForm.name}
+                                        </span>
+                                    </div>
+                                )}
+
+                                {/* Botones */}
+                                <div className="flex gap-2 pt-1">
+                                    {editingGroupId && (
+                                        <button
+                                            onClick={() => { setEditingGroupId(null); setGroupForm({ id: '', name: '', color: '#FF6B00', icon: 'users' }); }}
+                                            className="flex-1 py-2.5 rounded-xl text-[10px] font-black uppercase border border-white/10 text-slate-400 hover:text-white hover:border-white/20 transition-all"
+                                        >Cancelar</button>
+                                    )}
+                                    <button
+                                        onClick={handleSaveGroup}
+                                        disabled={!groupForm.name.trim()}
+                                        className="flex-1 py-2.5 rounded-xl text-[10px] font-black uppercase transition-all flex items-center justify-center gap-1.5 disabled:opacity-40 disabled:cursor-not-allowed"
+                                        style={{ background: 'linear-gradient(135deg, #FF6B00, #FFB800)', boxShadow: '0 4px 20px rgba(255,107,0,0.4)', color: '#000' }}
+                                    >
+                                        <Plus size={12} />
+                                        {editingGroupId ? 'Guardar Cambios' : 'Crear Grupo'}
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -3585,3 +3966,4 @@ const Dashboard = ({ role = 'guest', userEmail, onLogout, onNavigateToRestriccio
 };
 
 export default Dashboard;
+

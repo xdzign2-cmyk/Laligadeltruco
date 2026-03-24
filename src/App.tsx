@@ -4,7 +4,7 @@ import Dashboard from './Dashboard';
 import MobileOperative from './MobileOperative';
 import PublicityDashboard from './PublicityDashboard';
 import RestriccionModule from './RestriccionModule';
-import { User, Key, Eye, EyeOff, RefreshCw, ShieldAlert } from 'lucide-react';
+import { User, Key, Eye, EyeOff, RefreshCw, ShieldAlert, TrendingUp } from 'lucide-react';
 import { supabase } from './lib/supabase';
 
 function App() {
@@ -219,176 +219,289 @@ function App() {
     setError(''); // Clear error on logout
   };
 
+  // Componente de partículas doradas con Canvas y efecto de Movimiento Líquido y Estrellas Fugaces
+  const GoldNetwork = () => {
+    const canvasRef = React.useRef<HTMLCanvasElement>(null);
+
+    useEffect(() => {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d', { alpha: true });
+      if (!ctx) return;
+
+      let particles: any[] = [];
+      let shootingStars: any[] = [];
+      const particleCount = 55;
+      const connectionDistance = 170;
+      let time = 0;
+
+      const resize = () => {
+        if (!canvas) return;
+        const dpr = window.devicePixelRatio || 1;
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        canvas.style.width = `${w}px`;
+        canvas.style.height = `${h}px`;
+        ctx.scale(dpr, dpr);
+      };
+
+      class Particle {
+        x: number; y: number; vx: number; vy: number; baseSize: number; z: number; phase: number;
+        constructor() {
+          this.x = Math.random() * window.innerWidth;
+          this.y = Math.random() * window.innerHeight;
+          this.z = Math.random() * 1.5;
+          this.phase = Math.random() * Math.PI * 2;
+          const angle = Math.random() * Math.PI * 2;
+          const speed = (Math.random() * 0.2 + 0.1) * (this.z + 0.5);
+          this.vx = Math.cos(angle) * speed;
+          this.vy = Math.sin(angle) * speed;
+          this.baseSize = (this.z + 0.5) * 1.5;
+        }
+        update(time: number) {
+          // Movimiento base + ligero balanceo líquido
+          this.x += this.vx + Math.sin(time * 0.001 + this.phase) * 0.1;
+          this.y += this.vy + Math.cos(time * 0.001 + this.phase) * 0.1;
+          
+          if (this.x < -100) this.x = window.innerWidth + 100;
+          if (this.x > window.innerWidth + 100) this.x = -100;
+          if (this.y < -100) this.y = window.innerHeight + 100;
+          if (this.y > window.innerHeight + 100) this.y = -100;
+        }
+        draw(time: number) {
+          if (!ctx) return;
+          // Pulso de tamaño
+          const size = this.baseSize + Math.sin(time * 0.003 + this.phase) * 0.5;
+          // Color dinámico (cambio sutil entre dorados)
+          const goldHue = 40 + Math.sin(time * 0.001) * 10;
+          
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, size, 0, Math.PI * 2);
+          ctx.fillStyle = `hsla(${goldHue}, 100%, 50%, ${this.z * 0.4 + 0.2})`;
+          
+          // Brillo sutil (sin pixelar gracias al DPR)
+          ctx.shadowBlur = 15;
+          ctx.shadowColor = `hsla(${goldHue}, 100%, 50%, 0.5)`;
+          ctx.fill();
+        }
+      }
+
+      class ShootingStar {
+        x: number; y: number; vx: number; vy: number; len: number; life: number;
+        constructor() {
+          this.x = Math.random() * window.innerWidth;
+          this.y = Math.random() * (window.innerHeight / 2);
+          this.vx = 8 + Math.random() * 8;
+          this.vy = 4 + Math.random() * 4;
+          this.len = 50 + Math.random() * 100;
+          this.life = 1;
+        }
+        update() {
+          this.x += this.vx;
+          this.y += this.vy;
+          this.life -= 0.015;
+        }
+        draw() {
+          if (!ctx) return;
+          const grad = ctx.createLinearGradient(this.x, this.y, this.x - this.vx * 5, this.y - this.vy * 5);
+          grad.addColorStop(0, `rgba(255, 200, 0, ${this.life})`);
+          grad.addColorStop(1, 'rgba(255, 100, 0, 0)');
+          ctx.beginPath();
+          ctx.moveTo(this.x, this.y);
+          ctx.lineTo(this.x - this.vx * 3, this.y - this.vy * 3);
+          ctx.strokeStyle = grad;
+          ctx.lineWidth = 2;
+          ctx.lineCap = 'round';
+          ctx.stroke();
+        }
+      }
+
+      for (let i = 0; i < particleCount; i++) particles.push(new Particle());
+
+      const animate = () => {
+        if (!ctx || !canvas) return;
+        time += 16;
+        ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+        // Generar estrella fugaz ocasional
+        if (Math.random() < 0.005) shootingStars.push(new ShootingStar());
+
+        particles.forEach((p, i) => {
+          p.update(time);
+          p.draw(time);
+          for (let j = i + 1; j < particles.length; j++) {
+            const p2 = particles[j];
+            const dx = p.x - p2.x;
+            const dy = p.y - p2.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            
+            if (dist < connectionDistance && Math.abs(p.z - p2.z) < 0.5) {
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.strokeStyle = `rgba(255, 184, 0, ${(1 - dist / connectionDistance) * 0.15})`;
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
+          }
+        });
+
+        shootingStars = shootingStars.filter(s => {
+          s.update();
+          s.draw();
+          return s.life > 0;
+        });
+
+        requestAnimationFrame(animate);
+      };
+
+      window.addEventListener('resize', resize);
+      resize();
+      animate();
+      return () => window.removeEventListener('resize', resize);
+    }, []);
+
+    return <canvas ref={canvasRef} className="absolute inset-0 z-0 bg-black" />;
+  };
+
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4 bg-black relative overflow-hidden font-sans selection:bg-cyan-500/30">
+      <div className="min-h-screen flex items-center justify-center p-4 bg-black login-premium-container font-sans selection:bg-[#FF6B00]/30 selection:text-white overflow-hidden">
+        
+        <GoldNetwork />
+        
+        {/* Glow de fondo para la tarjeta */}
+        <div className="absolute w-[600px] h-[600px] bg-[#FF6B00]/5 rounded-full blur-[100px] z-0 animate-pulse-slow"></div>
 
-        {/* --- ULTRA-FUTURISTIC BACKGROUND (AURORA VOID) --- */}
-        <div className="absolute inset-0 z-0">
-          {/* Deep Space Base */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#1a1b26] via-[#000000] to-[#000000]"></div>
-
-          {/* Moving Auroras (Animated Blobs) */}
-          <div className="absolute top-[-20%] left-[-10%] w-[70vw] h-[70vw] bg-indigo-600/20 rounded-full blur-[100px] animate-pulse-slow mix-blend-screen"></div>
-          <div className="absolute bottom-[-20%] right-[-10%] w-[70vw] h-[70vw] bg-cyan-600/10 rounded-full blur-[100px] animate-pulse-slow delay-2000 mix-blend-screen"></div>
-          <div className="absolute top-[40%] left-[40%] w-[50vw] h-[50vw] bg-purple-600/10 rounded-full blur-[120px] animate-pulse-slow delay-4000 mix-blend-screen"></div>
-
-          {/* Stars / Dust Particles */}
-          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_100%)]"></div>
-        </div>
-
-        {/* --- REPLICA GLASS LOGIN CARD --- */}
-        <div className="relative w-full max-w-[420px] z-10 perspective-1000">
-
-          {/* Logo Section */}
-          <div className="flex justify-center mb-10">
-            <img
-              src="/logo.png"
-              alt="FMX Logo"
-              className="w-full max-w-[350px] md:max-w-[480px] h-auto drop-shadow-[0_0_30px_rgba(255,255,255,0.3)] animate-pulse-slow"
-            />
+        {/* --- GLASSMORPHISM LOGIN CARD --- */}
+        <div className="relative z-10 w-full max-w-[420px] login-glass-card p-8 md:p-10 flex flex-col items-center animate-in fade-in slide-in-from-bottom-24 duration-1000 ease-out border border-white/5 shadow-[0_50px_100px_rgba(0,0,0,1)]">
+          
+          <div className="flex justify-center mb-6 hover:scale-105 transition-transform duration-700 animate-in zoom-in-50 duration-1000">
+               <img src="/logo.png" alt="La Liga Logo" className="w-52 h-auto drop-shadow-[0_0_35px_rgba(255,107,0,0.4)]" />
           </div>
 
-          <div className="bg-white/5 backdrop-blur-[20px] border-t border-l border-white/20 border-b border-r border-white/10 p-10 rounded-[30px] shadow-[0_20px_40px_rgba(0,0,0,0.6)] relative overflow-hidden ring-1 ring-white/5">
+          <div className="flex gap-8 mb-10">
+              <div className="sign-in-tab text-[38px]">Entrar</div>
+          </div>
 
-            {/* Header */}
-            <div className="text-center mb-10 relative">
-              <h2 className="text-3xl font-bold text-white tracking-[0.3em] mb-6 drop-shadow-md">LOGIN</h2>
-              <div className="h-[1px] w-3/4 mx-auto bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
-            </div>
+          {show2FA ? (
+               <form onSubmit={handleVerify2FA} className="w-full space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300 fill-mode-both">
+               <div className="text-center">
+                 <p className="text-white/60 text-sm tracking-widest uppercase">Verificación de Seguridad</p>
+                 <p className="text-[10px] text-orange-500 mt-2 font-mono">2FA / PIN REQUERIDO</p>
+               </div>
+               
+               <div className="login-input-group">
+                   <input
+                     autoFocus
+                     type={showPIN ? "text" : "password"}
+                     maxLength={6}
+                     className="login-input text-center text-3xl tracking-[0.4em] font-mono"
+                     placeholder="000000"
+                     value={twoFACode}
+                     onChange={(e) => setTwoFACode(e.target.value.replace(/[^0-9]/g, ''))}
+                   />
+                   <button
+                     type="button"
+                     onClick={() => setShowPIN(!showPIN)}
+                     className="absolute right-5 top-1/2 -translate-y-1/2 text-white/30 hover:text-white transition-colors outline-none"
+                   >
+                     {showPIN ? <EyeOff size={20} /> : <Eye size={20} />}
+                   </button>
+               </div>
 
-            {show2FA ? (
-              <form onSubmit={handleVerify2FA} className="space-y-6">
-                <div className="text-center text-white mb-4">
-                  <h3 className="font-bold text-lg mb-2">VERIFICACIÓN DE SEGURIDAD</h3>
-                  <p className="text-xs text-white/60">
-                    Ingresa tu PIN Maestro o Código de Google Authenticator
-                  </p>
-                </div>
+               <div className={`overflow-hidden transition-all duration-300 ${error ? 'max-h-20 opacity-100 animate-[shake_0.4s_ease-in-out]' : 'max-h-0 opacity-0'}`}>
+                 <div className="text-red-400 text-[11px] text-center font-bold bg-red-950/40 py-3 px-6 rounded-2xl border border-red-500/20">
+                   {error}
+                 </div>
+               </div>
 
-                <div className="relative group">
-                  <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none z-10">
-                    <ShieldAlert className="text-fuchsia-500 animate-pulse" size={20} />
+               <div className="flex gap-4">
+                 <button
+                   type="button"
+                   onClick={() => { setShow2FA(false); setTempUser(null); setTwoFACode(''); setError(''); }}
+                   className="w-1/3 bg-white/5 hover:bg-white/10 text-white/60 font-black py-4 rounded-2xl transition-all text-[11px] tracking-widest border border-white/5"
+                 >
+                   VOLVER
+                 </button>
+                 <button
+                   disabled={loading || twoFACode.length < 4}
+                   className="w-2/3 bg-gradient-to-r from-[#FF6B00] to-[#FFB800] text-black font-black py-4 rounded-2xl transition-all tracking-[0.1em] text-[11px] flex justify-center items-center gap-2 shadow-[0_10px_30px_rgba(255,107,0,0.3)] hover:brightness-110 active:scale-95 disabled:opacity-50 gold-glow-btn"
+                 >
+                   {loading ? <RefreshCw className="animate-spin" size={16} /> : 'VERIFICAR'}
+                 </button>
+               </div>
+             </form>
+          ) : (
+            <form onSubmit={handleLogin} className="w-full space-y-7">
+              
+              <div className="space-y-5">
+                  <div className="login-input-group animate-in slide-in-from-left-8 fade-in duration-700 delay-500 fill-mode-both">
+                    <label className="text-[11px] text-white/40 ml-1 mb-2 block font-bold tracking-[0.2em] uppercase">Usuario o Email</label>
+                    <input
+                      type="text"
+                      className="login-input"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                      placeholder="Nombre de usuario"
+                    />
                   </div>
-                  <input
-                    autoFocus
-                    type={showPIN ? "text" : "password"}
-                    maxLength={6}
-                    className="w-full bg-black/40 border-2 border-fuchsia-500/50 rounded-xl py-4 pl-14 pr-12 text-white placeholder:text-white/20 text-2xl text-center tracking-[0.5em] focus:ring-0 focus:bg-black/60 transition-all font-mono font-bold shadow-[0_0_20px_rgba(232,121,249,0.2)]"
-                    placeholder="000000"
-                    value={twoFACode}
-                    onChange={(e) => setTwoFACode(e.target.value.replace(/[^0-9]/g, ''))}
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPIN(!showPIN)}
-                    className="absolute inset-y-0 right-0 pr-4 flex items-center text-fuchsia-500 hover:text-white transition-colors cursor-pointer z-20 outline-none"
-                    title={showPIN ? "Ocultar PIN" : "Mostrar PIN"}
-                  >
-                    {showPIN ? <EyeOff size={18} /> : <Eye size={18} />}
-                  </button>
-                </div>
 
-                {twoFAMethod === 'pin' && (
-                  <div className="text-center mt-2">
-                    <p className="text-[10px] text-white/30 hover:text-white/50 transition-colors cursor-help">
-                      ¿Quieres usar Google Authenticator? Contacta al Soporte.
-                    </p>
+                  <div className="login-input-group animate-in slide-in-from-left-8 fade-in duration-700 delay-700 fill-mode-both">
+                    <label className="text-[11px] text-white/40 ml-1 mb-2 block font-bold tracking-[0.2em] uppercase">Contraseña</label>
+                    <div className="relative">
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        className="login-input pr-14"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="••••••••••••"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-5 top-1/2 -translate-y-1/2 text-white/20 hover:text-white transition-colors cursor-pointer outline-none"
+                      >
+                        {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                      </button>
+                    </div>
                   </div>
-                )}
+              </div>
 
-                {/* Allow switching if both exist (optional complexity, for now stick to one preferred) */}
+              <div className="flex justify-between items-center text-[11px] text-white/40 px-1 animate-in fade-in duration-1000 delay-1000 fill-mode-both">
+                <label className="flex items-center gap-3 cursor-pointer hover:text-white/60 transition-colors py-1 group">
+                  <input type="checkbox" className="w-5 h-5 rounded-lg border-white/10 bg-white/5 accent-[#FF6B00] transition-all cursor-pointer group-hover:scale-110" />
+                  <span className="font-medium tracking-wide">Recordarme</span>
+                </label>
+                <button type="button" className="hover:text-white transition-colors font-bold uppercase tracking-widest text-[#FFB800]/60">
+                  ¿Olvidaste tu clave?
+                </button>
+              </div>
 
-                {/* Error Message */}
-                <div className={`overflow-hidden transition-all duration-300 ${error ? 'max-h-20 opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'}`}>
-                  <div className="text-fuchsia-500 text-xs text-center font-bold bg-black/30 p-3 rounded-lg border border-fuchsia-900/40 shadow-lg">
-                    <span className="inline-block w-2 h-2 bg-fuchsia-700 rounded-full mr-2 animate-pulse"></span>
-                    {error}
-                  </div>
+              <div className={`overflow-hidden transition-all duration-300 ${error ? 'max-h-20 opacity-100 animate-[shake_0.4s_ease-in-out]' : 'max-h-0 opacity-0'}`}>
+                <div className="text-red-400 text-[11px] text-center font-bold bg-red-950/40 py-3 px-6 rounded-2xl border border-red-500/20">
+                  {error}
                 </div>
+              </div>
 
-                <div className="flex gap-2">
-                  <button
-                    type="button"
-                    onClick={() => { setShow2FA(false); setTempUser(null); setTwoFACode(''); setError(''); }}
-                    className="w-1/3 bg-slate-800 hover:bg-slate-700 text-white font-bold py-4 rounded-xl transition-all text-xs"
-                  >
-                    ATRÁS
-                  </button>
-                  <button
-                    disabled={loading || twoFACode.length < 4}
-                    className="w-2/3 bg-gradient-to-r from-[#be185d] to-[#701a75] hover:from-[#db2777] hover:to-[#86198f] text-white font-bold py-4 rounded-xl shadow-[0_10px_25px_rgba(190,24,93,0.3)] hover:shadow-[0_15px_35px_rgba(190,24,93,0.5)] transition-all transform hover:-translate-y-0.5 active:scale-95 tracking-[0.2em] text-sm flex items-center justify-center gap-2"
-                  >
-                    {loading ? <RefreshCw className="animate-spin" size={18} /> : 'VERIFICAR'}
-                  </button>
-                </div>
-              </form>
-            ) : (
-              <form onSubmit={handleLogin} className="space-y-6">
-
-                {/* Input User */}
-                <div className="relative group">
-                  <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none z-10">
-                    <User className="text-black group-focus-within:text-black transition-colors" size={20} />
-                  </div>
-                  <input
-                    type="text"
-                    className="w-full bg-black/40 border-none rounded-xl py-4 pl-14 pr-4 text-white placeholder:text-white/40 text-[15px] focus:ring-0 focus:bg-black/60 transition-all font-bold tracking-wide shadow-inner"
-                    placeholder="USUARIO"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                  />
-                </div>
-
-                {/* Input Password */}
-                <div className="relative group">
-                  <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none z-10">
-                    <Key className="text-black group-focus-within:text-black transition-colors" size={20} />
-                  </div>
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    className="w-full bg-black/40 border-none rounded-xl py-4 pl-14 pr-12 text-white placeholder:text-white/40 text-[15px] focus:ring-0 focus:bg-black/60 transition-all font-bold tracking-wide shadow-inner"
-                    placeholder="********"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-500 hover:text-gray-300 transition-colors cursor-pointer z-20 outline-none"
-                  >
-                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                  </button>
-                </div>
-
-                {/* Options Row */}
-                <div className="flex justify-start items-center text-[12px] text-white/70 px-2 mt-2">
-                  <label className="flex items-center gap-2 cursor-pointer hover:text-white transition-colors select-none">
-                    <input type="checkbox" className="rounded bg-black/40 border-white/10 text-fuchsia-700 focus:ring-0 focus:ring-offset-0 w-4 h-4 checked:bg-fuchsia-800" />
-                    <span className="font-bold">Recordar</span>
-                  </label>
-                </div>
-
-                {/* Error Message */}
-                <div className={`overflow-hidden transition-all duration-300 ${error ? 'max-h-20 opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'}`}>
-                  <div className="text-fuchsia-500 text-xs text-center font-bold bg-black/30 p-3 rounded-lg border border-fuchsia-900/40 shadow-lg">
-                    <span className="inline-block w-2 h-2 bg-fuchsia-700 rounded-full mr-2 animate-pulse"></span>
-                    {error}
-                  </div>
-                </div>
-
-                {/* Login Button */}
+              <div className="pt-4 flex flex-col gap-8 items-center animate-in slide-in-from-bottom-8 fade-in duration-700 delay-[1.2s] fill-mode-both">
                 <button
                   disabled={loading}
-                  className="w-full bg-gradient-to-r from-[#be185d] to-[#701a75] hover:from-[#db2777] hover:to-[#86198f] text-white font-bold py-4 rounded-xl shadow-[0_10px_25px_rgba(190,24,93,0.3)] hover:shadow-[0_15px_35px_rgba(190,24,93,0.5)] transition-all transform hover:-translate-y-0.5 active:scale-95 tracking-[0.2em] text-sm mt-6 flex items-center justify-center gap-2"
+                  className="w-full bg-[#FF6B00] hover:bg-[#FF8A00] text-black font-black py-5 rounded-3xl transition-all tracking-[0.3em] text-[12px] flex justify-center items-center gap-2 shadow-[0_20px_50px_rgba(255,107,0,0.4)] active:scale-95 disabled:opacity-50 gold-glow-btn group"
                 >
-                  {loading ? <RefreshCw className="animate-spin" size={18} /> : 'ACCEDER'}
+                  {loading ? <RefreshCw className="animate-spin" size={20} /> : (
+                    <>
+                      <span>ENTRAR AL SISTEMA</span>
+                      <TrendingUp className="opacity-0 group-hover:opacity-100 transition-opacity translate-x-2" size={18} />
+                    </>
+                  )}
                 </button>
+              </div>
 
-              </form>
-            )}
-          </div>
+            </form>
+          )}
         </div>
       </div>
     );

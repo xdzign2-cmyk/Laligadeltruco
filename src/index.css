@@ -6,4 +6,698 @@
     .animate-pulse-slow {
         animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
     }
+    
+    .animate-float {
+        animation: float 12s ease-in-out infinite;
+    }
+    .animate-float-delayed {
+        animation: float 15s ease-in-out 3s infinite;
+    }
+    .animate-float-slow {
+        animation: float 18s ease-in-out 1s infinite;
+    }
+    .animate-float-reverse {
+        animation: float-reverse 14s ease-in-out 2s infinite;
+    }
+
+    .bg-sphere {
+        background: radial-gradient(circle at 30% 30%, #4b5563 0%, #171923 50%, #000000 100%);
+        box-shadow: 0 30px 60px rgba(0,0,0,0.8), inset 0 2px 20px rgba(255,255,255,0.15);
+        border-radius: 50%;
+    }
 }
+
+@keyframes float {
+  0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+  33% { transform: translateY(-40px) translateX(30px) rotate(10deg); }
+  66% { transform: translateY(20px) translateX(-30px) rotate(-5deg); }
+  100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+}
+
+@keyframes float-reverse {
+  0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+  33% { transform: translateY(30px) translateX(-40px) rotate(-10deg); }
+  66% { transform: translateY(-20px) translateX(20px) rotate(5deg); }
+  100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+}
+
+@keyframes float-slow {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  50%  { transform: translate(30px, -20px) rotate(3deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes coin-spin {
+  0%   { transform: rotateY(0deg) scale(1); }
+  50%  { transform: rotateY(180deg) scale(1.1); }
+  100% { transform: rotateY(360deg) scale(1); }
+}
+
+/* ============================================================
+   FUEGO OSCURO — "Dark Fire" Premium UI  (Antigravity v3)
+   Fondo: Negro profundo #080808
+   Acento primario: Naranja neón #FF6B00
+   Acento secundario: Dorado #FFB800
+   Sin azul. Puro fuego.
+   ============================================================ */
+
+/* ── KEYFRAMES ── */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+@keyframes fire-glow {
+  0%, 100% { opacity: 0.45; }
+  50%       { opacity: 1; }
+}
+@keyframes number-flash {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.88; }
+}
+@keyframes login-shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+@keyframes pulse-gold {
+    0%, 100% { box-shadow: 0 0 10px rgba(255, 184, 0, 0.2); }
+    50% { box-shadow: 0 0 30px rgba(255, 184, 0, 0.5); }
+}
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+@keyframes ember-pulse {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(255,107,0,0.2), 0 0 30px rgba(255,107,0,0.08);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255,107,0,0.4), 0 0 60px rgba(255,107,0,0.15);
+  }
+}
+
+/* ══════════════════════════════════════════
+   VARIABLES PRINCIPALES — Dark Fire Palette
+   ══════════════════════════════════════════ */
+.dashboard-crypto-ui {
+  --bg:          #080808;
+  --bg-card:     #0f0f0f;
+  --bg-elevated: #141414;
+  --bg-sunken:   #050505;
+  --fire:        #FF6B00;    /* naranja neón principal */
+  --gold:        #FFB800;    /* dorado secundario */
+  --gold-soft:   #E8960A;    /* dorado más cálido */
+  --ember:       #FF3D00;    /* rojo-naranja caliente */
+  --neon-gold:   #FFC740;    /* dorado brillante */
+  --text-hi:     #FFFFFF;
+  --text-mid:    #D4C5A9;    /* crema cálida */
+  --text-lo:     #6B5F4A;    /* marrón grisáceo */
+  --border:      rgba(255,107,0,0.12);
+  --border-gold: rgba(255,184,0,0.15);
+
+  background-color: var(--bg) !important;
+  color:            var(--text-hi) !important;
+  font-family:      'Inter', system-ui, sans-serif !important;
+}
+
+/* ── FONDO NEGRO CON GRID NARANJA SUTIL ── */
+.dashboard-crypto-ui::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,107,0,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,107,0,0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ══ TARJETAS / PANELES PRINCIPALES ══ */
+.dashboard-crypto-ui .bg-slate-900\/60,
+.dashboard-crypto-ui .bg-slate-900\/40,
+.dashboard-crypto-ui .bg-slate-900\/80,
+.dashboard-crypto-ui .bg-slate-900,
+.dashboard-crypto-ui .bg-slate-800,
+.dashboard-crypto-ui .bg-slate-950\/60,
+.dashboard-crypto-ui .backdrop-blur-xl,
+.dashboard-crypto-ui .backdrop-blur-2xl {
+  background:      var(--bg-card) !important;
+  backdrop-filter: blur(20px) !important;
+  border:          1px solid rgba(255,107,0,0.10) !important;
+  border-radius:   22px !important;
+  box-shadow:
+    0 2px 4px rgba(0,0,0,0.7),
+    0 10px 40px rgba(0,0,0,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.03) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Línea de fuego en la parte superior de cada card */
+.dashboard-crypto-ui .bg-slate-900\/60::before,
+.dashboard-crypto-ui .bg-slate-900\/40::before,
+.dashboard-crypto-ui .bg-slate-900\/80::before,
+.dashboard-crypto-ui .backdrop-blur-xl::before,
+.dashboard-crypto-ui .backdrop-blur-2xl::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 8%; right: 8%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--fire), var(--gold), var(--fire), transparent);
+  opacity: 0.5;
+  border-radius: 9999px;
+  animation: fire-glow 3s ease-in-out infinite;
+}
+
+/* Hover en tarjetas — resplandor naranja */
+.dashboard-crypto-ui .bg-slate-900\/60:hover,
+.dashboard-crypto-ui .backdrop-blur-xl:hover,
+.dashboard-crypto-ui .backdrop-blur-2xl:hover {
+  border-color: rgba(255,107,0,0.22) !important;
+  box-shadow:
+    0 2px 4px rgba(0,0,0,0.7),
+    0 16px 50px rgba(0,0,0,0.6),
+    0 0 25px rgba(255,107,0,0.07),
+    inset 0 1px 0 rgba(255,255,255,0.04) !important;
+  transition: all 0.3s ease !important;
+}
+
+/* ══ HEADER ══ */
+.dashboard-crypto-ui .border-b.border-indigo-500\/20,
+.dashboard-crypto-ui .py-4.border-b {
+  background:    linear-gradient(135deg, #0f0f0f 0%, #0a0a0a 100%) !important;
+  border-bottom: 1px solid rgba(255,107,0,0.08) !important;
+  border-radius: 22px !important;
+  box-shadow:
+    0 6px 28px rgba(0,0,0,0.7),
+    inset 0 1px 0 rgba(255,255,255,0.02) !important;
+}
+
+/* ══ INPUTS Y SELECTS ══ */
+.dashboard-crypto-ui input,
+.dashboard-crypto-ui select,
+.dashboard-crypto-ui textarea,
+.dashboard-crypto-ui .bg-slate-950,
+.dashboard-crypto-ui .bg-black\/20,
+.dashboard-crypto-ui .bg-black\/40 {
+  background:    rgba(5,5,5,0.9) !important;
+  border:        1px solid rgba(255,107,0,0.12) !important;
+  border-radius: 12px !important;
+  color:         var(--text-mid) !important;
+  box-shadow:    inset 0 2px 6px rgba(0,0,0,0.7) !important;
+  transition:    all 0.2s ease !important;
+}
+
+.dashboard-crypto-ui input:focus,
+.dashboard-crypto-ui select:focus {
+  border-color: var(--fire) !important;
+  box-shadow:   inset 0 2px 6px rgba(0,0,0,0.7), 0 0 0 3px rgba(255,107,0,0.18) !important;
+  color:        var(--text-hi) !important;
+  outline:      none !important;
+}
+
+/* ══ BOTONES CTA PRINCIPALES ══ */
+.dashboard-crypto-ui .bg-gradient-to-r.from-emerald-600,
+.dashboard-crypto-ui button.bg-gradient-to-r {
+  background:    linear-gradient(135deg, var(--fire) 0%, var(--gold) 100%) !important;
+  border:        none !important;
+  border-radius: 9999px !important;
+  color:         #000 !important;
+  font-weight:   900 !important;
+  letter-spacing: 0.06em !important;
+  box-shadow:
+    0 4px 18px rgba(255,107,0,0.45),
+    0 0 35px rgba(255,184,0,0.15),
+    inset 0 1px 0 rgba(255,255,255,0.2) !important;
+  transition: all 0.2s ease !important;
+}
+.dashboard-crypto-ui .bg-gradient-to-r.from-emerald-600:hover,
+.dashboard-crypto-ui button.bg-gradient-to-r:hover {
+  box-shadow:
+    0 6px 28px rgba(255,107,0,0.65),
+    0 0 55px rgba(255,184,0,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.25) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* ══ BOTONES ICONO (Header) ══ */
+.dashboard-crypto-ui button.p-2\.5 {
+  background:    var(--bg-elevated) !important;
+  border:        1px solid rgba(255,107,0,0.10) !important;
+  border-radius: 14px !important;
+  box-shadow:    0 2px 6px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.02) !important;
+  transition:    all 0.2s ease !important;
+}
+.dashboard-crypto-ui button.p-2\.5:hover {
+  border-color: rgba(255,107,0,0.35) !important;
+  box-shadow:   0 4px 14px rgba(255,107,0,0.18), 0 0 18px rgba(255,107,0,0.08) !important;
+  background:   #1a1008 !important;
+}
+.dashboard-crypto-ui button.p-2\.5:active {
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.8) !important;
+  transform:  translateY(1px) !important;
+}
+
+/* ══ SELECTOR DE GRUPO (tabs) ══ */
+.dashboard-crypto-ui .bg-slate-950\/60.p-1,
+.dashboard-crypto-ui .flex.bg-slate-950.rounded-lg,
+.dashboard-crypto-ui .flex.bg-black\/40 {
+  background:    rgba(5,5,5,0.9) !important;
+  border:        1px solid rgba(255,107,0,0.08) !important;
+  border-radius: 14px !important;
+  box-shadow:    inset 0 2px 6px rgba(0,0,0,0.7) !important;
+}
+
+/* Tab activo */
+.dashboard-crypto-ui .bg-indigo-600.text-white,
+.dashboard-crypto-ui .bg-yellow-500.text-slate-950 {
+  background:    linear-gradient(135deg, var(--fire), var(--gold)) !important;
+  color:         #000 !important;
+  border-radius: 10px !important;
+  box-shadow:    0 2px 10px rgba(255,107,0,0.4), inset 0 1px 0 rgba(255,255,255,0.15) !important;
+}
+
+/* ══ TEXTOS ══ */
+.dashboard-crypto-ui .text-slate-400,
+.dashboard-crypto-ui .text-slate-500,
+.dashboard-crypto-ui .text-slate-600 { color: var(--text-lo)  !important; }
+
+.dashboard-crypto-ui .text-slate-300,
+.dashboard-crypto-ui .text-slate-200,
+.dashboard-crypto-ui .text-slate-100 { color: var(--text-mid) !important; }
+
+.dashboard-crypto-ui .text-white,
+.dashboard-crypto-ui .font-black.text-white { color: var(--text-hi) !important; }
+
+/* KPI grandes */
+.dashboard-crypto-ui .text-xl.font-black,
+.dashboard-crypto-ui .text-3xl.font-black {
+  color: var(--text-hi) !important;
+  text-shadow: 0 0 20px rgba(255,255,255,0.08);
+}
+
+/* Títulos de sección — naranja neón */
+.dashboard-crypto-ui .text-indigo-400,
+.dashboard-crypto-ui .text-blue-400,
+.dashboard-crypto-ui .text-indigo-300 {
+  color: var(--fire) !important;
+  text-shadow: 0 0 10px rgba(255,107,0,0.4);
+}
+
+/* Emerald (éxito / totales) → Dorado */
+.dashboard-crypto-ui .text-emerald-400 {
+  color: var(--gold) !important;
+  text-shadow: 0 0 14px rgba(255,184,0,0.5);
+}
+.dashboard-crypto-ui .text-emerald-300 {
+  color: var(--neon-gold) !important;
+}
+
+/* Yellow → Dorado  */
+.dashboard-crypto-ui .text-yellow-400,
+.dashboard-crypto-ui .text-yellow-300 {
+  color: var(--gold) !important;
+  text-shadow: 0 0 12px rgba(255,184,0,0.5);
+}
+.dashboard-crypto-ui .text-yellow-500 { color: var(--gold) !important; }
+
+/* Amber → Dorado cálido */
+.dashboard-crypto-ui .text-amber-400,
+.dashboard-crypto-ui .text-amber-500 {
+  color: var(--gold-soft) !important;
+  text-shadow: 0 0 10px rgba(232,150,10,0.4);
+}
+
+/* Cyan → Naranja (Cueva) */
+.dashboard-crypto-ui .text-cyan-400,
+.dashboard-crypto-ui .text-cyan-300 {
+  color: var(--fire) !important;
+  text-shadow: 0 0 12px rgba(255,107,0,0.5);
+}
+
+/* Pink/Fuchsia/Rose → Dorado/Naranja */
+.dashboard-crypto-ui .text-pink-400,
+.dashboard-crypto-ui .text-pink-300,
+.dashboard-crypto-ui .text-fuchsia-400,
+.dashboard-crypto-ui .text-fuchsia-500 {
+  color: var(--fire) !important;
+  text-shadow: 0 0 10px rgba(255,107,0,0.4);
+}
+.dashboard-crypto-ui .text-rose-400,
+.dashboard-crypto-ui .text-rose-300,
+.dashboard-crypto-ui .text-rose-500 {
+  color: var(--gold) !important;
+  text-shadow: 0 0 10px rgba(255,184,0,0.4);
+}
+
+/* Purple → Dorado */
+.dashboard-crypto-ui .text-purple-400,
+.dashboard-crypto-ui .text-purple-300 {
+  color: var(--neon-gold) !important;
+}
+
+/* ══ GRÁFICAS RECHARTS ══ */
+.dashboard-crypto-ui .recharts-area-area {
+  fill: rgba(255,107,0,0.10) !important;
+}
+.dashboard-crypto-ui .recharts-area-curve {
+  stroke: var(--fire) !important;
+  stroke-width: 3px !important;
+}
+.dashboard-crypto-ui .recharts-cartesian-grid line {
+  stroke: rgba(255,107,0,0.06) !important;
+}
+.dashboard-crypto-ui .recharts-xAxis .recharts-cartesian-axis-tick-value,
+.dashboard-crypto-ui .recharts-yAxis .recharts-cartesian-axis-tick-value {
+  fill: var(--text-lo) !important;
+}
+
+/* ══ FONDOS COLOREADOS (Badges/Pills) ══ */
+.dashboard-crypto-ui .bg-indigo-500\/10  { background: rgba(255,107,0,0.07) !important; }
+.dashboard-crypto-ui .bg-blue-500\/10    { background: rgba(255,107,0,0.07) !important; }
+.dashboard-crypto-ui .bg-emerald-500\/10 { background: rgba(255,184,0,0.08) !important; }
+.dashboard-crypto-ui .bg-rose-500\/10,
+.dashboard-crypto-ui .bg-rose-500\/20    { background: rgba(255,184,0,0.08) !important; }
+.dashboard-crypto-ui .bg-pink-500\/10,
+.dashboard-crypto-ui .bg-pink-500\/20    { background: rgba(255,107,0,0.07) !important; }
+.dashboard-crypto-ui .bg-fuchsia-500\/10,
+.dashboard-crypto-ui .bg-fuchsia-500\/20 { background: rgba(255,107,0,0.07) !important; }
+.dashboard-crypto-ui .bg-yellow-500\/10,
+.dashboard-crypto-ui .bg-yellow-500\/20  { background: rgba(255,184,0,0.09) !important; }
+.dashboard-crypto-ui .bg-amber-500\/20   { background: rgba(232,150,10,0.09) !important; }
+.dashboard-crypto-ui .bg-purple-500\/20  { background: rgba(255,184,0,0.07) !important; }
+.dashboard-crypto-ui .bg-cyan-500\/10    { background: rgba(255,107,0,0.07) !important; }
+.dashboard-crypto-ui .bg-teal-500\/10    { background: rgba(255,184,0,0.07) !important; }
+.dashboard-crypto-ui .bg-slate-700      { background: #181818 !important; }
+.dashboard-crypto-ui .bg-black\/60      { background: rgba(5,5,5,0.9) !important; }
+
+/* ══ FONDOS SÓLIDOS — Botones Activos ══ */
+.dashboard-crypto-ui .bg-fuchsia-600,
+.dashboard-crypto-ui .bg-pink-600,
+.dashboard-crypto-ui .bg-rose-600,
+.dashboard-crypto-ui .bg-blue-600,
+.dashboard-crypto-ui .bg-indigo-600 {
+  background: linear-gradient(135deg, var(--fire), var(--gold)) !important;
+  color: #000 !important;
+}
+.dashboard-crypto-ui .bg-emerald-600 {
+  background: linear-gradient(135deg, var(--gold-soft), var(--fire)) !important;
+  border: 1px solid rgba(255,184,0,0.3) !important;
+  color: #000 !important;
+}
+.dashboard-crypto-ui .bg-yellow-400,
+.dashboard-crypto-ui .bg-yellow-500 {
+  background: var(--gold) !important;
+  color: #000 !important;
+}
+
+/* ══ BORDES — Todos en naranja/dorado ══ */
+.dashboard-crypto-ui .border-indigo-500\/20,
+.dashboard-crypto-ui .border-indigo-500\/30,
+.dashboard-crypto-ui .border-blue-500\/20,
+.dashboard-crypto-ui .border-blue-500\/30    { border-color: rgba(255,107,0,0.14) !important; }
+.dashboard-crypto-ui .border-emerald-500\/20,
+.dashboard-crypto-ui .border-emerald-500\/30 { border-color: rgba(255,184,0,0.18) !important; }
+.dashboard-crypto-ui .border-yellow-500\/20,
+.dashboard-crypto-ui .border-yellow-500\/30,
+.dashboard-crypto-ui .border-yellow-500\/50  { border-color: rgba(255,184,0,0.25) !important; }
+.dashboard-crypto-ui .border-amber-500\/30   { border-color: rgba(232,150,10,0.25) !important; }
+.dashboard-crypto-ui .border-pink-500\/20,
+.dashboard-crypto-ui .border-pink-500\/30,
+.dashboard-crypto-ui .border-pink-500\/50,
+.dashboard-crypto-ui .border-fuchsia-500\/20,
+.dashboard-crypto-ui .border-fuchsia-500\/30 { border-color: rgba(255,107,0,0.15) !important; }
+.dashboard-crypto-ui .border-rose-500\/20,
+.dashboard-crypto-ui .border-rose-500\/30    { border-color: rgba(255,184,0,0.18) !important; }
+.dashboard-crypto-ui .border-cyan-500\/20,
+.dashboard-crypto-ui .border-cyan-500\/30,
+.dashboard-crypto-ui .border-cyan-500\/40    { border-color: rgba(255,107,0,0.15) !important; }
+.dashboard-crypto-ui .border-purple-500\/20,
+.dashboard-crypto-ui .border-purple-500\/30  { border-color: rgba(255,184,0,0.15) !important; }
+.dashboard-crypto-ui .border-slate-700,
+.dashboard-crypto-ui .border-slate-700\/50,
+.dashboard-crypto-ui .border-slate-800,
+.dashboard-crypto-ui .border-slate-800\/50   { border-color: rgba(255,107,0,0.06) !important; }
+.dashboard-crypto-ui .border-b              { border-color: rgba(255,107,0,0.06) !important; }
+.dashboard-crypto-ui .border-t              { border-color: rgba(255,107,0,0.06) !important; }
+.dashboard-crypto-ui .divide-y > * + *      { border-color: rgba(255,107,0,0.05) !important; }
+
+/* ══ TABLAS ══ */
+.dashboard-crypto-ui table { border-collapse: collapse; }
+.dashboard-crypto-ui table td,
+.dashboard-crypto-ui table th {
+  border: none !important;
+  border-bottom: 1px solid rgba(255,107,0,0.05) !important;
+}
+.dashboard-crypto-ui thead tr,
+.dashboard-crypto-ui thead th {
+  background:     rgba(5,5,5,0.95) !important;
+  border-radius:  0 !important;
+  box-shadow:     none !important;
+  color:          var(--text-lo) !important;
+  letter-spacing: 0.08em;
+  font-size:      11px;
+}
+.dashboard-crypto-ui tfoot tr {
+  background:    rgba(5,5,5,0.95) !important;
+  box-shadow:    none !important;
+  border-radius: 0 !important;
+}
+.dashboard-crypto-ui tbody tr:hover td {
+  background: rgba(255,107,0,0.03) !important;
+}
+
+/* ══ TIPOGRAFÍA MONO ══ */
+.dashboard-crypto-ui .font-mono {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+}
+
+/* ══ KPI TOTAL grande ══ */
+.dashboard-crypto-ui .text-3xl.font-mono.font-bold.text-emerald-400,
+.dashboard-crypto-ui .text-3xl.font-mono.font-bold {
+  font-size: 2.4rem !important;
+  letter-spacing: -0.03em;
+  animation: number-flash 6s ease-in-out infinite;
+  color: var(--gold) !important;
+  text-shadow: 0 0 20px rgba(255,184,0,0.4);
+}
+
+/* ══ PROGRESS BARS ══ */
+.dashboard-crypto-ui .h-2.bg-slate-800\/50 {
+  background: rgba(5,5,5,0.9) !important;
+  border:     none !important;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.8) !important;
+}
+/* Barras de progreso rellenas */
+.dashboard-crypto-ui .bg-gradient-to-r.from-yellow-600 { background: linear-gradient(90deg, var(--fire), var(--gold)) !important; }
+.dashboard-crypto-ui .bg-gradient-to-r.from-slate-500  { background: linear-gradient(90deg, #444, #888) !important; }
+.dashboard-crypto-ui .bg-gradient-to-r.from-amber-800  { background: linear-gradient(90deg, #7c3a00, #c85a00) !important; }
+
+/* ══ SCROLLBAR FUEGO ══ */
+.dashboard-crypto-ui ::-webkit-scrollbar { width: 4px; height: 4px; }
+.dashboard-crypto-ui ::-webkit-scrollbar-track { background: transparent; }
+.dashboard-crypto-ui ::-webkit-scrollbar-thumb {
+  background:    linear-gradient(180deg, var(--fire), var(--gold));
+  border-radius: 9999px;
+}
+
+/* ══ FOCUS RING ══ */
+.dashboard-crypto-ui input:focus,
+.dashboard-crypto-ui select:focus,
+.dashboard-crypto-ui textarea:focus,
+.dashboard-crypto-ui *:focus-visible {
+  outline:    none !important;
+  box-shadow: 0 0 0 2px rgba(255,107,0,0.5) !important;
+}
+
+/* ══ ROUNDED ══ */
+.dashboard-crypto-ui .rounded-2xl { border-radius: 20px !important; }
+.dashboard-crypto-ui .rounded-xl  { border-radius: 16px !important; }
+.dashboard-crypto-ui .rounded-lg  { border-radius: 12px !important; }
+.dashboard-crypto-ui .rounded-md  { border-radius:  8px !important; }
+
+/* ══ BOTÓN LOGOUT ══ */
+.dashboard-crypto-ui .hover\:bg-red-900\/50:hover { background: rgba(100,10,10,0.5) !important; }
+.dashboard-crypto-ui .hover\:border-red-500\/30:hover { border-color: rgba(239,68,68,0.3) !important; }
+
+/* ══ BADGE PENDIENTE (Amber activo) ══ */
+.dashboard-crypto-ui .bg-amber-500\/10 { background: rgba(255,184,0,0.08) !important; }
+.dashboard-crypto-ui .text-amber-400 { color: var(--gold-soft) !important; }
+
+/* ══ SHADOW OVERRIDES (emerald/indigo/blue) ══ */
+.dashboard-crypto-ui .shadow-emerald-500\/20 { --tw-shadow-color: rgba(255,184,0,0.2) !important; }
+.dashboard-crypto-ui .shadow-indigo-500\/10  { --tw-shadow-color: rgba(255,107,0,0.1) !important; }
+.dashboard-crypto-ui .shadow-blue-500\/20    { --tw-shadow-color: rgba(255,107,0,0.2) !important; }
+.dashboard-crypto-ui .shadow-yellow-500\/20  { --tw-shadow-color: rgba(255,184,0,0.2) !important; }
+
+/* ══ CALENDAR DIAS CON PUBLICIDAD ══ */
+.dashboard-crypto-ui .bg-emerald-600.border-emerald-400 {
+  background:   linear-gradient(135deg, #c85a00, #FF6B00) !important;
+  border-color: rgba(255,184,0,0.4) !important;
+  box-shadow:   0 0 10px rgba(255,107,0,0.3) !important;
+}
+
+/* ══ SELECTOR PUBLICIDAD TABS ══ */
+.dashboard-crypto-ui .bg-emerald-500.text-black {
+  background: linear-gradient(135deg, var(--fire), var(--gold)) !important;
+  color: #000 !important;
+}
+
+
+/* ── FIN DEL TEMA DARK FIRE ── */
+
+/* ============================================================
+   PREMIUM LOGIN UI — "Gold & Glass"
+   ============================================================ */
+
+.login-premium-container {
+  background: #000000 !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.login-glass-card {
+  background: rgba(8, 8, 8, 0.95) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 107, 0, 0.15) !important;
+  border-radius: 32px !important;
+  box-shadow: 
+    0 30px 60px rgba(0,0,0,0.9),
+    inset 0 0 0 1px rgba(255,255,255,0.02) !important;
+}
+
+.login-input-group {
+    position: relative;
+    width: 100%;
+}
+
+.login-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 16px !important;
+    padding: 16px 20px !important;
+    color: white !important;
+    font-size: 15px !important;
+    transition: all 0.3s ease !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.login-input:focus {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border-color: rgba(255, 107, 0, 0.4) !important;
+    box-shadow: 0 0 20px rgba(255, 107, 0, 0.1) !important;
+}
+
+.social-btn {
+    background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%) !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    border-radius: 16px !important;
+    padding: 12px 24px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    cursor: pointer !important;
+}
+
+.social-btn:hover {
+    background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.05) 100%) !important;
+    border-color: rgba(255,255,255,0.2) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4) !important;
+}
+
+.social-btn:active {
+    transform: scale(0.95) !important;
+}
+
+.sign-in-tab {
+    position: relative;
+    font-size: 44px;
+    font-weight: 800;
+    background: linear-gradient(90deg, #fff 0%, #FFB800 50%, #fff 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: login-shimmer 8s linear infinite;
+    letter-spacing: -0.04em;
+    filter: drop-shadow(0 0 15px rgba(255, 184, 0, 0.2));
+}
+
+.sign-in-tab::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 70px;
+    height: 5px;
+    background: linear-gradient(90deg, #FF6B00, #FFB800);
+    border-radius: 99px;
+    box-shadow: 0 0 20px #FF6B00;
+}
+
+.login-glass-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 40px;
+    padding: 2px;
+    background: linear-gradient(135deg, rgba(255,184,0,0.5), transparent, rgba(255,107,0,0.2));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.login-premium-container::after {
+    display: none;
+}
+
+.gold-glow-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.gold-glow-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg, transparent, rgba(255,184,0,0.3), transparent 30%);
+    animation: rotate 4s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.gold-particle {
+    position: absolute;
+    background: radial-gradient(circle, #FFB800 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(1px);
+}
+
+.gold-connection {
+    position: absolute;
+    background: linear-gradient(90deg, transparent, #FFB80044, transparent);
+    height: 1px;
+    transform-origin: left center;
+    pointer-events: none;
+    z-index: 1;
+}
+/* (Se eliminaron duplicados obsoletos) */

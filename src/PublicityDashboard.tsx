@@ -251,7 +251,7 @@ const PublicityDashboard: React.FC<PublicityProps> = ({ user, onLogout, onBack, 
             <header className="relative z-20 border-b border-white/5 bg-black/60 backdrop-blur-2xl px-4 py-8 md:px-8 md:py-6 flex flex-col md:flex-row justify-between items-center gap-8 shadow-2xl">
                 {/* LOGO SECTION */}
                 <div className="flex flex-col items-center md:items-start group">
-                    <img src="/logo-green.png" alt="FMX Logo" className="h-28 md:h-36 w-auto drop-shadow-[0_0_25px_rgba(16,185,129,0.5)] transition-all duration-500 cursor-pointer hover:scale-105" />
+                    <img src="/logo.png" alt="La Liga del Truco" className="h-28 md:h-36 w-auto drop-shadow-[0_0_25px_rgba(255,107,0,0.4)] transition-all duration-500 cursor-pointer hover:scale-105" />
                 </div>
 
                 {/* SELECTOR & STATUS SECTION */}
@@ -259,13 +259,13 @@ const PublicityDashboard: React.FC<PublicityProps> = ({ user, onLogout, onBack, 
                     <div className="flex items-center gap-1 bg-black/40 p-1 rounded-2xl border border-white/5 w-full max-w-[340px] md:max-w-none md:w-auto shadow-inner">
                         <button
                             onClick={() => setSelectedGroup('Barco')}
-                            className={`flex-1 md:flex-none px-6 py-2 rounded-xl text-[10px] font-black uppercase transition-all duration-300 whitespace-nowrap ${selectedGroup === 'Barco' ? 'bg-emerald-500 text-black shadow-[0_0_20px_rgba(16,185,129,0.4)]' : 'text-slate-500 hover:text-white hover:bg-white/5'}`}
+                            className={`flex-1 md:flex-none px-6 py-2 rounded-xl text-[10px] font-black uppercase transition-all duration-300 whitespace-nowrap ${selectedGroup === 'Barco' ? 'bg-[#FF6B00] text-black shadow-[0_0_20px_rgba(255,107,0,0.4)]' : 'text-slate-500 hover:text-white hover:bg-white/5'}`}
                         >
                             El Barco
                         </button>
                         <button
                             onClick={() => setSelectedGroup('Cueva')}
-                            className={`flex-1 md:flex-none px-6 py-2 rounded-xl text-[10px] font-black uppercase transition-all duration-300 whitespace-nowrap ${selectedGroup === 'Cueva' ? 'bg-emerald-500 text-black shadow-[0_0_20px_rgba(16,185,129,0.4)]' : 'text-slate-500 hover:text-white hover:bg-white/5'}`}
+                            className={`flex-1 md:flex-none px-6 py-2 rounded-xl text-[10px] font-black uppercase transition-all duration-300 whitespace-nowrap ${selectedGroup === 'Cueva' ? 'bg-[#FFB800] text-black shadow-[0_0_20px_rgba(255,184,0,0.4)]' : 'text-slate-500 hover:text-white hover:bg-white/5'}`}
                         >
                             La Cueva
                         </button>
@@ -274,18 +274,18 @@ const PublicityDashboard: React.FC<PublicityProps> = ({ user, onLogout, onBack, 
                     {/* MINI STATUS */}
                     <div className="flex items-center gap-4 opacity-60">
                         <div className="flex items-center gap-1.5">
-                            <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></div>
-                            <span className="text-[8px] text-emerald-400 font-black uppercase tracking-[0.2em] leading-none">Online</span>
+                            <div className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse"></div>
+                            <span className="text-[8px] text-orange-400 font-black uppercase tracking-[0.2em] leading-none">Online</span>
                         </div>
                         <div className="w-px h-2 bg-white/10"></div>
-                        <span className="text-[8px] text-slate-500 font-bold uppercase tracking-[0.2em] leading-none">FMX CORE V2</span>
+                        <span className="text-[8px] text-slate-500 font-bold uppercase tracking-[0.2em] leading-none">CORE V4.0</span>
                     </div>
                 </div>
 
                 {/* ACTIONS - POS ABS ON MOBILE TOP, NORMAL ON DESKTOP */}
                 <div className="absolute top-6 right-4 md:static flex items-center gap-2">
                     {onBack && <button onClick={onBack} className="p-3 bg-white/5 hover:bg-white/10 rounded-2xl border border-white/10 text-slate-400 transition-all flex items-center gap-2 group" title="Panel de Control">
-                        <LayoutDashboard size={20} className="group-hover:text-emerald-400 transition-colors" />
+                        <LayoutDashboard size={20} className="group-hover:text-orange-400 transition-colors" />
                         <span className="text-xs font-bold uppercase hidden lg:block">Panel</span>
                     </button>}
                     <button onClick={onLogout} className="p-3 bg-rose-500/10 hover:bg-rose-500/20 rounded-2xl border border-rose-500/20 text-rose-400 transition-all" title="Cerrar Sesión">
@@ -300,16 +300,16 @@ const PublicityDashboard: React.FC<PublicityProps> = ({ user, onLogout, onBack, 
                     <div className="bg-slate-900/40 backdrop-blur-xl border border-white/5 p-5 rounded-3xl group transition-all">
                         <div className="flex justify-between items-center mb-2">
                             <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Inversión Mensual</p>
-                            <span className="text-[10px] bg-emerald-500 text-black px-2 py-0.5 rounded-full font-black">ARS</span>
+                            <span className="text-[10px] bg-orange-500 text-black px-2 py-0.5 rounded-full font-black">ARS</span>
                         </div>
-                        <h3 className="text-3xl font-mono font-black text-white group-hover:text-emerald-400 transition-colors tracking-tighter">{formatCurrency(stats.monthlyTotal)}</h3>
-                        <div className="mt-1 text-[11px] font-mono text-emerald-500/60 font-black">≈ {formatUSD(stats.monthlyTotal / (usdtRate || 1))}</div>
+                        <h3 className="text-3xl font-mono font-black text-white group-hover:text-orange-400 transition-colors tracking-tighter">{formatCurrency(stats.monthlyTotal)}</h3>
+                        <div className="mt-1 text-[11px] font-mono text-orange-500/60 font-black">≈ {formatUSD(stats.monthlyTotal / (usdtRate || 1))}</div>
                     </div>
                     <div className="bg-slate-900/40 backdrop-blur-xl border border-white/5 p-5 rounded-3xl">
                         <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mb-1">Días Logrados</p>
                         <h3 className="text-2xl font-mono font-black text-white">{stats.activeDays} <span className="text-slate-600 text-sm">/ {publicityData.length}</span></h3>
                         <div className="mt-2 h-1 w-full bg-slate-800 rounded-full overflow-hidden">
-                            <div className="h-full bg-emerald-500" style={{ width: `${(stats.activeDays / (publicityData.length || 1)) * 100}%` }}></div>
+                            <div className="h-full bg-orange-500" style={{ width: `${(stats.activeDays / (publicityData.length || 1)) * 100}%` }}></div>
                         </div>
                     </div>
                     <div className="bg-slate-900/40 backdrop-blur-xl border border-white/5 p-5 rounded-3xl relative overflow-hidden group">
