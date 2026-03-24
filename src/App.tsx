@@ -371,10 +371,10 @@ function App() {
           {/* Tarjeta de Inicio de Sesión */}
           <div className="relative group/card">
             <div className="absolute -inset-[1px] bg-gradient-to-tr from-[#FFB800]/20 via-orange-500/10 to-[#FFB800]/20 rounded-[32px] blur-sm opacity-50 transition-opacity"></div>
-            <div className="relative bg-[#000000]/85 backdrop-blur-3xl p-8 rounded-[32px] border border-white/10 shadow-[0_30px_90px_rgba(0,0,0,1)]">
+            <div className="relative bg-[#000000]/85 backdrop-blur-3xl py-6 px-8 rounded-[32px] border border-white/10 shadow-[0_30px_90px_rgba(0,0,0,1)]">
               
-              <div className="flex flex-col items-center mb-8">
-                <div className="relative mb-6 animate-in slide-in-from-bottom-2 fade-in duration-500">
+              <div className="flex flex-col items-center mb-4">
+                <div className="relative mb-2 animate-in slide-in-from-bottom-2 fade-in duration-500">
                   <div className="absolute -inset-4 bg-[#FFB800]/10 rounded-full blur-xl animate-pulse"></div>
                   <img 
                     src="/logo.png" 
@@ -436,9 +436,9 @@ function App() {
                </div>
              </form>
           ) : (
-            <form onSubmit={handleLogin} className="w-full space-y-7">
+            <form onSubmit={handleLogin} className="w-full space-y-4">
               
-              <div className="space-y-5">
+              <div className="space-y-3">
                   <div className="login-input-group animate-in slide-in-from-bottom-4 fade-in duration-500 fill-mode-both">
                     <label className="text-[11px] text-white/40 ml-1 mb-2 block font-bold tracking-[0.2em] uppercase">Usuario o Email</label>
                     <input
@@ -487,7 +487,7 @@ function App() {
                 </div>
               </div>
 
-              <div className="pt-4 flex flex-col gap-8 items-center animate-in slide-in-from-bottom-4 fade-in duration-500 delay-250 fill-mode-both">
+              <div className="pt-2 flex flex-col gap-6 items-center animate-in slide-in-from-bottom-4 fade-in duration-500 delay-250 fill-mode-both">
                 <button
                   disabled={loading}
                   className="w-full bg-[#FF6B00] hover:bg-[#FF8A00] text-black font-black py-5 rounded-3xl transition-all tracking-[0.3em] text-[12px] flex justify-center items-center gap-2 shadow-[0_20px_50px_rgba(255,107,0,0.4)] active:scale-95 disabled:opacity-50 gold-glow-btn group"
