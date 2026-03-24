@@ -367,7 +367,7 @@ function App() {
         <div className="absolute w-[600px] h-[600px] bg-[#FF6B00]/5 rounded-full blur-[100px] z-0 animate-pulse-slow"></div>
 
         {/* --- GLASSMORPHISM LOGIN CARD --- */}
-        <div className="w-full max-w-[420px] relative z-20 animate-in zoom-in-95 fade-in duration-500 fill-mode-both">
+        <div className="w-full max-w-[390px] relative z-20 animate-in zoom-in-95 fade-in duration-500 fill-mode-both">
           {/* Tarjeta de Inicio de Sesión */}
           <div className="relative group/card">
             <div className="absolute -inset-[1px] bg-gradient-to-tr from-[#FFB800]/20 via-orange-500/10 to-[#FFB800]/20 rounded-[32px] blur-sm opacity-50 transition-opacity"></div>
@@ -379,7 +379,7 @@ function App() {
                   <img 
                     src="/logo.png" 
                     alt="Logo" 
-                    className="w-24 h-24 object-contain contrast-125 brightness-110 drop-shadow-[0_0_25px_rgba(255,184,0,0.5)]" 
+                    className="w-32 h-32 object-contain contrast-125 brightness-110 drop-shadow-[0_0_25px_rgba(255,184,0,0.5)]" 
                   />
                 </div>
                 <h1 className="text-2xl font-black text-white tracking-[0.4em] uppercase text-center animate-in slide-in-from-bottom-2 fade-in duration-500 delay-100">
